@@ -25,3 +25,5 @@ we are using a vector to keep track of the 'floor plan', to simplify the underst
 - Decorator (for customization of the plant)
 - Composite (to 'arrange' the plants)
 - State/Command
+
+### MOST things have changed. dunno what belongs to what
