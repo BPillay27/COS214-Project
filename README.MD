@@ -1,5 +1,8 @@
 ### Practickler's very very serious readme
 
+Our planning docs link:
+https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing
+
 ## Everywhere
 - Iterator (will iterate lol)
 
