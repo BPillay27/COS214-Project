@@ -39,6 +39,13 @@ class Seed : public Maturity {
         std::string lifeCycle() override;
 };
 
+/**
+ * @class Sprout
+ * @brief Represents the sprout stage of a plant's maturity.
+ * @ingroup Maturity
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Sprout : public Maturity {
     public:
         Sprout(Plant* plant);
@@ -48,6 +55,13 @@ class Sprout : public Maturity {
         std::string lifeCycle() override;
 };
 
+/**
+ * @class Seedling
+ * @brief Represents the seedling stage of a plant's maturity.
+ * @ingroup Maturity
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Seedling : public Maturity {
     public:
         Seedling(Plant* plant);
@@ -57,6 +71,13 @@ class Seedling : public Maturity {
         std::string lifeCycle() override;
 };
 
+/**
+ * @class Mature
+ * @brief Represents the mature stage of a plant's maturity.
+ * @ingroup Maturity
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Mature : public Maturity {
     public:
         Mature(Plant* plant);
