@@ -19,7 +19,7 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4]) {
  * @brief Simulates the growth of the plant and aging process.
  */
 void Plant::grow() {
-
+    maturity->grow();
 }
 
 /**
@@ -27,7 +27,7 @@ void Plant::grow() {
  *@param condition Pointer to the new Condition state.
 */
 void Plant::setCondition(Condition* condition){
-
+    
 }
 
 /**
