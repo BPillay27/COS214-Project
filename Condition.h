@@ -3,6 +3,14 @@
 
 class Plant;
 
+/**
+ * @class Condition
+ * @brief An abstract base class representing the health condition state of a plant.
+ * This class defines the interface for different condition states.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Condition {
     protected:
         Plant* cPlant;
@@ -16,6 +24,13 @@ class Condition {
     virtual void examine() = 0;
 };
 
+/**
+ * @class Healthy
+ * @brief Represents a healthy condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Healthy : public Condition {
     public:
         Healthy(Plant* plant);
@@ -23,6 +38,13 @@ class Healthy : public Condition {
         void examine() override;
 };
 
+/**
+ * @class Dehydrated
+ * @brief Represents a dehydrated condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Dehydrated : public Condition {
     public:
         Dehydrated(Plant* plant);
@@ -30,6 +52,13 @@ class Dehydrated : public Condition {
         void examine() override;
 };
 
+/**
+ * @class DehydratedOverGrown
+ * @brief Represents a dehydrated and overgrown condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class DehydratedOverGrown : public Condition {
     public:
         DehydratedOverGrown(Plant* plant);
@@ -37,6 +66,13 @@ class DehydratedOverGrown : public Condition {
         void examine() override;
 };
 
+/**
+ * @class DehydratedMalnurished
+ * @brief Represents a dehydrated and malnourished condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class DehydratedMalnurished : public Condition {
     public:
         DehydratedMalnurished(Plant* plant);
@@ -44,6 +80,13 @@ class DehydratedMalnurished : public Condition {
         void examine() override;
 };
 
+/**
+ * @class DehydratedMalnurishedOverGrown
+ * @brief Represents a dehydrated, malnourished, and overgrown condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class DehydratedMalnurishedOverGrown : public Condition {
     public:
         DehydratedMalnurishedOverGrown(Plant* plant);
@@ -51,6 +94,13 @@ class DehydratedMalnurishedOverGrown : public Condition {
         void examine() override;
 };
 
+/**
+ * @class Malnurished
+ * @brief Represents a malnourished condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class Malnurished : public Condition {
     public:
         Malnurished(Plant* plant);
@@ -58,6 +108,13 @@ class Malnurished : public Condition {
         void examine() override;
 };
 
+/**
+ * @class MalnurishedOverGrown
+ * @brief Represents a malnourished and overgrown condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class MalnurishedOverGrown : public Condition {
     public:
         MalnurishedOverGrown(Plant* plant);
@@ -65,6 +122,13 @@ class MalnurishedOverGrown : public Condition {
         void examine() override;
 };
 
+/**
+ * @class OverGrown
+ * @brief Represents an overgrown condition state of a plant.
+ * @ingroup Condition
+ * @author Tshepiso Makelana
+ * @date 21 October 2025
+ */
 class OverGrown : public Condition {
     public:
         OverGrown(Plant* plant);
