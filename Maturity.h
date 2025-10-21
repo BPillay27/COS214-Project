@@ -1,7 +1,7 @@
 #ifndef MATURITY_H
 #define MATURITY_H
 
-#include "Plant.h"
+class Plant;
 #include <string>
 
 /**
@@ -65,5 +65,7 @@ class Mature : public Maturity {
         bool canSale() override;
         std::string lifeCycle() override;
 };
+
+#include "Plant.h"
 
 #endif // MATURITY_H
