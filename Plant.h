@@ -4,22 +4,29 @@
 //#include "Gardener.h"
 //#include "Condition.h"
 //#include "Maturity.h"
+#include "OrderComponent.h"
+//#include "GreenHouseCare.h"
 #include <string>
 #include <iostream> 
 using namespace std;
 /**
+ * @file Plant.h
  * @class Plant
- * @brief A base class representing a generic plant.
- * This class serves as a foundation for specific plant types.
- * 
+ * @ingroup Plant decorator
+ * @ingroup Order Composite
+ * @ingroup Maturity
+ * @ingroup Condition
  * @ingroup Plants
  * @ingroup Plant Factory Method
- * @ingroup Order Composite
+ *
+ * @brief A base class representing a generic plant.
+ * This class serves as a foundation for specific plant types.
  * @author Keegan Lewis
  * @date October 2025
- * @link Gardener
  */
-class Plant {
+
+
+class Plant : public OrderComponent {
     private:
         int lifeIntervals[4];  
         int lifeTime;  // How long the plant has been active
@@ -36,26 +43,14 @@ class Plant {
          * @link Maturity
          */
         Maturity* maturity;
+        GreenHouseCare* careStrategy;
     public:
         
         Plant(string name,int growth,int water,int nutrition, int lifeCycle[4]);
-        /**
-        *@brief Sets the condition state for the plant.
-        *@param condition Pointer to the new Condition state.
-        */
+        
        void setCondition(Condition* condition);
-       /**
-        * @brief Sets the maturity state for the plant.
-        * @param life Pointer to the new Maturity state.
-        */
        void setLifeStage(Maturity* life);
-       /**
-        * @brief Simulates the growth of the plant and aging process.
-        */
        void grow();
-       /**
-        * @brief virtual Destructor for the Plant class.
-        */
         virtual ~Plant();
         bool addGrowth(int amount);
         bool addWater(int amount);
@@ -70,6 +65,12 @@ class Plant {
         void prune();
         void water();
         void fertilise();
+        bool toPrune();
+        bool toWater();
+        bool toFertilise();
+        void setGardener(Gardener* gardener);
+        int[4] getLifeIntervals();
+        OrderComponent* getChild(int index);
 };
 
 /**
@@ -78,6 +79,10 @@ class Plant {
  * Inherits from the Plant base class.
  * @details This is the product of the Plant factory method.
  * 
+* @ingroup Plant decorator
+ * @ingroup Order Composite
+ * @ingroup Maturity
+ * @ingroup Condition
  * @ingroup Plants
  * @ingroup Plant Factory Method
  * 
@@ -96,6 +101,10 @@ class Rose: public Plant {
  * Inherits from the Plant base class.
  * @details This is the product of the Plant factory method.
  * 
+ * @ingroup Plant decorator
+ * @ingroup Order Composite
+ * @ingroup Maturity
+ * @ingroup Condition
  * @ingroup Plants
  * @ingroup Plant Factory Method
  * 
@@ -119,6 +128,10 @@ class Dandelion: public Plant {
  * Inherits from the Plant base class.
  * @details This is the product of the Plant factory method.
  * 
+ * @ingroup Plant decorator
+ * @ingroup Order Composite
+ * @ingroup Maturity
+ * @ingroup Condition
  * @ingroup Plants
  * @ingroup Plant Factory Method
  * 
@@ -128,10 +141,6 @@ class Dandelion: public Plant {
 
 class AppleTree: public Plant {
     public:
-        /**
-         * @brief Constructor for the AppleTree class.
-         * Initializes an AppleTree plant with specific attributes.
-         */
         AppleTree();
         ~AppleTree();
 };
