@@ -2,53 +2,140 @@
 #include "Order.h"
 #include <iostream>
 
-AcceptPayment::AcceptPayment() : OrderState()
+/**
+ * @details Constructor for the OrderState Abstract class. Sets this `order` to `order`.
+ * @param order The `Order` which this `OrderState` belongs to.
+ */
+
+OrderState::OrderState(Order *order)
+{
+    this->order = order;
+}
+
+/**
+ * @details Destructor for the `OrderState` class. Does nothing since an `OrderState` should not delete its own `Order`.
+ * @note `OrderState` and its subclasses do not delete `order`.
+ */
+
+OrderState::~OrderState()
 {
 }
 
-void AcceptPayment::handle(Order *order)
+/**
+ * @details Constructor for the `AcceptPayment` subclass. Calls the constructor of its base class, `OrderState`. Passes `order` to the `OrderState` constructor.
+ * @param order The `Order` this state belongs to. This is passed to `OrderState`.
+ */
+
+AcceptPayment::AcceptPayment(Order *order) : OrderState(order)
+{
+}
+
+/**
+ * @details Destructor for the `AcceptPayment` subclass. Does nothing,
+ */
+
+AcceptPayment::~AcceptPayment()
+{
+}
+
+/**
+ * @details This is the state handling method for `AcceptPayment`. Prints a message to console and sets `order->state` to `nullptr`.
+ */
+
+void AcceptPayment::handle()
 {
     std::cout << "Payment successfully received.\n";
     order->setState(nullptr);
 }
 
-DeclinePayment::DeclinePayment() : OrderState()
+/**
+ * @details Constructor for the `DeclinePayment` subclass. Calls the constructor of its base class, `OrderState`. Passes `order` to the `OrderState` constructor.
+ * @param order The `Order` this state belongs to. This is passed to `OrderState`.
+ */
+
+DeclinePayment::DeclinePayment(Order *order) : OrderState(order)
 {
 }
 
-void DeclinePayment::handle(Order *order)
+/**
+ * @details Destructor for the `DeclinePayment` subclass. Does nothing,
+ */
+
+DeclinePayment::~DeclinePayment()
+{
+}
+
+/**
+ * @details Handler for a failed payment. Prints a message to console and set `order->state` to `nullptr`.
+ */
+
+void DeclinePayment::handle()
 {
     std::cout << "Payment declined. Please try again.\n";
     // This method could set the state back to processing order, but since we agreed sequential programming this would cause a infinite loop of states?
     order->setState(nullptr);
 }
 
-ProcessingPayment::ProcessingPayment() : OrderState()
+/**
+ * @details Constructor for the `ProcessingPayment subclass. Calls the constructor of its base class, `OrderState`. Passes `order` to the `OrderState` constructor.
+ * @param order The `Order` this state belongs to. This is passed to `OrderState`.
+ */
+
+ProcessingPayment::ProcessingPayment(Order *order) : OrderState(order)
 {
 }
 
-void ProcessingPayment::handle(Order *order)
+/**
+ * @details Destructor for the `ProcessingPayment` subclass. Does nothing,
+ */
+
+ProcessingPayment::~ProcessingPayment()
+{
+}
+
+/**
+ * @details Handler for processing a payment. If the payment is successful, instantiates an `AcceptState` object and sets `order->state` to the object.
+ */
+
+void ProcessingPayment::handle()
 {
     std::cout << "Processing payment...\n";
     int x = rand();
 
     if (x % 2 == 0)
     {
-        AcceptPayment *temp = new AcceptPayment();
+        AcceptPayment *temp = new AcceptPayment(order);
         order->setState(temp);
     }
     else
     {
-        DeclinePayment *temp = new DeclinePayment();
+        DeclinePayment *temp = new DeclinePayment(order);
         order->setState(temp);
     }
 }
 
-VerifyOrder::VerifyOrder() : OrderState()
+/**
+ * @details Constructor for the `VerifyOrder` subclass. Calls the constructor of its base class, `OrderState`. Passes `order` to the `OrderState` constructor.
+ * @param order The `Order` this state belongs to. This is passed to `OrderState`.
+ */
+
+VerifyOrder::VerifyOrder(Order *order) : OrderState(order)
 {
 }
 
-void VerifyOrder::handle(Order *order)
+/**
+ * @details Destructor for the `VerifyOrder` subclass. Does nothing.
+ */
+
+VerifyOrder::~VerifyOrder()
+{
+}
+
+/**
+ * @details Handler for the `VerifyOrder` state. If the `Order` is empty, calls `order->setState(nullptr)` to end the state handling. Otherwise, creates `ProcessingPayment` and sets `order->state` to the `ProcessingPayment` instance.
+ */
+
+void VerifyOrder::handle()
 {
     std::cout << "Verifying order...\n";
     if (order->getItems() == nullptr)
@@ -58,7 +145,7 @@ void VerifyOrder::handle(Order *order)
     }
     else
     {
-        ProcessingPayment *temp = new ProcessingPayment();
+        ProcessingPayment *temp = new ProcessingPayment(order);
         order->setState(temp);
     }
 }
