@@ -72,8 +72,17 @@ void Plant::setLifeStage(Maturity* life){
  */
 Plant::~Plant() {
     gardener = nullptr;
-    delete condition;
-    delete maturity;
+    if(careStrategy!=nullptr){
+        careStrategy=nullptr;
+    }
+    if(condition!=nullptr){
+        delete condition;
+    }
+    condition = nullptr;
+    if(maturity!=nullptr){
+        delete maturity;
+    }
+    maturity = nullptr;
 
 }
 
@@ -116,6 +125,9 @@ bool Plant::addNutrition(int amount) {
  */
 
 bool Plant::canSale() {
+    if(maturity==nullptr){
+        return false;
+    }
     return maturity->canSale();
 }
 
@@ -145,6 +157,9 @@ string Plant::getDetails() {
  */
 
 void Plant::notify(string request) {
+    if(gardener==nullptr){
+        return;
+    }
     gardener->update(request);
 }
 
@@ -180,6 +195,9 @@ int Plant::fertiliseMax() {
  */
 
 void Plant::prune() {
+    if(careStrategy==nullptr){
+        return;
+    }
     careStrategy->prune(this);
 }
 
@@ -188,6 +206,9 @@ void Plant::prune() {
  */
 
 void Plant::water() {
+    if(careStrategy==nullptr){
+        return;
+    }
     careStrategy->water(this);
 }
 
@@ -196,6 +217,9 @@ void Plant::water() {
  */
 
 void Plant::fertilise() {
+    if(careStrategy==nullptr){
+        return;
+    }
     careStrategy->fertilise(this);
 }
 
@@ -246,11 +270,13 @@ void Plant::setGardener(Gardener* gardener) {
 int[4] Plant::getLifeIntervals() {
     return lifeIntervals;
 }
+
 /**
  * @brief Allows for the knowledge the OrderComponent is a Plant by being the same address as the one that ha the request.
  * @param index The index of the child component.
  * @return this pointer.
  */
+
 OrderComponent* Plant::getChild(int index) {
     return this;
 }
