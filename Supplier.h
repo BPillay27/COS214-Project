@@ -5,8 +5,8 @@
 
 /**
  * @class Supplier
- * @brief A base class representing a generic plant.
- * This class serves as a foundation for specific plant types.
+ * @brief A base class that is a represantation of a generic Supplier.
+ * This class serves as a foundation for the creation of plant objects.
  * 
  * @ingroup Plants
  * @ingroup Plant Factory Method
@@ -17,14 +17,14 @@
  */
 class Supplier {
     protected:
-        virtual Plant * Resupply(int growth,int water,int nutrition, int lifeCycle[4]) = 0;
-        virtual void getSpecies() = 0;
+        virtual Plant * Resupply() = 0;
+        virtual string getSpecies() = 0;
 };
 
 /**
  * @class RoseSupplier
- * @brief A base class representing a generic plant.
- * This class serves as a foundation for specific plant types.
+ * @brief A derived class that is represents a Rose supplier.
+ * Inherits from the Supplier base class.
  * 
  * @ingroup Plants
  * @ingroup Plant Factory Method
@@ -36,20 +36,16 @@ class Supplier {
 class RoseSupplier : public Supplier {
     public:
         /**
-        *@brief Creates a Rose plant object then adds it to the inventory.
-        *@param growth The 
-        *@param water 
-        *@param nutrition 
-        *@param lifeCycle 
+        *@brief Creates a Rose plant object.
         */
-        Plant * Resupply(int growth,int water,int nutrition, int lifeCycle[4]);
-        void getSpecies();
+        Plant * Resupply();
+        string getSpecies();
 };
 
 /**
  * @class AppleSupplier
- * @brief A base class representing a generic plant.
- * This class serves as a foundation for specific plant types.
+ * @brief A derived class that is represents a AppleTree supplier.
+ * Inherits from the Supplier base class.
  * 
  * @ingroup Plants
  * @ingroup Plant Factory Method
@@ -60,14 +56,17 @@ class RoseSupplier : public Supplier {
  */
 class AppleSupplier : public Supplier {
     public:
-        Plant * Resupply(int growth,int water,int nutrition, int lifeCycle[4]);
-        void getSpecies();
+         /**
+        *@brief Creates a AppleTree plant object.
+        */
+        Plant * Resupply();
+        string getSpecies();
 };
 
 /**
  * @class DandelionSupplier
- * @brief A base class representing a generic plant.
- * This class serves as a foundation for specific plant types.
+ * @brief A derived class that is represents a Dandelion supplier.
+ * Inherits from the Supplier base class.
  * 
  * @ingroup Plants
  * @ingroup Plant Factory Method
@@ -78,9 +77,11 @@ class AppleSupplier : public Supplier {
  */
 class DandelionSupplier : public Supplier {
     public:
-
-        Plant * Resupply(int growth,int water,int nutrition, int lifeCycle[4]);
-        void getSpecies();
+         /**
+        *@brief Creates a Dandelion plant object.
+        */
+        Plant * Resupply();
+        string getSpecies();
 };
 
 #endif
