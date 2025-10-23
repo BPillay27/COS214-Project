@@ -104,6 +104,11 @@ DehydratedMalnurished::~DehydratedMalnurished() {
 }
 
 void DehydratedMalnurished::examine() {
+
+    //if all restored, go to Healthy state
+    if (!toWater() && !toFertilise()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
     //if plane water levels are restored, go to Malnurished state
     if (!toWater()) {
         cPlant->setCondition(new Malnurished(cPlant));
@@ -117,10 +122,7 @@ void DehydratedMalnurished::examine() {
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
     }
 
-    //if all restored, go to Healthy state
-    else if (!toWater() && !toFertilise()) {
-        cPlant->setCondition(new Healthy(cPlant));
-    }
+    
 }
 
 // DehydratedMalnurishedOverGrown class
@@ -228,8 +230,4 @@ void OverGrown::examine() {
         cPlant->setCondition(new DehydratedOverGrown(cPlant));
     }
 
-    //if pruned, go to Healthy state
-    else if (!toPRune()) {
-        cPlant->setCondition(new Healthy(cPlant));
-    }
 }
