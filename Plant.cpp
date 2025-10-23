@@ -148,7 +148,10 @@ string Plant::getSpecies() {
  */
 
 string Plant::getDetails() {
-    
+    string details = "Species: " + species + "\n";
+    details +="Average Life span: " + to_string(lifeIntervals[4]) + " days\n";
+    details +="Price: R" + to_string(price) + "\n";
+    return details;
 }
 
 /**
@@ -320,7 +323,7 @@ Dandelion::~Dandelion() {
  * Initializes an AppleTree plant with specific attributes.
  * @todo Add specific attributes for AppleTree.
  */
-AppleTree::AppleTree() : Plant("AppleTree", 60, 40, 50, new int[4]{15, 30, 45, 80}) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 50, new int[4]{15, 30, 45, 80}) {
     
 }
 
