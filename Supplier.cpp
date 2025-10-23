@@ -22,14 +22,23 @@ Plant * DandelionSupplier::Resupply() {
     return new Dandelion();
 }
 
+/**
+ * @brief Returns the species name Rose as a string
+ */
 string RoseSupplier::getSpecies() {
-
+return "Rose";
 }
 
-string RoseSupplier::getSpecies() {
-
+/**
+ * @brief Returns the species name AppleTree as a string
+ */
+string AppleSupplier::getSpecies() {
+return "AppleTree";
 }
 
-string RoseSupplier::getSpecies() {
-
+/**
+ * @brief Returns the species name Dandelion as a string
+ */
+string DandelionSupplier::getSpecies() {
+return "Dandelion";
 }
