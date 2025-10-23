@@ -46,7 +46,7 @@ class Plant : public OrderComponent {
         GreenHouseCare* careStrategy;
     public:
         
-        Plant(string name,int growth,int water,int nutrition, int lifeCycle[4]);
+        Plant(string name,int growth,int water,int nutrition, int lifeCycle[4],int price);
         
        void setCondition(Condition* condition);
        void setLifeStage(Maturity* life);

@@ -290,7 +290,7 @@ OrderComponent* Plant::getChild(int index) {
  * @todo Add specific attributes for Rose. 
  */
 
-Rose::Rose() : Plant("Rose", 20, 30, 20, new int[4]{5, 10, 20, 45}) {
+Rose::Rose() : Plant("Rose", 20, 30, 20, new int[4]{5, 10, 20, 45}, 50) {
 
 }
 
@@ -306,7 +306,7 @@ Rose::~Rose() {
  * Initializes a Dandelion plant with specific attributes.
  * @todo Add specific attributes for Dandelion.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 50, 60, new int[4]{5, 15, 25, 35}) {    
+Dandelion::Dandelion() : Plant("Dandelion", 15, 50, 60, new int[4]{5, 15, 25, 35}, 20) {    
     
 }
 
@@ -323,7 +323,7 @@ Dandelion::~Dandelion() {
  * Initializes an AppleTree plant with specific attributes.
  * @todo Add specific attributes for AppleTree.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 50, new int[4]{15, 30, 45, 80}) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 50, new int[4]{15, 30, 45, 80},120) {
     
 }
 
