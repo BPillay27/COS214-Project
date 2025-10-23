@@ -30,7 +30,20 @@ Healthy::~Healthy() {
 }
 
 void Healthy::examine() {
-    // Plant is healthy, no adjustments needed.
+    //If plant is healthy, no adjustments needed.
+
+    //go to dehydrated state if water level is low
+    if (toWater()) {
+        cPlant->setCondition(new Dehydrated(cPlant));
+    }
+    //go to malnurished state if nutrition level is low
+    else if (toFertilise()) {
+        cPlant->setCondition(new Malnurished(cPlant));
+    }
+    //go to overgrown state if growth level is high
+    else if (toPRune()) {
+        cPlant->setCondition(new OverGrown(cPlant));
+    }
 }
 
 // Dehydrated class
@@ -43,8 +56,18 @@ Dehydrated::~Dehydrated() {
 }
 
 void Dehydrated::examine() {
-    // Plant is dehydrated, adjust water levels.
-    adjustWater(10);
+    //if the water levels are restored, go back to healthy
+    if (!toWater()) {
+        cPlant->setCondition(new Healthy(cPlant));    
+    }
+    //if the plant is also malnurished, go to DehydratedMalnurished state
+    else if (toFertilise()) {
+        cPlant->setCondition(new DehydratedMalnurished(cPlant));
+    }
+    //if the plant is also overgrown, go to DehydratedOverGrown state
+    else if (toPRune()) {
+        cPlant->setCondition(new DehydratedOverGrown(cPlant));
+    }
 }
 
 // DehydratedOverGrown class
@@ -57,9 +80,18 @@ DehydratedOverGrown::~DehydratedOverGrown() {
 }
 
 void DehydratedOverGrown::examine() {
-    // Plant is dehydrated and overgrown, adjust water and nutrition levels.
-    adjustWater(10);
-    adjustNutrition(-5);
+    //if water levels are restored, go to OverGrown state
+    if (!toWater()) {
+        cPlant->setCondition(new OverGrown(cPlant));
+    }
+    //if overgrowth is fixed, go to Dehydrated state
+    else if (!toPRune()) {
+        cPlant->setCondition(new Dehydrated(cPlant));
+    }
+    //if plant also malnutrished, go to DehydratedMalnurishedOverGrown state
+    else if (toFertilise()) {
+        cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
+    }
 }
 
 // DehydratedMalnurished class
@@ -72,9 +104,23 @@ DehydratedMalnurished::~DehydratedMalnurished() {
 }
 
 void DehydratedMalnurished::examine() {
-    // Plant is dehydrated and malnourished, adjust water and nutrition levels.
-    adjustWater(10);
-    adjustNutrition(-10);
+    //if plane water levels are restored, go to Malnurished state
+    if (!toWater()) {
+        cPlant->setCondition(new Malnurished(cPlant));
+    }
+    //if nutrition levels are restored, go to Dehydrated state
+    else if (!toFertilise()) {
+        cPlant->setCondition(new Dehydrated(cPlant));
+    }
+    //if plant also overgrown, go to DehydratedMalnurishedOverGrown state
+    else if (toPRune()) {
+        cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
+    }
+
+    //if all restored, go to Healthy state
+    else if (!toWater() && !toFertilise()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
 }
 
 // DehydratedMalnurishedOverGrown class
@@ -87,10 +133,23 @@ DehydratedMalnurishedOverGrown::~DehydratedMalnurishedOverGrown() {
 }
 
 void DehydratedMalnurishedOverGrown::examine() {
-    // Plant is dehydrated, malnourished, and overgrown, adjust water, nutrition, and growth levels.
-    adjustWater(10);
-    adjustNutrition(-10);
-    adjustGrowth(-5);
+    //if the plant water levels are restored, go to MalnurishedOverGrown state
+    if (!toWater()) {
+        cPlant->setCondition(new MalnurishedOverGrown(cPlant));
+    }
+    //if nutrition levels are restored, go to DehydratedOverGrown state
+    else if (!toFertilise()) {
+        cPlant->setCondition(new DehydratedOverGrown(cPlant));
+    }
+    //if overgrowth is fixed, go to DehydratedMalnurished state
+    else if (!toPRune()) {
+        cPlant->setCondition(new DehydratedMalnurished(cPlant));
+    }
+
+    //if all restored, go to Healthy state
+    else if (!toWater() && !toFertilise() && !toPRune()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
 }
 
 //Malnurished class
@@ -103,8 +162,18 @@ Malnurished::~Malnurished() {
 }
 
 void Malnurished::examine() {
-    // Plant is malnourished, adjust nutrition levels.
-    adjustNutrition(-10);
+    //if the nutrition levels are restored, go back to healthy
+    if (!toFertilise()) {
+        cPlant->setCondition(new Healthy(cPlant));    
+    }
+    //if the plant is also dehydrated, go to DehydratedMalnurished state
+    else if (toWater()) {
+        cPlant->setCondition(new DehydratedMalnurished(cPlant));
+    }
+    //if the plant is also overgrown, go to MalnurishedOverGrown state
+    else if (toPRune()) {
+        cPlant->setCondition(new MalnurishedOverGrown(cPlant));
+    }
 }
 
 //Malnurished OverGrown class
@@ -117,9 +186,23 @@ MalnurishedOverGrown::~MalnurishedOverGrown() {
 }
 
 void MalnurishedOverGrown::examine() {
-    // Plant is malnourished and overgrown, adjust nutrition and growth levels.
-    adjustNutrition(-10);
-    adjustGrowth(-5);
+    //if overgrowth is fixed, go to Malnurished state
+    if (!toPRune()) {
+        cPlant->setCondition(new Malnurished(cPlant));
+    }
+    //if nutrition levels are restored, go to OverGrown state
+    else if (!toFertilise()) {
+        cPlant->setCondition(new OverGrown(cPlant));
+    }
+    //if plant also dehydrated, go to DehydratedMalnurishedOverGrown state
+    else if (toWater()) {
+        cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
+    }
+
+    //if plant is fertilised and pruned, go to Healthy state
+    else if (!toFertilise() && !toPRune()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
 }
 
 // OverGrown class
@@ -132,6 +215,21 @@ OverGrown::~OverGrown() {
 }
 
 void OverGrown::examine() {
-    // Plant is overgrown, adjust growth levels.
-    adjustGrowth(-5);
+    //if overgrowth is fixed, go back to healthy
+    if (!toPRune()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
+    //if plant also malnourished, go to MalnurishedOverGrown state
+    else if (toFertilise()) {
+        cPlant->setCondition(new MalnurishedOverGrown(cPlant));
+    }
+    //if plant also dehydrated, go to DehydratedOverGrown state
+    else if (toWater()) {
+        cPlant->setCondition(new DehydratedOverGrown(cPlant));
+    }
+
+    //if pruned, go to Healthy state
+    else if (!toPRune()) {
+        cPlant->setCondition(new Healthy(cPlant));
+    }
 }
