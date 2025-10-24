@@ -10,6 +10,7 @@ Order::Order(std::string id)
 {
     this->id = id;
     state = new VerifyOrder(this);
+    items = new OrderComponent(0);
 }
 
 /**
@@ -40,8 +41,7 @@ Order::~Order()
 
 void Order::AddToOrder(OrderComponent *item)
 {
-    // TODO : Implement
-    // OrderComponent not implemented yet...
+    items->add(item);
 }
 
 /**
@@ -51,8 +51,7 @@ void Order::AddToOrder(OrderComponent *item)
 
 void Order::RemoveFromOrder(OrderComponent *item)
 {
-    // TODO : Implement
-    // OrderComponent not implemented yet...
+    items->remove(item);
 }
 
 /**
