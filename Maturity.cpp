@@ -138,7 +138,7 @@ void Seedling::grow() {
 
 /**
  * @brief Checks if the plant can be sold at the seedling stage.
- * @return false, as seedlings cannot be sold.
+ * @return false, as seedlings cannot be sold (Not yet Mature).
  */
 bool Seedling::canSale() {
     return false;
