@@ -20,6 +20,7 @@ class DeadPlant : public Maturity, public Condition {
         DeadPlant(Plant* plant);
         ~DeadPlant();
         void grow() override;
+        void examine() override;
         bool canSale() override;
         std::string lifeCycle() override;
 };
