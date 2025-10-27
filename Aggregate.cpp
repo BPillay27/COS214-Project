@@ -166,3 +166,9 @@ int PlantArea::getCount()
 {
     return count;
 }
+
+int PlantArea::getCapacity()
+{
+    return capacity;
+}
+
