@@ -6,6 +6,7 @@ using namespace std;
 #include <iostream>
 #include "Plant.h"
 
+class Plant;
 class OrderComponent 
 {
 public:
@@ -14,6 +15,7 @@ public:
     void add(OrderComponent* toAdd);
     OrderComponent* remove(OrderComponent* toRemove); //This part is more for Arrangement
     OrderComponent* getChild(int index);
+    virtual Plant* getPlant();
     ~OrderComponent();
 private:
     int price;
@@ -24,9 +26,11 @@ class PlantDecorator : public OrderComponent
 protected:
     OrderComponent* component;
 public:
+    PlantDecorator(OrderComponent* component);
     PlantDecorator(int price);
     virtual OrderComponent* add(OrderComponent* toAdd);
     int getPrice();
+    ~PlantDecorator();
 };
 
 class DecorPot : public PlantDecorator 

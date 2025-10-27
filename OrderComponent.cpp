@@ -22,10 +22,17 @@ OrderComponent* OrderComponent::getChild(int index)
     return nullptr;
 }
 
+Plant* OrderComponent::getPlant() 
+{
+    return nullptr; //for now dunno how to return, 'itself' 
+}
+
 OrderComponent::~OrderComponent() 
 {
 
 }
+
+PlantDecorator::PlantDecorator(OrderComponent* component) : OrderComponent(component->getPrice()), component(component) {}
 
 PlantDecorator::PlantDecorator(int price) : OrderComponent(price), component(nullptr) {}
 
@@ -49,7 +56,15 @@ int PlantDecorator::getPrice()
     return 0;
 }
 
-DecorPot::DecorPot() : PlantDecorator(component->getPrice()) {}
+PlantDecorator::~PlantDecorator() 
+{
+    
+}
+
+DecorPot::DecorPot() : PlantDecorator(component->getPrice()) 
+{
+
+}
 
 OrderComponent* DecorPot::addTo(OrderComponent* toAdd)
 {
