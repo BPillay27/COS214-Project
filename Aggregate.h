@@ -30,6 +30,7 @@ class PlantArea : public Aggregate<PlantRow*>
     ~PlantArea() override;
     Plant* givePlant(std::string plantType);
     int getCount();
+    int getCapacity();
 
     private:
     int capacity;
