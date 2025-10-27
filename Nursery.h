@@ -2,7 +2,7 @@
 #define NUSERY_H
 
 #include "Plant.h"
-#include "PlantArea.h"
+#include "Aggregate.h"
 #include <vector>
 #include <string>
 
