@@ -11,6 +11,8 @@ class Arrangement : public OrderComponent
 private:
     std::vector<OrderComponent*> arrangement;
 public:
+    Arrangement(int price) : OrderComponent(price) {};
+    Arrangement(const Arrangement& other);
     int getPrice();
     void add(OrderComponent* toAdd);
     OrderComponent* remove(OrderComponent* toRemove);

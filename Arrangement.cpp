@@ -12,6 +12,11 @@ int Arrangement::getPrice()
 
 void Arrangement::add(OrderComponent* toAdd) 
 {
+    if (!toAdd)
+    {
+        cout << "The component that is trying to be added is null. (Arrangement.cpp line 12)";
+        return;
+    }
     arrangement.push_back(toAdd);
 }
 
@@ -22,6 +27,16 @@ OrderComponent* Arrangement::remove(OrderComponent* toRemove)
         cout << "The component that is trying to be removed is null. (Arrangement.cpp line 20)";
         return nullptr;
     }
+    for (int i = 0; i < arrangement.size(); i++) 
+    {
+        if (arrangement[i] == toRemove) //idk if == is meant to be overloaded lel.
+        {
+            arrangement.erase(arrangement.begin() + i);
+            return toRemove;
+        }
+    }
+    cout << "The component that is trying to be removed was not found. (Arrangement.cpp line 29)";
+    return nullptr;
 }
 
 OrderComponent* Arrangement::getChild(int index) 
