@@ -24,31 +24,33 @@ Customer* Namer::createCustomer(string name)
 //CivillianNamer (Concrete Creator)
 CivillianNamer::CivillianNamer() : Namer()
 {
-
+    //default
 }
 
 CivillianNamer::~CivillianNamer()
 {
-
+    //default
 }
 
 Customer* CivillianNamer::CustomerNamer(string name)
 {
-    
+    //instantiate the concrete products with their names
+    return new Civillian(name);
 }
 
 //CommercialNamer (Concrete Creator)
 CommercialNamer::CommercialNamer() : Namer()
 {
-
+    //default
 }
 
 CommercialNamer::~CommercialNamer()
 {
-
+    //default
 }
 
 Customer* CommercialNamer::CustomerNamer(string name)
 {
-
+    //instantiate the concrete products with their names
+    return new Commercial(name);
 }

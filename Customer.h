@@ -18,11 +18,11 @@ class Customer {
     public:
     Customer(string customerName);
     virtual ~Customer();
-    void nextRow();
     void pay();
-    void addItem(OrderComponent* item); // not sure about this 
-    void removeItem(OrderComponent* item); //not sure about this 
-    void prevRow();
+    void cancelTransaction();
+    void addItem(OrderComponent* item);
+    void removeItem(OrderComponent* item);
+    void checkout(); // Execute all queued commands
     string getName();
 };
 
