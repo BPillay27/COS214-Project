@@ -146,10 +146,16 @@ void Nursery::grow() {
 }
 
 void Nursery::examine() {
-    greenHouse.examine();
+    greenHouse.examine(true);
     for (Plant* plant : salesArea) {
         if (plant != nullptr) {
-            plant->examine();
+            plant->examine(true);
+        }
+    }
+    greenHouse.examine(false);
+    for (Plant* plant : salesArea) {
+        if (plant != nullptr) {
+            plant->examine(false);
         }
     }
 }
