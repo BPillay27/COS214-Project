@@ -20,22 +20,24 @@ public:
     virtual Iterator<T> *createIterator() = 0;
 };
 
-class PlantArea : public Aggregate<PlantRow*>
+class PlantArea : public Aggregate<PlantRow *>
 {
-    public:
-    Iterator<PlantRow*>* createIterator() override;
-    bool addPlant(Plant* toAdd) override;
-    bool removePlant(Plant* toRemove);
+public:
+    Iterator<PlantRow *> *createIterator() override;
+    bool addPlant(Plant *toAdd) override;
+    bool removePlant(Plant *toRemove);
     PlantArea(int capacity);
     ~PlantArea() override;
-    Plant* givePlant(std::string plantType);
+    Plant *givePlant(std::string plantType);
     int getCount();
     int getCapacity();
     int getRowTotal(Plant *plant);
+    void examinePlant(Plant *plant);
+    void growPlant(Plant *plant);
 
-    private:
+private:
     int capacity;
-    std::vector<PlantRow*> plantRows;
+    std::vector<PlantRow *> plantRows;
     int count;
 };
 
@@ -50,6 +52,8 @@ public:
     std::string typePlant();
     Plant *givePlant();
     Iterator<Plant *> *createIterator() override;
+    void examinePlant(Plant *plant);
+    void growPlant(Plant *plant);
 
 private:
     std::vector<Plant *> plants;

@@ -83,7 +83,34 @@ Iterator<Plant *> *PlantRow::createIterator()
     return new VectorIterator<Plant *>(plants);
 }
 
-PlantArea::PlantArea(int capacity) : Aggregate<PlantRow*>()
+void PlantRow::examinePlant(Plant *plant)
+{
+    if (plant == nullptr || plant->getSpecies() != typePlant())
+    {
+        return;
+    }
+
+    for (Plant *p : plants)
+    {
+        // whats happening here?
+        p->examine();
+    }
+}
+
+void PlantRow::growPlant(Plant *plant)
+{
+    if (plant == nullptr || plant->getSpecies() != typePlant())
+    {
+        return;
+    }
+
+    for (Plant *p : plants)
+    {
+        p->grow();
+    }
+}
+
+PlantArea::PlantArea(int capacity) : Aggregate<PlantRow *>()
 {
     this->capacity = capacity;
     plantRows.clear();
@@ -185,3 +212,36 @@ int PlantArea::getRowTotal(Plant *plant)
     return -1;
 }
 
+void PlantArea::examinePlant(Plant *plant)
+{
+    if (plant == nullptr)
+    {
+        return;
+    }
+
+    for (PlantRow *pr : plantRows)
+    {
+        if (pr->typePlant() == plant->getSpecies())
+        {
+            pr->examinePlant();
+            return;
+        }
+    }
+}
+
+void PlantArea::growPlant(Plant *plant)
+{
+    if (plant == nullptr)
+    {
+        return;
+    }
+
+    for (PlantRow *pr : plantRows)
+    {
+        if (pr->typePlant() == plant->getSpecies())
+        {
+            pr->growPlant();
+            return;
+        }
+    }
+}
