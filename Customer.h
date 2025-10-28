@@ -22,7 +22,7 @@ class Customer {
     void cancelTransaction();
     void addItem(OrderComponent* item);
     void removeItem(OrderComponent* item);
-    void checkout(); // Execute all queued commands
+    void checkout();
     string getName();
 };
 

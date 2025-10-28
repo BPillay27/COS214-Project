@@ -1,11 +1,10 @@
 #include "Customer.h"
 
-// Base Customer class implementation
+//base Customer class implementation
 Customer::Customer(string customerName)
 {
     name = customerName;
-    // Create a new order for this customer with a unique ID based on their name
-    order = new Order(customerName + "_order");
+    order = new Order(customerName); //id will be customer name
 }
 
 Customer::~Customer()
@@ -55,7 +54,7 @@ void Customer::cancelTransaction() //might need to move some of this implementat
 
 void Customer::addItem(OrderComponent* item)
 {
-    // Create AddToOrder command and add it to the queue
+    //create the AddToOrder command and add it to the Q
     if(order != nullptr && item != nullptr)
     {
         AddToOrder* addCommand = new AddToOrder(order, item);
@@ -65,7 +64,7 @@ void Customer::addItem(OrderComponent* item)
 
 void Customer::removeItem(OrderComponent* item)
 {
-    // Create RemoveFromOrder command and add it to the queue
+    //create the RemoveFromOrder command and add it to the Q
     if(order != nullptr && item != nullptr)
     {
         RemoveFromOrder* removeCommand = new RemoveFromOrder(order, item);
@@ -81,11 +80,11 @@ void Customer::checkout()
         Command* command = buffer.front();
         buffer.pop();
         command->execute();
-        delete command; // Clean up the command after execution
+        delete command; //clean up command
     }
 }
 
-//Civillian (Concrete Product)
+//Civillian (ConcreteProduct)
 Civillian::Civillian(string name) : Customer(name)
 {
     //default
@@ -96,7 +95,7 @@ Civillian::~Civillian()
     //default
 }
 
-//Commercial (Concrete Product)
+//Commercial (ConcreteProduct)
 Commercial::Commercial(string name) : Customer(name)
 {
     //default
