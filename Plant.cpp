@@ -1,9 +1,6 @@
 #include "Plant.h"
 
 /**
- * @todo Implement the methods of the Plant class and its derived classes.
- */
-/**
  * @file Plant.cpp
  * @brief Constructor for the Plant class.
  * @param name The species name of the plant.
@@ -77,6 +74,7 @@ Plant::~Plant() {
     }
     if(condition!=nullptr){
         delete condition;
+        condition = nullptr;
     }
     condition = nullptr;
     if(maturity!=nullptr){
@@ -157,13 +155,13 @@ string Plant::getDetails() {
 /**
  * @brief Notifies the plant's observer, the gardener of a request.
  * @param request The request message.
+ * @todo Implement the observer pattern to notify the gardener. After the requests are finsihed.
  */
 
 void Plant::notify(string request) {
-    if(gardener==nullptr){
-        return;
-    }
-    gardener->update(request);
+    /*
+    Help me
+    */
 }
 
 /**
@@ -283,14 +281,20 @@ int[4] Plant::getLifeIntervals() {
 OrderComponent* Plant::getChild(int index) {
     return this;
 }
+/**
+ * @brief Allows for the knowledge the OrderComponent is a Plant by being the same address as the one that had the request.
+ * @return this pointer.
+ */
+Plant* Plant::getPlant() {
+    return this;
+}
 
 /**
  * @brief Constructor for the Rose class.
  * Initializes a Rose plant with specific attributes.
- * @todo Add specific attributes for Rose. 
  */
 
-Rose::Rose() : Plant("Rose", 20, 30, 20, new int[4]{5, 10, 20, 45}, 50) {
+Rose::Rose() : Plant("Rose", 20, 15, 20, new int[4]{5, 10, 20, 45}, 50) {
 
 }
 
@@ -304,9 +308,8 @@ Rose::~Rose() {
 /**
  * @brief Constructor for the Dandelion class.
  * Initializes a Dandelion plant with specific attributes.
- * @todo Add specific attributes for Dandelion.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 50, 60, new int[4]{5, 15, 25, 35}, 20) {    
+Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[4]{5, 15, 25, 35}, 20) {    
     
 }
 
@@ -321,9 +324,8 @@ Dandelion::~Dandelion() {
 /**
  * @brief Constructor for the AppleTree class.
  * Initializes an AppleTree plant with specific attributes.
- * @todo Add specific attributes for AppleTree.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 50, new int[4]{15, 30, 45, 80},120) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[4]{15, 30, 45, 80},120) {
     
 }
 
