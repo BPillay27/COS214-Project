@@ -83,27 +83,16 @@ Iterator<Plant *> *PlantRow::createIterator()
     return new VectorIterator<Plant *>(plants);
 }
 
-void PlantRow::examinePlant(Plant *plant)
+void PlantRow::examinePlant(bool con)
 {
-    if (plant == nullptr || plant->getSpecies() != typePlant())
-    {
-        return;
-    }
-
     for (Plant *p : plants)
     {
-        // whats happening here?
-        p->examine();
+        p->examine(con);
     }
 }
 
-void PlantRow::growPlant(Plant *plant)
+void PlantRow::growPlant()
 {
-    if (plant == nullptr || plant->getSpecies() != typePlant())
-    {
-        return;
-    }
-
     for (Plant *p : plants)
     {
         p->grow();
@@ -212,36 +201,18 @@ int PlantArea::getRowTotal(Plant *plant)
     return -1;
 }
 
-void PlantArea::examinePlant(Plant *plant)
+void PlantArea::examinePlant(bool con)
 {
-    if (plant == nullptr)
-    {
-        return;
-    }
-
     for (PlantRow *pr : plantRows)
     {
-        if (pr->typePlant() == plant->getSpecies())
-        {
-            pr->examinePlant();
-            return;
-        }
+        pr->examinePlant(con);
     }
 }
 
-void PlantArea::growPlant(Plant *plant)
+void PlantArea::growPlant()
 {
-    if (plant == nullptr)
-    {
-        return;
-    }
-
     for (PlantRow *pr : plantRows)
     {
-        if (pr->typePlant() == plant->getSpecies())
-        {
-            pr->growPlant();
-            return;
-        }
+        pr->growPlant();
     }
 }
