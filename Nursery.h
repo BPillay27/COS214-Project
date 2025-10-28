@@ -29,7 +29,7 @@ class Nursery {
         bool walking;
     public:
         /**
-         * @brief Adds a plant to the nursery.
+         * @brief Adds a plant to the green house.
          * @param plant A pointer to the Plant object to be added.
          * @return true if the plant was successfully added, false otherwise.
          */
@@ -102,6 +102,17 @@ class Nursery {
          */
         bool space();
 
+        /**
+        * @brief Grows all plants in the nursery.
+        * @return void
+        */
+        void grow();
+
+        /**
+         * @brief Examines all plants in the nursery and prints their details.
+         * @return void
+         */
+        void examine();
 };
 
 #endif // NUSERY_H

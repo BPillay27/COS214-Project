@@ -16,7 +16,7 @@ bool Nursery::removePlant(Plant* plant) {
     if(plant == nullptr) {
         return false;
     }
-    return greenHouse.removePlant(plant);
+    greenHouse.removePlant(plant);
 }
 
 Nursery::~Nursery() {
@@ -133,5 +133,23 @@ bool Nursery::moveToSales(std::string plantType) {
         return false;        
     }else{
         return false;
+    }
+}
+
+void Nursery::grow() {
+    greenHouse.grow();
+    for (Plant* plant : salesArea) {
+        if (plant != nullptr) {
+            plant->grow();
+        }
+    }
+}
+
+void Nursery::examine() {
+    greenHouse.examine();
+    for (Plant* plant : salesArea) {
+        if (plant != nullptr) {
+            plant->examine();
+        }
     }
 }
