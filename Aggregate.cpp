@@ -172,3 +172,16 @@ int PlantArea::getCapacity()
     return capacity;
 }
 
+int PlantArea::getRowTotal(Plant *plant)
+{
+    for (PlantRow *pr : plantRows)
+    {
+        if (pr->typePlant() == plant->getSpecies())
+        {
+            return pr->getNumPlants();
+        }
+    }
+
+    return -1;
+}
+
