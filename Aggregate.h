@@ -32,8 +32,8 @@ public:
     int getCount();
     int getCapacity();
     int getRowTotal(Plant *plant);
-    void examinePlant(Plant *plant);
-    void growPlant(Plant *plant);
+    void examinePlant(bool con);
+    void growPlant();
 
 private:
     int capacity;
@@ -52,8 +52,8 @@ public:
     std::string typePlant();
     Plant *givePlant();
     Iterator<Plant *> *createIterator() override;
-    void examinePlant(Plant *plant);
-    void growPlant(Plant *plant);
+    void examinePlant(bool con);
+    void growPlant();
 
 private:
     std::vector<Plant *> plants;
