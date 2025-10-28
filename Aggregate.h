@@ -31,6 +31,7 @@ class PlantArea : public Aggregate<PlantRow*>
     Plant* givePlant(std::string plantType);
     int getCount();
     int getCapacity();
+    int getRowTotal(Plant *plant);
 
     private:
     int capacity;
