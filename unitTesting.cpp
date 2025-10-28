@@ -1,3 +1,8 @@
+#include "Command.h"
+#include "Order.h"
+#include "OrderState.h"
+#include <iostream>
+#include <vector>
 
 //#include "Command.h"
 //#include "Order.h"
