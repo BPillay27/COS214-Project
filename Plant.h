@@ -9,6 +9,11 @@
 #include <string>
 #include <iostream> 
 using namespace std;
+
+class Gardener;
+class Condition;
+class Maturity;
+class GreenHouseCare;
 /**
  * @file Plant.h
  * @class Plant
@@ -69,8 +74,13 @@ class Plant : public OrderComponent {
         bool toWater();
         bool toFertilise();
         void setGardener(Gardener* gardener);
-        int[4] getLifeIntervals();
+        int* getLifeIntervals();
         OrderComponent* getChild(int index);
+        Plant* isPlant(); //keegan's requested function
+        Plant* getPlant(); //Override OrderComponent method here and below
+        int getPrice();
+        void add(OrderComponent* toAdd);
+        OrderComponent* remove(OrderComponent* toRemove);
 };
 
 /**

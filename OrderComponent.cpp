@@ -32,19 +32,9 @@ OrderComponent::~OrderComponent()
 
 }
 
-PlantDecorator::PlantDecorator(OrderComponent* component) : OrderComponent(component->getPrice()), component(component) {}
-
-PlantDecorator::PlantDecorator(int price) : OrderComponent(price), component(nullptr) {}
-
-OrderComponent* PlantDecorator::add(OrderComponent* toAdd) 
+PlantDecorator::PlantDecorator(OrderComponent* component) : OrderComponent(0), component(component) 
 {
-    //TODO: PlantDecorator actual logic lolol
-    if (toAdd) 
-    {
-        toAdd->add(toAdd);
-        return toAdd;
-    }
-    return nullptr;
+    
 }
 
 int PlantDecorator::getPrice() 
@@ -58,22 +48,27 @@ int PlantDecorator::getPrice()
 
 PlantDecorator::~PlantDecorator() 
 {
-    
+    //don't delete component here as it might be used somewhere else
 }
 
-DecorPot::DecorPot() : PlantDecorator(component->getPrice()) 
+DecorPot::DecorPot(OrderComponent* component) : PlantDecorator(component), potPrice(25) 
+{
+    // arr ar ar ar ar arr arr arr arrr arrrrr
+    //dont pee on the floor, use the commodore
+    //mb, leave open
+}
+
+int DecorPot::getPrice() 
+{
+    return PlantDecorator::getPrice() + potPrice;
+}
+
+Wrapping::Wrapping(OrderComponent* component) : PlantDecorator(component), wrappingPrice(15) 
 {
 
 }
 
-OrderComponent* DecorPot::addTo(OrderComponent* toAdd)
+int Wrapping::getPrice() 
 {
-    // TODO: DecorPot actual logic lolol
-    if (toAdd) 
-    {
-        toAdd->add(toAdd);
-        return toAdd;
-    }
+    return PlantDecorator::getPrice() + wrappingPrice;
 }
-
-Wrapping::Wrapping() : PlantDecorator(component->getPrice()) {}

@@ -4,20 +4,19 @@
 #include <string>
 using namespace std;
 #include <iostream>
-#include "Plant.h"
 
 class Plant;
 class OrderComponent 
 {
 public:
     OrderComponent(int price);
-    int getPrice();
-    void add(OrderComponent* toAdd);
-    OrderComponent* remove(OrderComponent* toRemove); //This part is more for Arrangement
-    OrderComponent* getChild(int index);
-    virtual Plant* getPlant();
-    ~OrderComponent();
-private:
+    virtual int getPrice();
+    virtual void add(OrderComponent* toAdd);
+    virtual OrderComponent* remove(OrderComponent* toRemove); //This part is more for Arrangement
+    virtual OrderComponent* getChild(int index);
+    virtual Plant* getPlant(); 
+    virtual ~OrderComponent();
+protected:
     int price;
 };
 
@@ -27,22 +26,25 @@ protected:
     OrderComponent* component;
 public:
     PlantDecorator(OrderComponent* component);
-    PlantDecorator(int price);
-    virtual OrderComponent* add(OrderComponent* toAdd);
-    int getPrice();
-    ~PlantDecorator();
+    int getPrice() override;
+    virtual ~PlantDecorator();
 };
 
 class DecorPot : public PlantDecorator 
 {
+private:
+    int potPrice;
 public:
-    DecorPot();
-    OrderComponent* addTo(OrderComponent* toAdd);
+    DecorPot(OrderComponent* component);
+    int getPrice() override;
 };
 
 class Wrapping : public PlantDecorator
 {
+private:
+    int wrappingPrice;
 public:
-    Wrapping();
+    Wrapping(OrderComponent* component);
+    int getPrice() override;
 };
 #endif

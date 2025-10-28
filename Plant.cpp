@@ -29,23 +29,32 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], i
 /**
  * @brief Simulates the growth of the plant and aging process.
  */
-void Plant::grow() {
-    maturity->grow();
+void Plant::grow() 
+{
+    lifeTime++;
+    if (maturity != nullptr) 
+    {
+        //i think this is going to work after states are done and connected
+        //commented out for now tho
+        // maturity->grow(); 
+    }
 }
 
 /**
  *@brief Sets the condition state for the plant.
  *@param condition Pointer to the new Condition state.
 */
-void Plant::setCondition(Condition* condition){
-    if(condition==nullptr){
+void Plant::setCondition(Condition* condition)
+{
+    if(condition==nullptr)
+    {
         return;
     }
 
-    if(this->condition!=nullptr){
-        Condition* holder=this->condition;
+    if(this->condition!=nullptr)
+    {
+        //incomplete type deletion issues, idk keegan save me
         this->condition=nullptr;
-        delete holder;
     }
     this->condition=condition;
 }
@@ -54,15 +63,17 @@ void Plant::setCondition(Condition* condition){
  * @brief Sets the maturity state for the plant.
  * @param life Pointer to the new Maturity state.
  */
-void Plant::setLifeStage(Maturity* life){    
-    if(life==nullptr){
+void Plant::setLifeStage(Maturity* life)
+{    
+    if(life==nullptr)
+    {
         return;
     }
 
-    if(this->maturity!=nullptr){
-        Maturity* holder=this->maturity;
+    if(this->maturity!=nullptr)
+    {
+        //incomplete type deletion issues, keegan save me pls
         this->maturity=nullptr;
-        delete holder;
     }
     this->maturity=life;
 }
@@ -75,15 +86,16 @@ Plant::~Plant() {
     if(careStrategy!=nullptr){
         careStrategy=nullptr;
     }
-    if(condition!=nullptr){
-        delete condition;
+    if(condition!=nullptr)
+    {
+        //incomplete type deletion issues, keegan save me pls
+        condition = nullptr;
     }
-    condition = nullptr;
-    if(maturity!=nullptr){
-        delete maturity;
+    if(maturity!=nullptr)
+    {
+        //incomplete type deletion issues, keegan save me pls
+        maturity = nullptr;
     }
-    maturity = nullptr;
-
 }
 
 /**
@@ -125,10 +137,11 @@ bool Plant::addNutrition(int amount) {
  */
 
 bool Plant::canSale() {
-    if(maturity==nullptr){
+    if(maturity==nullptr)
+    {
         return false;
     }
-    return maturity->canSale();
+    return (lifeTime >= lifeIntervals[2]);
 }
 
 /**
@@ -163,7 +176,8 @@ void Plant::notify(string request) {
     if(gardener==nullptr){
         return;
     }
-    gardener->update(request);
+    //until gardener is properly made and connected, commented out for now
+    // gardener->update(request);
 }
 
 /**
@@ -201,7 +215,8 @@ void Plant::prune() {
     if(careStrategy==nullptr){
         return;
     }
-    careStrategy->prune(this);
+    //careStrategy not connected either, commented out for now
+    // careStrategy->prune(this)
 }
 
 /**
@@ -212,7 +227,8 @@ void Plant::water() {
     if(careStrategy==nullptr){
         return;
     }
-    careStrategy->water(this);
+    //careStrategy not connected either, commented out for now
+    // careStrategy->water(this);
 }
 
 /**
@@ -223,7 +239,8 @@ void Plant::fertilise() {
     if(careStrategy==nullptr){
         return;
     }
-    careStrategy->fertilise(this);
+    //careStrategy not connected either, commented out for now
+    // careStrategy->fertilise(this);
 }
 
 /**
@@ -268,9 +285,9 @@ void Plant::setGardener(Gardener* gardener) {
 
 /**
  * @brief Gets the life intervals of the plant.
- * @return An array of integers representing the life intervals.
+ * @return A pointer to an array of integers representing the life intervals.
  */
-int[4] Plant::getLifeIntervals() {
+int* Plant::getLifeIntervals() {
     return lifeIntervals;
 }
 
@@ -284,7 +301,27 @@ OrderComponent* Plant::getChild(int index) {
     return this;
 }
 
+Plant* Plant::isPlant() 
+{
+    return this;
+}
 
+int Plant::getPrice() 
+{
+    return OrderComponent::getPrice();
+}
+
+Plant* Plant::getPlant() 
+{
+    return this;
+}
+
+void Plant::add(OrderComponent* toAdd){ }
+
+OrderComponent* Plant::remove(OrderComponent* toRemove) 
+{
+    return nullptr; //tras my dis ok
+}
 
 /**
  * @brief Constructor for the Rose class.
