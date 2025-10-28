@@ -16,9 +16,8 @@
  * @link Gardener
  */
 class Supplier {
-    protected:
-        virtual Plant * Resupply() = 0;
-        virtual string getSpecies() = 0;
+    public:
+        virtual Plant * resupply() = 0;
 };
 
 /**
@@ -38,8 +37,7 @@ class RoseSupplier : public Supplier {
         /**
         *@brief Creates a Rose plant object.
         */
-        Plant * Resupply();
-        string getSpecies();
+        Plant * resupply();
 };
 
 /**
@@ -59,8 +57,7 @@ class AppleSupplier : public Supplier {
          /**
         *@brief Creates a AppleTree plant object.
         */
-        Plant * Resupply();
-        string getSpecies();
+        Plant * resupply();
 };
 
 /**
@@ -80,8 +77,7 @@ class DandelionSupplier : public Supplier {
          /**
         *@brief Creates a Dandelion plant object.
         */
-        Plant * Resupply();
-        string getSpecies();
+        Plant * resupply();
 };
 
 #endif
