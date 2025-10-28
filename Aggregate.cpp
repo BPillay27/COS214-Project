@@ -304,7 +304,7 @@ void PlantArea::examine(bool con)
 {
     for (PlantRow *pr : plantRows)
     {
-        pr->examinePlant(con);
+        pr->examine(con);
     }
 }
 
@@ -316,6 +316,6 @@ void PlantArea::grow()
 {
     for (PlantRow *pr : plantRows)
     {
-        pr->growPlant();
+        pr->grow();
     }
 }
