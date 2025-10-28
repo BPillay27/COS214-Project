@@ -83,7 +83,7 @@ Iterator<Plant *> *PlantRow::createIterator()
     return new VectorIterator<Plant *>(plants);
 }
 
-void PlantRow::examinePlant(bool con)
+void PlantRow::examine(bool con)
 {
     for (Plant *p : plants)
     {
@@ -91,7 +91,7 @@ void PlantRow::examinePlant(bool con)
     }
 }
 
-void PlantRow::growPlant()
+void PlantRow::grow()
 {
     for (Plant *p : plants)
     {
@@ -201,7 +201,7 @@ int PlantArea::getRowTotal(Plant *plant)
     return -1;
 }
 
-void PlantArea::examinePlant(bool con)
+void PlantArea::examine(bool con)
 {
     for (PlantRow *pr : plantRows)
     {
@@ -209,7 +209,7 @@ void PlantArea::examinePlant(bool con)
     }
 }
 
-void PlantArea::growPlant()
+void PlantArea::grow()
 {
     for (PlantRow *pr : plantRows)
     {
