@@ -275,6 +275,14 @@ int[4] Plant::getLifeIntervals() {
 }
 
 /**
+ * @brief Gets the current lifetime of the plant.
+ * @return The current lifetime in days/intervals.
+ */
+int Plant::getLifeTime() {
+    return lifeTime;
+}
+
+/**
  * @brief Allows for the knowledge the OrderComponent is a Plant by being the same address as the one that ha the request.
  * @param index The index of the child component.
  * @return this pointer.

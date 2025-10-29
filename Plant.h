@@ -70,6 +70,7 @@ class Plant : public OrderComponent {
         bool toFertilise();
         void setGardener(Gardener* gardener);
         int[4] getLifeIntervals();
+        int getLifeTime();
         OrderComponent* getChild(int index);
 };
 
