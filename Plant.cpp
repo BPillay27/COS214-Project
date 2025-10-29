@@ -162,6 +162,24 @@ void Plant::notify(string request) {
     /*
     Help me
     */
+   if(gardener!=nullptr){
+        if(request=="prune"){
+            Request req=new Prune(this);
+            gardener->update(req);
+            return;
+        }else if(request=="water"){
+            Request req=new Water(this);
+            gardener->update(req);
+            return;
+        }else if(request=="fertilise"){
+            Request req=new Fertilise(this);
+            gardener->update(req);
+            return;
+        }else if(request=="dead"){
+            Inventory::getInstance()->removePlant(this);
+            return;
+        }
+   }
 }
 
 /**
