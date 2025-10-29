@@ -1,4 +1,5 @@
 #include "Order.h"
+#include "OrderComponent.h"
 #include "OrderState.h"
 
 /**
