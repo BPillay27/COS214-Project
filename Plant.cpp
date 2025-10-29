@@ -258,6 +258,9 @@ bool Plant::toFertilise() {
     }
     return false;
 }
+bool Plant::isResourcesDepleted() {
+    return (waterLevel[0] <= 0 || soilNutrition[0] <= 0);
+}
 /**
  * @brief Sets the gardener observer for the plant.
  * @param gardener Pointer to the Gardener object.
