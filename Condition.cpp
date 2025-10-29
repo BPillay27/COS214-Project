@@ -153,7 +153,15 @@ void Dehydrated::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
-    
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
+
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
@@ -188,10 +196,9 @@ void Dehydrated::examine(bool shouldDegrade) {
     // Single states
     else if (needsWater) {
         // Still dehydrated, notify gardener again
-        cPlant->notify("water");
-        // Stay in Dehydrated - no setCondition call needed
-        // But you could explicitly do: (optional)
-        // cPlant->setCondition(new Dehydrated(cPlant));
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        return;
     }
     else if (needsFertiliser) { //!! Need double check
         // Water restored, but now malnourished
@@ -237,12 +244,18 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
     
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
-
-    // Check all conditions and transition to appropriate state
     
     // Triple compound (both primary issues still present + fertiliser needed)
     if (needsWater && needsFertiliser && needsPrune) {
@@ -321,12 +334,18 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
     
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
-
-    // Check all conditions and transition to appropriate state
     
     // Triple compound (both primary issues still present + pruning needed)
     if (needsWater && needsFertiliser && needsPrune) {
@@ -405,13 +424,19 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
     
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
 
-    // Check all conditions and transition to appropriate state
-    
     // Triple compound (all three primary issues still present)
     if (needsWater && needsFertiliser && needsPrune) {
         // All three issues still present - STAY
@@ -489,12 +514,18 @@ void Malnurished::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
     
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
-
-    // Check all conditions and transition to appropriate state
     
     // Triple compound (still malnourished + 2 new problems)
     if (needsWater && needsFertiliser && needsPrune) {
@@ -573,12 +604,18 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
         degradeWater();
         degradeNutrition();
     }
+
+    // Simple death check - only if completely depleted
+    if (cPlant->isResourcesDepleted()) {
+        cPlant->notify("dead");
+        cPlant->setCondition(new DeadPlant(cPlant));
+        cPlant->setLifeStage(new DeadPlant(cPlant));
+        return;
+    }
     
     bool needsWater = cPlant->toWater();
     bool needsFertiliser = cPlant->toFertilise();
     bool needsPrune = cPlant->toPrune();
-
-    // Check all conditions and transition to appropriate state
     
     // Triple compound (both primary issues still present + water needed)
     if (needsWater && needsFertiliser && needsPrune) {
