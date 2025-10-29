@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-int main()
+void TestOrderPayCommand()
 {
-    OrderState *a = new AcceptPayment(nullptr);
+OrderState *a = new AcceptPayment(nullptr);
     OrderState *d = new DeclinePayment(nullptr);
     OrderState *p = new ProcessingPayment(nullptr);
     OrderState *v = new VerifyOrder(nullptr);
@@ -15,10 +15,9 @@ int main()
     d->handle();
     p->handle();
     v->handle();
-
-    /*
+    
     //These can be updated and tested once the Composite implementation is done.
-    //Order* order=new Order("20251021-01");
+    Order* order=new Order("20251021-01");
     order->processPayment();
     std::vector<AddToOrder*> addCommands;
 
@@ -45,9 +44,14 @@ int main()
     for(AddToOrder* a : addCommands){
         delete a;
     }
-    */
+
     delete a;
     delete d;
     delete p;
     delete v;
+}
+
+int main()
+{
+    TestOrderPayCommand();
 }
