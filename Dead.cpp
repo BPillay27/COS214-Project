@@ -31,5 +31,6 @@ std::string DeadPlant::lifeCycle() {
  * Dead plants do not change state.
  */
 void DeadPlant::examine() {
-    // Dead plants do not change state
+    // it should notify the gardener that the plant is dead
+    cPlant->notify("dead");
 }   
