@@ -11,7 +11,7 @@ class InventoryManager : public Employee{
     InventoryManager();
     void handle(Request* task);
     void HireInventoryManager(string name);
-    void update(Request* request);
+    void updateQueue();
 };
 
 #endif

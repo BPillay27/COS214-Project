@@ -2,16 +2,16 @@
 #define SALESMAN_H
 
 #include <string>
-
 #include "Employee.h"
 
 using namespace std;
 
-class Salesman{
+class Salesman : public Employee {
+    public:
     Salesman();
     void handle(Request* task);
     void HireSalesman(string name);
-    void update(Request* request);
+    void updateQueue();
 };
 
 #endif

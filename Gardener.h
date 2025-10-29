@@ -11,7 +11,7 @@ class Gardener : public Employee {
     Gardener();
     void handle(Request* task);
     void HireGardener(string name);
-    void update(Request* request);
+    void updateQueue();
 };
 
 #endif
