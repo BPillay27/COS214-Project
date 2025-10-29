@@ -41,11 +41,17 @@ Seed::~Seed() {
 
 /**
  * @brief Grows the plant from seed to sprout stage.
- * Transitions the plant's life stage to Sprout.
+ * Transitions the plant's life stage to Sprout when lifeTime reaches the first interval.
  */
 void Seed::grow() {
-    // Transition to Sprout stage
-    mPlant->setLifeStage(new Sprout(mPlant));
+
+    int* intervals = mPlant->getLifeIntervals();
+    
+    // Seed needs water to germinate
+    if (mPlant->getLifeTime() >= intervals[0] && 
+        !mPlant->toWater()) {  // Has sufficient water
+        mPlant->setLifeStage(new Sprout(mPlant));
+    }
 }
 
 /**
@@ -82,17 +88,15 @@ Sprout::~Sprout() {
 
 /**
  * @brief Grows the plant from sprout to seedling stage.
- * Transitions the plant's life stage to Seedling.
+ * Transitions the plant's life stage to Seedling when lifeTime reaches the second interval
+ * and the plant has healthy growth (not overgrown).
  */
 void Sprout::grow() {
-    // Transition to Seedling stage.
-    // a plant can only grow to Seedling if its lifetime >= lifeIntervals[size-2] and growth[0] >= growth[1]
-    // if (mPlant->getLifetime() >= mPlant->getLifeIntervals()[mPlant->getLifeIntervals().size() - 2] &&
-    //     mPlant->getGrowth()[0] >= mPlant->getGrowth()[1]) {
-    //     mPlant->setLifeStage(new Seedling(mPlant));
-    // }
-
-    mPlant->setLifeStage(new Seedling(mPlant));
+    // Transition to Seedling stage when time is right and plant size is above it's measure at this state
+    int* intervals = mPlant->getLifeIntervals();
+    if (mPlant->getLifeTime() >= intervals[1] && mPlant->toPrune()) {
+        mPlant->setLifeStage(new Seedling(mPlant));
+    }
 }
 
 /**
@@ -129,11 +133,15 @@ Seedling::~Seedling() {
 
 /**
  * @brief Grows the plant from seedling to mature stage.
- * Transitions the plant's life stage to Mature.
+ * Transitions the plant's life stage to Mature when lifeTime reaches the third interval
+ * and the plant has healthy growth (not overgrown).
  */
 void Seedling::grow() {
-    // Transition to Mature stage
-    mPlant->setLifeStage(new Mature(mPlant));
+    // Transition to Mature stage when time is right and plant is healthy (not needing pruning)
+    int* intervals = mPlant->getLifeIntervals();
+    if (mPlant->getLifeTime() >= intervals[2] && mPlant->toPrune()) {
+        mPlant->setLifeStage(new Mature(mPlant));
+    }
 }
 
 /**
@@ -170,10 +178,15 @@ Mature::~Mature() {
 
 /**
  * @brief Attempts to grow the plant at the mature stage.
- * No further growth occurs as the plant is already mature.
+ * Checks if the plant has exceeded its lifespan and transitions to DeadPlant state if so.
  */
 void Mature::grow() {
-    // Already at mature stage, no further growth
+    // Check if plant has reached the end of its lifespan (4th interval)
+    int* intervals = mPlant->getLifeIntervals();
+    if (mPlant->getLifeTime() >= intervals[3]) {
+        mPlant->setLifeStage(new DeadPlant(mPlant));
+    }
+    // Otherwise, already at mature stage, no further growth
 }
 
 /**
