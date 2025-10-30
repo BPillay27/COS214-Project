@@ -8,19 +8,19 @@ class Plant;
 
 //Double inheritance from Maturity and Condition
 /**
- * @class DeadPlant
+ * @class Dead
  * @brief Represents a dead plant with its decomposition stages.
  * @ingroup Condition
  * @ingroup Maturity
  * @author Tshepiso Makelana
  * @date 26 October 2025
  **/
-class DeadPlant : public Maturity, public Condition {
+class Dead : public Maturity, public Condition {
     public:
-        DeadPlant(Plant* plant);
-        ~DeadPlant();
+        Dead(Plant* plant);
+        ~Dead();
         void grow() override;
-        void examine() override;
+        void examine(bool shouldDegrade) override;
         bool canSale() override;
         std::string lifeCycle() override;
 };
