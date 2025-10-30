@@ -13,7 +13,7 @@
 #include <iostream>
 #include <vector>
 
-#include <Customer.h>
+#include <Customer.h> //inserted this to prevent some errors 
 
 using namespace std;
 void testPlants(){
