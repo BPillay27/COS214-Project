@@ -1,11 +1,12 @@
 #ifndef PLANT_H
 #define PLANT_H
 //Wait to see dependencies --- IGNORE ---
-//#include "Gardener.h"
-//#include "Condition.h"
-//#include "Maturity.h"
+#include "Gardener.h"
+#include "Condition.h"
+#include "Maturity.h"
 #include "OrderComponent.h"
-//#include "GreenHouseCare.h"
+#include "GreenHouseCare.h"
+#include "Request.h"
 #include <string>
 #include <iostream> 
 using namespace std;
@@ -70,9 +71,10 @@ class Plant : public OrderComponent {
         bool toFertilise();
         bool isResourcesDepleted();
         void setGardener(Gardener* gardener);
-        int[4] getLifeIntervals();
+        int[3] getLifeIntervals();
         int getLifeTime();
         OrderComponent* getChild(int index);
+        Plant* getPlant();
 };
 
 /**
