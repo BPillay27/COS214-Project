@@ -48,3 +48,11 @@ OrderComponent* Arrangement::getChild(int index)
     }
     return arrangement[index];
 }
+
+Arrangement::~Arrangement() 
+{
+    for (OrderComponent* component : arrangement) 
+    {
+        delete component;
+    }
+}
