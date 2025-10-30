@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::Dashboard *ui;
+    void init();
 };
 
 #endif // DASHBOARD_H
