@@ -6,6 +6,7 @@
 #include "Maturity.h"
 #include "OrderComponent.h"
 #include "GreenHouseCare.h"
+#include "Request.h"
 #include <string>
 #include <iostream> 
 using namespace std;
@@ -73,8 +74,10 @@ class Plant : public OrderComponent {
         bool toPrune();
         bool toWater();
         bool toFertilise();
+        bool isResourcesDepleted();
         void setGardener(Gardener* gardener);
-        int* getLifeIntervals();
+        int[3] getLifeIntervals();
+        int getLifeTime();
         OrderComponent* getChild(int index);
         //Plant* isPlant(); keegan's requested function <- cannot be called not in base class
         Plant* getPlant(); //Override OrderComponent method here and below

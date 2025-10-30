@@ -1,9 +1,6 @@
 #include "Plant.h"
 
 /**
- * @todo Implement the methods of the Plant class and its derived classes.
- */
-/**
  * @file Plant.cpp
  * @brief Constructor for the Plant class.
  * @param name The species name of the plant.
@@ -170,14 +167,31 @@ string Plant::getDetails() {
 /**
  * @brief Notifies the plant's observer, the gardener of a request.
  * @param request The request message.
+ * @todo Implement the observer pattern to notify the gardener. After the requests are finsihed.
  */
 
 void Plant::notify(string request) {
-    if(gardener==nullptr){
-        return;
-    }
-    //until gardener is properly made and connected, commented out for now
-    // gardener->update(request);
+    /*
+    Help me
+    */
+   if(gardener!=nullptr){
+        if(request=="prune"){
+            Request req=new Prune(this);
+            gardener->update(req);
+            return;
+        }else if(request=="water"){
+            Request req=new Water(this);
+            gardener->update(req);
+            return;
+        }else if(request=="fertilise"){
+            Request req=new Fertilise(this);
+            gardener->update(req);
+            return;
+        }else if(request=="dead"){
+            Inventory::getInstance()->removePlant(this);
+            return;
+        }
+   }
 }
 
 /**
@@ -275,6 +289,9 @@ bool Plant::toFertilise() {
     }
     return false;
 }
+bool Plant::isResourcesDepleted() {
+    return (waterLevel[0] <= 0 || soilNutrition[0] <= 0);
+}
 /**
  * @brief Sets the gardener observer for the plant.
  * @param gardener Pointer to the Gardener object.
@@ -292,12 +309,27 @@ int* Plant::getLifeIntervals() {
 }
 
 /**
+ * @brief Gets the current lifetime of the plant.
+ * @return The current lifetime in days/intervals.
+ */
+int Plant::getLifeTime() {
+    return lifeTime;
+}
+
+/**
  * @brief Allows for the knowledge the OrderComponent is a Plant by being the same address as the one that ha the request.
  * @param index The index of the child component.
  * @return this pointer.
  */
 
 OrderComponent* Plant::getChild(int index) {
+    return this;
+}
+/**
+ * @brief Allows for the knowledge the OrderComponent is a Plant by being the same address as the one that had the request.
+ * @return this pointer.
+ */
+Plant* Plant::getPlant() {
     return this;
 }
 
@@ -326,10 +358,9 @@ OrderComponent* Plant::remove(OrderComponent* toRemove)
 /**
  * @brief Constructor for the Rose class.
  * Initializes a Rose plant with specific attributes.
- * @todo Add specific attributes for Rose. 
  */
 
-Rose::Rose() : Plant("Rose", 20, 30, 20, new int[4]{5, 10, 20, 45}, 50) {
+Rose::Rose() : Plant("Rose", 20, 15, 20, new int[4]{5, 10, 20, 45}, 50) {
 
 }
 
@@ -343,9 +374,8 @@ Rose::~Rose() {
 /**
  * @brief Constructor for the Dandelion class.
  * Initializes a Dandelion plant with specific attributes.
- * @todo Add specific attributes for Dandelion.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 50, 60, new int[4]{5, 15, 25, 35}, 20) {    
+Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[4]{5, 15, 25, 35}, 20) {    
     
 }
 
@@ -360,9 +390,8 @@ Dandelion::~Dandelion() {
 /**
  * @brief Constructor for the AppleTree class.
  * Initializes an AppleTree plant with specific attributes.
- * @todo Add specific attributes for AppleTree.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 50, new int[4]{15, 30, 45, 80},120) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[4]{15, 30, 45, 80},120) {
     
 }
 
