@@ -39,7 +39,7 @@ class Requests{
  * @author Keegan Lewis
  * @date October 2025
  */
-class Place{
+class Place : public Requests{
     private:
         Plant* plant;
         Gardener* param;
@@ -56,7 +56,7 @@ class Place{
  * @author Keegan Lewis
  * @date October 2025
  */
-class Water{
+class Water : public Requests{
     private:
         Plant* plant;
     public:
@@ -71,7 +71,7 @@ class Water{
  * @author Keegan Lewis
  * @date October 2025
  */
-class Fertilise{
+class Fertilise : public Requests{
     private:
         Plant* plant;
     public:
@@ -86,7 +86,7 @@ class Fertilise{
  * @date October 2025
  */
 
-class Prune{
+class Prune : public Requests{
     private:
         Plant* plant;
     public:

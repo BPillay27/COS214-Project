@@ -1,5 +1,9 @@
 #include "Gardener.h"
 
+/**
+ * @details Constructor for the Gardener class
+ * constructor initializes the queue with 5 default gardener employees
+ */
 Gardener::Gardener() : Employee()
 {
     for(int i = 1; i <= 5; i++)
@@ -8,11 +12,15 @@ Gardener::Gardener() : Employee()
     }
 }
 
-void Gardener::handle(Request* task)
+/**
+ * @details Handles gardening-related requests
+ * @param task The request to handle
+ */
+void Gardener::handle(Requests* task)
 {
     string taskType = task->getType();
     
-    if(taskType == "MovePlant" || taskType == "WaterPlant" || taskType == "TillAssistance" || taskType == "AnswerQuestion")
+    if(taskType == "Place" || taskType == "Water" || taskType == "Fertilise" || taskType == "Prune")
     {
         int queueSize = employees.size();
         bool handled = false;
@@ -62,11 +70,18 @@ void Gardener::handle(Request* task)
     }
 }
 
+/**
+ * @details Hires a new gardener by adding a new EmployeePerson to the queue
+ * @param name The name of the new gardener
+ */
 void Gardener::HireGardener(string name)
 {
     employees.push(EmployeePerson(name));
 }
 
+/**
+ * @details Updates the gardener queue by moving the front gardener to the back of the queue
+ */
 void Gardener::updateQueue()
 {
     if(!employees.empty())

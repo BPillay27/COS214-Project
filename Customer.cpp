@@ -1,12 +1,20 @@
 #include "Customer.h"
 
-//base Customer class implementation
+/**
+ * @details Constructor for the base Customer class
+ * Initializes the customer with a name and creates a new Order object with the customer name as the order ID
+ * @param customerName The name of the customer
+ */
 Customer::Customer(string customerName)
 {
     name = customerName;
     order = new Order(customerName); //id will be customer name
 }
 
+/**
+ * @details Destructor for the Customer class
+ * Cleans up all remaining commands in the buffer and deletes the order object
+ */
 Customer::~Customer()
 {
     //clean up any remaining commands in the buffer
@@ -22,11 +30,18 @@ Customer::~Customer()
     }
 }
 
+/**
+ * @details Getter method for the customer's name
+ * @return The name of the customer
+ */
 string Customer::getName()
 {
     return name;
 }
 
+/**
+ * @details Processes payment for the order
+ */
 void Customer::pay()
 {
     //payment logic
@@ -34,7 +49,10 @@ void Customer::pay()
     order->processPayment();
 }
 
-void Customer::cancelTransaction() //might need to move some of this implementation as the customer wont actually remove the items.
+/**
+ * @details Cancels the current transaction
+ */
+void Customer::cancelTransaction()
 {
     //clear all commands in the queue if not executed
     while(!buffer.empty())
@@ -43,15 +61,19 @@ void Customer::cancelTransaction() //might need to move some of this implementat
         buffer.pop();
         delete command;
     }
-    //fetch the items to remove them all
+    //cancel the order using OrderComponent's cancelOrder
     OrderComponent* currentItems = order->getItems();
     if(currentItems != nullptr)
     {
-        //remove all items
-        order->RemoveFromOrder(currentItems);
+        //use cancelOrder instead of removing items
+        currentItems->cancelOrder();
     }
 }
 
+/**
+ * @details Adds an item to the order by creating an AddToOrder command and adding it to the command buffer
+ * @param item The OrderComponent to add to the order
+ */
 void Customer::addItem(OrderComponent* item)
 {
     //create the AddToOrder command and add it to the Q
@@ -62,6 +84,10 @@ void Customer::addItem(OrderComponent* item)
     }
 }
 
+/**
+ * @details Removes an item from the order by creating a RemoveFromOrder command and adding it to the command buffer
+ * @param item The OrderComponent to remove from the order
+ */
 void Customer::removeItem(OrderComponent* item)
 {
     //create the RemoveFromOrder command and add it to the Q
@@ -72,6 +98,10 @@ void Customer::removeItem(OrderComponent* item)
     }
 }
 
+/**
+ * @details Executes all commands in the buffer queue in FIFO order
+ * Each command is executed and then deleted after execution
+ */
 void Customer::checkout()
 {
     //execute all the buffer commands 
@@ -84,23 +114,35 @@ void Customer::checkout()
     }
 }
 
-//Civillian (ConcreteProduct)
+/**
+ * @details Constructor for the Civillian class. Calls the base Customer constructor
+ * @param name The name of the civilian customer
+ */
 Civillian::Civillian(string name) : Customer(name)
 {
     //default
 }
 
+/**
+ * @details Destructor for the Civillian class
+ */
 Civillian::~Civillian()
 {
     //default
 }
 
-//Commercial (ConcreteProduct)
+/**
+ * @details Constructor for the Commercial class. Calls the base Customer constructor
+ * @param name The name of the commercial customer
+ */
 Commercial::Commercial(string name) : Customer(name)
 {
     //default
 }
 
+/**
+ * @details Destructor for the Commercial class
+ */
 Commercial::~Commercial()
 {
     //default

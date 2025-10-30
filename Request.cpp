@@ -5,7 +5,7 @@
  * @details Constructor for the Place request class
  * @param plant The plant to be assigned a gardener
  */
-Place::Place(Plant* plant){
+Place::Place(Plant* plant) : Requests("Place"){
     this->plant=plant;
 }
 
@@ -33,7 +33,7 @@ void Place::execute(){
  * @details Constructor for the Water request class
  * @param plant The plant to be watered
  */
-Water::Water(Plant* plant){
+Water::Water(Plant* plant) : Requests("Water"){
     this->plant=plant;
 }
 
@@ -52,7 +52,7 @@ void Water::execute(){
  * @details Constructor for the Fertilize request class
  * @param plant The plant to be fertilized
  */
-Fertilise::Fertilise(Plant* plant){
+Fertilise::Fertilise(Plant* plant) : Requests("Fertilise"){
     this->plant=plant;
 }
 
@@ -71,7 +71,7 @@ void Fertilise::execute(){
  * @details Constructor for the Prune request class
  * @param plant The plant to be pruned
  */
-Prune::Prune(Plant* plant){
+Prune::Prune(Plant* plant) : Requests("Prune"){
     this->plant=plant;
 }
 
