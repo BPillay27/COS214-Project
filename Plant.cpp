@@ -274,6 +274,9 @@ bool Plant::toFertilise() {
     }
     return false;
 }
+bool Plant::isResourcesDepleted() {
+    return (waterLevel[0] <= 0 || soilNutrition[0] <= 0);
+}
 /**
  * @brief Sets the gardener observer for the plant.
  * @param gardener Pointer to the Gardener object.
@@ -288,6 +291,14 @@ void Plant::setGardener(Gardener* gardener) {
  */
 int[4] Plant::getLifeIntervals() {
     return lifeIntervals;
+}
+
+/**
+ * @brief Gets the current lifetime of the plant.
+ * @return The current lifetime in days/intervals.
+ */
+int Plant::getLifeTime() {
+    return lifeTime;
 }
 
 /**

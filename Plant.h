@@ -69,8 +69,11 @@ class Plant : public OrderComponent {
         bool toPrune();
         bool toWater();
         bool toFertilise();
+        bool isResourcesDepleted();
         void setGardener(Gardener* gardener);
-        int[4] getLifeIntervals();
+        int[3] getLifeIntervals();
+        int getLifeTime();
+        OrderComponent* getChild(int index);
         Plant* getPlant();
 };
 
