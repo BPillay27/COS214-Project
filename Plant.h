@@ -10,6 +10,11 @@
 #include <string>
 #include <iostream> 
 using namespace std;
+
+class Gardener;
+class Condition;
+class Maturity;
+class GreenHouseCare;
 /**
  * @file Plant.h
  * @class Plant
@@ -74,7 +79,11 @@ class Plant : public OrderComponent {
         int[3] getLifeIntervals();
         int getLifeTime();
         OrderComponent* getChild(int index);
-        Plant* getPlant();
+        //Plant* isPlant(); keegan's requested function <- cannot be called not in base class
+        Plant* getPlant(); //Override OrderComponent method here and below
+        int getPrice();
+        void add(OrderComponent* toAdd);
+        OrderComponent* remove(OrderComponent* toRemove);
 };
 
 /**
