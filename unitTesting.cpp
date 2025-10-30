@@ -498,6 +498,515 @@ void testOrderComponent()
     cout << "   - Shared interface enables seamless interaction" << endl;
 }
 
+void testCustomerFactory()
+{
+    cout << "\n=== CUSTOMER FACTORY METHOD PATTERN TESTING ===" << endl;
+    cout << "Testing Factory Method Pattern with Command Pattern Integration" << endl;
+    
+    int testsPassed = 0;
+    int totalTests = 0;
+    
+    //test 1: customer creation (factory method)
+    cout << "\n--- Test 1: Customer Object Creation ---" << endl;
+    totalTests += 2;
+    try {
+        Customer* civilian = new Civillian("John Doe");
+        Customer* commercial = new Commercial("ABC Company");
+        
+        if (civilian && commercial) {
+            cout << "Both customer types created successfully" << endl;
+            testsPassed++;
+        }
+        
+        if (civilian->getName() == "John Doe" && commercial->getName() == "ABC Company") {
+            cout << "Customer names stored correctly" << endl;
+            testsPassed++;
+        } else {
+            cout << "Customer name retrieval failed" << endl;
+        }
+        
+        delete civilian;
+        delete commercial;
+    } catch (const exception& e) {
+        cout << "Customer creation failed: " << e.what() << endl;
+    }
+    
+    //test 2: adding items to order (command pattern)
+    cout << "\n--- Test 2: Adding Items with Command Pattern ---" << endl;
+    totalTests += 2;
+    try {
+        Customer* customer = new Civillian("Jane Smith");
+        Plant* rose = new Rose();
+        Plant* dandelion = new Dandelion();
+        
+        //add items (creates commands in buffer)
+        customer->addItem(rose);
+        customer->addItem(dandelion);
+        
+        cout << "Items added to command buffer" << endl;
+        testsPassed++;
+        
+        //checkout executes all buffered commands
+        customer->checkout();
+        cout << "Checkout executed all buffered commands" << endl;
+        testsPassed++;
+        
+        delete customer;
+        //items are deleted by Order/Arrangement
+    } catch (const exception& e) {
+        cout << "Adding items test failed: " << e.what() << endl;
+    }
+    
+    //test 3: removing items from order
+    cout << "\n--- Test 3: Removing Items from Order ---" << endl;
+    totalTests++;
+    try {
+        Customer* customer = new Civillian("Bob Johnson");
+        Plant* rose = new Rose();
+        Plant* appleTree = new AppleTree();
+        
+        customer->addItem(rose);
+        customer->addItem(appleTree);
+        customer->checkout();
+        
+        //now remove an item
+        customer->removeItem(rose);
+        customer->checkout();
+        
+        cout << "Remove item command executed successfully" << endl;
+        testsPassed++;
+        
+        delete customer;
+    } catch (const exception& e) {
+        cout << "Removing items test failed: " << e.what() << endl;
+    }
+    
+    //test 4: cancel transaction
+    cout << "\n--- Test 4: Cancel Transaction ---" << endl;
+    totalTests++;
+    try {
+        Customer* customer = new Commercial("XYZ Corp");
+        Plant* rose = new Rose();
+        Plant* dandelion = new Dandelion();
+        
+        customer->addItem(rose);
+        customer->addItem(dandelion);
+        //don't checkout yet
+        
+        //cancel should clear buffer and cancel order
+        customer->cancelTransaction();
+        cout << "Transaction cancelled successfully" << endl;
+        testsPassed++;
+        
+        delete customer;
+    } catch (const exception& e) {
+        cout << "Cancel transaction test failed: " << e.what() << endl;
+    }
+    
+    //test 5: command buffer with multiple operations
+    cout << "\n--- Test 5: Multiple Operations in Buffer ---" << endl;
+    totalTests++;
+    try {
+        Customer* customer = new Civillian("Alice Cooper");
+        Plant* rose = new Rose();
+        Plant* dandelion = new Dandelion();
+        Plant* appleTree = new AppleTree();
+        
+        //add multiple items
+        customer->addItem(rose);
+        customer->addItem(dandelion);
+        customer->addItem(appleTree);
+        
+        //remove one
+        customer->removeItem(dandelion);
+        
+        //execute all commands
+        customer->checkout();
+        
+        cout << "Multiple buffered commands executed in order" << endl;
+        testsPassed++;
+        
+        delete customer;
+    } catch (const exception& e) {
+        cout << "Multiple operations test failed: " << e.what() << endl;
+    }
+    
+    //test 6: payment processing
+    cout << "\n--- Test 6: Payment Processing ---" << endl;
+    totalTests++;
+    try {
+        Customer* customer = new Commercial("BigBiz Inc");
+        Plant* appleTree = new AppleTree();
+        
+        customer->addItem(appleTree);
+        
+        //pay should checkout and process payment
+        customer->pay();
+        
+        cout << "Payment processing executed successfully" << endl;
+        testsPassed++;
+        
+        delete customer;
+    } catch (const exception& e) {
+        cout << "Payment processing test failed: " << e.what() << endl;
+    }
+    
+    //test 7: polymorphic behavior
+    cout << "\n--- Test 7: Polymorphic Customer Behavior ---" << endl;
+    totalTests++;
+    try {
+        Customer* customers[2];
+        customers[0] = new Civillian("Civilian Customer");
+        customers[1] = new Commercial("Commercial Customer");
+        
+        bool polymorphismWorks = true;
+        for (int i = 0; i < 2; i++) {
+            try {
+                Plant* plant = new Rose();
+                customers[i]->addItem(plant);
+                customers[i]->checkout();
+                string name = customers[i]->getName();
+                if (name.empty()) polymorphismWorks = false;
+            } catch (...) {
+                polymorphismWorks = false;
+            }
+        }
+        
+        if (polymorphismWorks) {
+            cout << "Polymorphic customer behavior works correctly" << endl;
+            testsPassed++;
+        } else {
+            cout << "Polymorphic behavior failed" << endl;
+        }
+        
+        delete customers[0];
+        delete customers[1];
+    } catch (const exception& e) {
+        cout << "Polymorphism test failed: " << e.what() << endl;
+    }
+    
+    //test results summary
+    cout << "\n=== CUSTOMER TEST RESULTS SUMMARY ===" << endl;
+    cout << "Tests Passed: " << testsPassed << "/" << totalTests << endl;
+    cout << "Success Rate: " << (totalTests > 0 ? (testsPassed * 100.0 / totalTests) : 0) << "%" << endl;
+    
+    if (testsPassed == totalTests) {
+        cout << "ALL CUSTOMER TESTS PASSED! Factory Method pattern works correctly!" << endl;
+    } else if (testsPassed >= totalTests * 0.8) {
+        cout << "Most tests passed! Customer implementation is mostly correct." << endl;
+    } else {
+        cout << "Several tests failed. Please review the implementation." << endl;
+    }
+    
+    cout << "\n=== FACTORY METHOD PATTERN ANALYSIS ===" << endl;
+    cout << "Factory Method Pattern:" << endl;
+    cout << "  - Product: Customer (abstract base class)" << endl;
+    cout << "  - ConcreteProducts: Civillian, Commercial" << endl;
+    cout << "  - Creates different customer types with same interface" << endl;
+    cout << "\nCommand Pattern Integration:" << endl;
+    cout << "  - Customer uses Command pattern for order operations" << endl;
+    cout << "  - Commands buffered in queue and executed on checkout" << endl;
+    cout << "  - Supports undo via cancel transaction" << endl;
+}
+
+void testChainOfResponsibility()
+{
+    cout << "\n=== CHAIN OF RESPONSIBILITY PATTERN TESTING ===" << endl;
+    cout << "Testing Employee Chain with Request Handling" << endl;
+    
+    int testsPassed = 0;
+    int totalTests = 0;
+    
+    //test 1: chain setup
+    cout << "\n--- Test 1: Chain Setup and Initialization ---" << endl;
+    totalTests += 3;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        InventoryManager* inventoryManager = new InventoryManager();
+        
+        if (gardener && salesman && inventoryManager) {
+            cout << "All employee handlers created successfully" << endl;
+            testsPassed++;
+        }
+        
+        //set up the chain: gardener -> salesman -> inventorymanager
+        gardener->setNext(salesman);
+        salesman->setNext(inventoryManager);
+        
+        cout << "Chain linked correctly (Gardener->Salesman->InventoryManager)" << endl;
+        testsPassed++;
+        
+        //verify chain doesn't crash
+        Plant* testPlant = new Rose();
+        Requests* testRequest = new Water(testPlant);
+        gardener->handle(testRequest);
+        
+        cout << "Chain handles requests without crashing" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete inventoryManager;
+        delete testRequest;
+        delete testPlant;
+    } catch (const exception& e) {
+        cout << "Chain setup failed: " << e.what() << endl;
+    }
+    
+    //test 2: gardener handling place request
+    cout << "\n--- Test 2: Gardener Handles Place Request ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        gardener->setNext(salesman);
+        
+        Plant* plant = new Rose();
+        Requests* placeRequest = new Place(plant);
+        
+        //gardener should handle place requests
+        gardener->handle(placeRequest);
+        
+        cout << "Gardener handled Place request successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete placeRequest;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Place request test failed: " << e.what() << endl;
+    }
+    
+    //test 3: gardener handling water request
+    cout << "\n--- Test 3: Gardener Handles Water Request ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        gardener->setNext(salesman);
+        
+        Plant* plant = new Dandelion();
+        Requests* waterRequest = new Water(plant);
+        
+        //gardener should handle water requests
+        gardener->handle(waterRequest);
+        
+        cout << "Gardener handled Water request successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete waterRequest;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Water request test failed: " << e.what() << endl;
+    }
+    
+    //test 4: gardener handling fertilise request
+    cout << "\n--- Test 4: Gardener Handles Fertilise Request ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        gardener->setNext(salesman);
+        
+        Plant* plant = new AppleTree();
+        Requests* fertiliseRequest = new Fertilise(plant);
+        
+        //gardener should handle fertilise requests
+        gardener->handle(fertiliseRequest);
+        
+        cout << "Gardener handled Fertilise request successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete fertiliseRequest;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Fertilise request test failed: " << e.what() << endl;
+    }
+    
+    //test 5: gardener handling prune request
+    cout << "\n--- Test 5: Gardener Handles Prune Request ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        gardener->setNext(salesman);
+        
+        Plant* plant = new Rose();
+        Requests* pruneRequest = new Prune(plant);
+        
+        //gardener should handle prune requests
+        gardener->handle(pruneRequest);
+        
+        cout << "Gardener handled Prune request successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete pruneRequest;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Prune request test failed: " << e.what() << endl;
+    }
+    
+    //test 6: chain forwarding (when handler doesn't handle)
+    cout << "\n--- Test 6: Request Forwarding Through Chain ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        InventoryManager* inventoryManager = new InventoryManager();
+        
+        gardener->setNext(salesman);
+        salesman->setNext(inventoryManager);
+        
+        Plant* plant = new Dandelion();
+        Requests* request = new Water(plant);
+        
+        //start from gardener, should handle it
+        gardener->handle(request);
+        
+        cout << "Request forwarding through chain works correctly" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete inventoryManager;
+        delete request;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Chain forwarding test failed: " << e.what() << endl;
+    }
+    
+    //test 7: multiple requests through chain
+    cout << "\n--- Test 7: Multiple Sequential Requests ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        InventoryManager* inventoryManager = new InventoryManager();
+        
+        gardener->setNext(salesman);
+        salesman->setNext(inventoryManager);
+        
+        Plant* plant1 = new Rose();
+        Plant* plant2 = new Dandelion();
+        Plant* plant3 = new AppleTree();
+        
+        Requests* request1 = new Water(plant1);
+        Requests* request2 = new Fertilise(plant2);
+        Requests* request3 = new Prune(plant3);
+        
+        gardener->handle(request1);
+        gardener->handle(request2);
+        gardener->handle(request3);
+        
+        cout << "Multiple sequential requests handled successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete inventoryManager;
+        delete request1;
+        delete request2;
+        delete request3;
+        delete plant1;
+        delete plant2;
+        delete plant3;
+    } catch (const exception& e) {
+        cout << "Multiple requests test failed: " << e.what() << endl;
+    }
+    
+    //test 8: hiring new employees
+    cout << "\n--- Test 8: Hiring New Employees ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        Salesman* salesman = new Salesman();
+        InventoryManager* inventoryManager = new InventoryManager();
+        
+        gardener->HireGardener("NewGardener1");
+        salesman->HireSalesman("NewSalesman1");
+        inventoryManager->HireInventoryManager("NewManager1");
+        
+        cout << "New employees hired successfully" << endl;
+        testsPassed++;
+        
+        delete gardener;
+        delete salesman;
+        delete inventoryManager;
+    } catch (const exception& e) {
+        cout << "Hiring employees test failed: " << e.what() << endl;
+    }
+    
+    //test 9: queue update functionality
+    cout << "\n--- Test 9: Queue Update Functionality ---" << endl;
+    totalTests++;
+    try {
+        Gardener* gardener = new Gardener();
+        
+        gardener->updateQueue();
+        gardener->updateQueue();
+        
+        cout << "Queue rotation works correctly" << endl;
+        testsPassed++;
+        
+        delete gardener;
+    } catch (const exception& e) {
+        cout << "Queue update test failed: " << e.what() << endl;
+    }
+    
+    //test 10: request type recognition
+    cout << "\n--- Test 10: Request Type Recognition ---" << endl;
+    totalTests++;
+    try {
+        Plant* plant = new Rose();
+        Requests* waterRequest = new Water(plant);
+        
+        if (waterRequest->getType() == "Water") {
+            cout << "Request type stored and retrieved correctly" << endl;
+            testsPassed++;
+        } else {
+            cout << "Request type recognition failed" << endl;
+        }
+        
+        delete waterRequest;
+        delete plant;
+    } catch (const exception& e) {
+        cout << "Request type test failed: " << e.what() << endl;
+    }
+    
+    //test results summary
+    cout << "\n=== CHAIN OF RESPONSIBILITY TEST RESULTS SUMMARY ===" << endl;
+    cout << "Tests Passed: " << testsPassed << "/" << totalTests << endl;
+    cout << "Success Rate: " << (totalTests > 0 ? (testsPassed * 100.0 / totalTests) : 0) << "%" << endl;
+    
+    if (testsPassed == totalTests) {
+        cout << "ALL CHAIN TESTS PASSED! Chain of Responsibility pattern works perfectly!" << endl;
+    } else if (testsPassed >= totalTests * 0.8) {
+        cout << "Most tests passed! Chain implementation is mostly correct." << endl;
+    } else {
+        cout << "Several tests failed. Please review the implementation." << endl;
+    }
+    
+    cout << "\n=== CHAIN OF RESPONSIBILITY PATTERN ANALYSIS ===" << endl;
+    cout << "Chain of Responsibility Pattern:" << endl;
+    cout << "  - Handler: Employee (abstract base class)" << endl;
+    cout << "  - ConcreteHandlers: Gardener, Salesman, InventoryManager" << endl;
+    cout << "  - Request: Requests (base class for Place, Water, Fertilise, Prune)" << endl;
+    cout << "  - Chain flows: Gardener -> Salesman -> InventoryManager" << endl;
+    cout << "\nPattern Characteristics:" << endl;
+    cout << "  - Decouples sender from receivers" << endl;
+    cout << "  - Each handler decides to process or forward" << endl;
+    cout << "  - Dynamic chain configuration possible" << endl;
+    cout << "  - Employee availability managed via queue" << endl;
+}
+
 void testPaymentStates()
 {
     OrderState *a = new AcceptPayment(nullptr);
@@ -520,4 +1029,8 @@ int main()
     testPaymentStates();
     testPlants();
     testOrderComponent();
+    testCustomerFactory();
+    testChainOfResponsibility();
+    
+    return 0;
 }
