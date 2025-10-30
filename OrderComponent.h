@@ -16,6 +16,7 @@ public:
     virtual OrderComponent* getChild(int index);
     virtual Plant* getPlant(); 
     virtual ~OrderComponent();
+    virtual void cancelOrder(){};
 protected:
     int price;
 };
@@ -28,6 +29,7 @@ public:
     PlantDecorator(OrderComponent* component);
     int getPrice() override;
     virtual ~PlantDecorator();
+    void cancelOrder();
 };
 
 class DecorPot : public PlantDecorator 
@@ -36,7 +38,7 @@ private:
     int potPrice;
 public:
     DecorPot(OrderComponent* component);
-    int getPrice() override;
+    int getPrice();
 };
 
 class Wrapping : public PlantDecorator

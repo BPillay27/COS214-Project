@@ -12,11 +12,21 @@ private:
     std::vector<OrderComponent*> arrangement;
 public:
     Arrangement(int price) : OrderComponent(price) {};
+    ~Arrangement();
     Arrangement(const Arrangement& other);
     int getPrice();
     void add(OrderComponent* toAdd);
     OrderComponent* remove(OrderComponent* toRemove);
     OrderComponent* getChild(int index);
+    void cancelOrder(){
+        for(auto component : arrangement){
+            if(component->getPlant() != nullptr){
+                component=nullptr;
+            }else{
+                component->cancelOrder();
+            }
+        }
+    }
 };
 
 #endif

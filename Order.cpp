@@ -1,4 +1,5 @@
 #include "Order.h"
+#include "Arrangement.h"
 #include "OrderComponent.h"
 #include "OrderState.h"
 
@@ -11,7 +12,7 @@ Order::Order(std::string id)
 {
     this->id = id;
     state = new VerifyOrder(this);
-    items = new OrderComponent(0);
+    items = new Arrangement(0);
 }
 
 /**

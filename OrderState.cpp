@@ -1,6 +1,9 @@
 #include "OrderState.h"
 #include "Order.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 
 /**
  * @details Constructor for the OrderState Abstract class. Sets this `order` to `order`.
@@ -73,7 +76,8 @@ void DeclinePayment::handle()
 {
     std::cout << "Payment declined. Please try again.\n";
     // This method could set the state back to processing order, but since we agreed sequential programming this would cause a infinite loop of states?
-    order->setState(nullptr);
+    OrderState* temp = new AcceptPayment(order);
+    order->setState(temp);
 }
 
 /**
@@ -149,3 +153,5 @@ void VerifyOrder::handle()
         order->setState(temp);
     }
 }
+
+
