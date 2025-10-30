@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COS_214_Practicklers
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        dashboard.h dashboard.cpp dashboard.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET COS_214_Practicklers APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
