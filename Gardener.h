@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-#ifndef GARDENER_H
-#define GARDENER_H
-
-class Gardener {
-    // Intentionally empty for now
-};
-
-#endif // GARDENER_H
-=======
 /**
  * @file Gardener.h
  * @class Gardener
@@ -22,6 +12,7 @@ class Gardener {
 
 #include <string>
 #include "Employee.h"
+#include "Request.h"
 
 using namespace std;
 
@@ -54,4 +45,3 @@ class Gardener : public Employee {
 };
 
 #endif
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4

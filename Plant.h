@@ -10,14 +10,11 @@
 #include <string>
 #include <iostream> 
 using namespace std;
-<<<<<<< HEAD
-=======
 
 class Gardener;
 class Condition;
 class Maturity;
 class GreenHouseCare;
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
 /**
  * @file Plant.h
  * @class Plant
@@ -77,25 +74,18 @@ class Plant : public OrderComponent {
         bool toPrune();
         bool toWater();
         bool toFertilise();
-<<<<<<< HEAD
         void setGardener(Gardener* gardener);
         int* getLifeIntervals();
         Plant* getPlant();
         int getWaterLevel() const;
         int getGrowth() const;
         int getSoilNutrition() const;
-=======
         bool isResourcesDepleted();
-        void setGardener(Gardener* gardener);
-        int[3] getLifeIntervals();
         int getLifeTime();
         OrderComponent* getChild(int index);
-        //Plant* isPlant(); keegan's requested function <- cannot be called not in base class
-        Plant* getPlant(); //Override OrderComponent method here and below
         int getPrice();
         void add(OrderComponent* toAdd);
         OrderComponent* remove(OrderComponent* toRemove);
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
 };
 
 /**
@@ -104,11 +94,7 @@ class Plant : public OrderComponent {
  * Inherits from the Plant base class.
  * @details This is the product of the Plant factory method.
  * 
-<<<<<<< HEAD
  * @ingroup Plant decorator
-=======
-* @ingroup Plant decorator
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
  * @ingroup Order Composite
  * @ingroup Maturity
  * @ingroup Condition

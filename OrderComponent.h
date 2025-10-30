@@ -1,13 +1,6 @@
 #ifndef ORDER_COMPONENT_H
 #define ORDER_COMPONENT_H
 
-<<<<<<< HEAD
-class OrderComponent {
-    // Intentionally empty for now
-};
-
-#endif // ORDER_COMPONENT_H
-=======
 #include <string>
 using namespace std;
 #include <iostream>
@@ -57,4 +50,3 @@ public:
     int getPrice() override;
 };
 #endif
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
