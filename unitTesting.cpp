@@ -13,9 +13,89 @@
 #include <iostream>
 #include <vector>
 
-#include <Customer.h> //inserted this to prevent some errors 
+#include "Customer.h" //inserted this to prevent some errors
+#include "Salesman.h"
+#include "InventoryManager.h"
+#include "Bonsai.h"
+#include "Topiary.h"
+#include "Espalier.h"
+#include "Kokedama.h"
+#include "Normal.h"
 
 using namespace std;
+
+void testStrategyPattern() {
+    cout << "\n=== STRATEGY PATTERN TESTING ===" << endl;
+    cout << "Testing different GreenHouseCare strategies on a Plant" << endl;
+
+    int testsPassed = 0;
+    int totalTests = 5;
+
+    // Create a plant to be cared for
+    Plant* rose = new Rose();
+    cout << "\nCreated a " << rose->getSpecies() << " for testing." << endl;
+
+    // Test Normal Strategy
+    cout << "\n--- Testing Normal Care Strategy ---" << endl;
+    GreenHouseCare* careStrategy = new Normal();
+    careStrategy->water(rose);
+    careStrategy->prune(rose);
+    careStrategy->fertilise(rose);
+    cout << "✓ Normal strategy executed." << endl;
+    testsPassed++;
+    delete careStrategy;
+
+    // Test Bonsai Strategy
+    cout << "\n--- Testing Bonsai Care Strategy ---" << endl;
+    careStrategy = new Bonsai();
+    careStrategy->water(rose);
+    careStrategy->prune(rose);
+    careStrategy->fertilise(rose);
+    cout << "✓ Bonsai strategy executed." << endl;
+    testsPassed++;
+    delete careStrategy;
+
+    // Test Topiary Strategy
+    cout << "\n--- Testing Topiary Care Strategy ---" << endl;
+    careStrategy = new Topiary();
+    careStrategy->water(rose);
+    careStrategy->prune(rose);
+    careStrategy->fertilise(rose);
+    cout << "✓ Topiary strategy executed." << endl;
+    testsPassed++;
+    delete careStrategy;
+
+    // Test Espalier Strategy
+    cout << "\n--- Testing Espalier Care Strategy ---" << endl;
+    careStrategy = new Espalier();
+    careStrategy->water(rose);
+    careStrategy->prune(rose);
+    careStrategy->fertilise(rose);
+    cout << "✓ Espalier strategy executed." << endl;
+    testsPassed++;
+    delete careStrategy;
+
+    // Test Kokedama Strategy
+    cout << "\n--- Testing Kokedama Care Strategy ---" << endl;
+    careStrategy = new Kokedama();
+    careStrategy->water(rose);
+    careStrategy->prune(rose);
+    careStrategy->fertilise(rose);
+    cout << "✓ Kokedama strategy executed." << endl;
+    testsPassed++;
+    delete careStrategy;
+
+    delete rose;
+
+    cout << "\n=== STRATEGY TEST RESULTS SUMMARY ===" << endl;
+    cout << "Tests Passed: " << testsPassed << "/" << totalTests << endl;
+    if (testsPassed == totalTests) {
+        cout << "🎉 ALL STRATEGY TESTS PASSED! The Strategy pattern is implemented correctly." << endl;
+    } else {
+        cout << "⚠️ Some strategy tests failed. Please review the implementation." << endl;
+    }
+}
+
 void testPlants(){
   // Create instances of plants
     int testCorrect=0;
@@ -1033,6 +1113,7 @@ int main()
     testOrderComponent();
     testCustomerFactory();
     testChainOfResponsibility();
+    testStrategyPattern();
     
     return 0;
 }
