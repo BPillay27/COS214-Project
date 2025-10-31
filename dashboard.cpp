@@ -1,5 +1,6 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
+//#include "Inventory.h"
 Dashboard::Dashboard(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Dashboard)
@@ -17,3 +18,9 @@ void Dashboard::init()
 {
     
 }
+
+void Dashboard::on_pushButton_clicked()
+{
+
+}
+

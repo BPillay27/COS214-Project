@@ -13,6 +13,29 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QTextBrowser" name="tempOutput">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>100</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>430</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Testickle Button</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
