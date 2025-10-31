@@ -156,8 +156,8 @@ void Dehydrated::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
 
@@ -245,8 +245,8 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
     
@@ -334,8 +334,8 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
     
@@ -423,8 +423,8 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
     
@@ -512,8 +512,8 @@ void Malnurished::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
     
@@ -601,8 +601,8 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
 
     // Simple death check - only if completely depleted
     if (cPlant->isResourcesDepleted()) {
-        cPlant->setCondition(new DeadPlant(cPlant));
-        cPlant->setLifeStage(new DeadPlant(cPlant));
+        cPlant->setCondition(new Dead(cPlant));
+        cPlant->setLifeStage(new Dead(cPlant));
         return;
     }
     
