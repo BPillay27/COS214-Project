@@ -95,9 +95,6 @@ void testStrategyPattern() {
     }
 }
 
-void testPlants(){
-  // Create instances of plants
-    int testCorrect=0;
 
 bool testAggregate()
 {
@@ -1145,7 +1142,7 @@ void testPaymentStates()
     delete d;
     delete p;
     delete v;
-}
+};
 
 int main()
 {
@@ -1155,6 +1152,7 @@ int main()
     testCustomerFactory();
     testChainOfResponsibility();
     testStrategyPattern();
+    testAggregate();
     
     return 0;
 }

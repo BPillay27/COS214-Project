@@ -184,7 +184,7 @@ void Mature::grow() {
     // Check if plant has reached the end of its lifespan (4th interval)
     int* intervals = mPlant->getLifeIntervals();
     if (mPlant->getLifeTime() >= intervals[2]) {
-        mPlant->setLifeStage(new DeadPlant(mPlant));
+        mPlant->setLifeStage(new Dead(mPlant));
     }
     // Otherwise, already at mature stage, no further growth
 }
