@@ -1,12 +1,6 @@
 #ifndef MATURITY_H
 #define MATURITY_H
 
-<<<<<<< HEAD
-class Maturity {
-    // Intentionally empty for now
-};
-
-=======
 class Plant;
 #include <string>
 
@@ -95,5 +89,4 @@ class Mature : public Maturity {
 
 #include "Plant.h"
 
->>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
 #endif // MATURITY_H
