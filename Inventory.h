@@ -3,8 +3,16 @@
 
 #include "Nursery.h"
 #include "Supplier.h"
+#include "Request.h"
 #include <map>
-// #include "InventoryManager"
+#include "InventoryManager.h"
+/**
+ * @file Inventory.h
+ * @class Inventory
+ * @brief Singleton class that manages the inventory of plants in the nursery.
+ * It handles adding and removing plants from the nursery and storage,
+ * as well as notifying the InventoryManager of requests.
+ */
 class Inventory {
     private: 
         Nursery * activePlants;
