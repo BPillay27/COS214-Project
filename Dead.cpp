@@ -31,7 +31,7 @@ std::string Dead::lifeCycle() {
  * @brief Examines the plant's condition and transitions to appropriate states.
  * Dead plants do not change state.
  */
-void DeadP::examine(bool shouldDegrade) {
+void Dead::examine(bool shouldDegrade) {
     // it should notify the gardener that the plant is dead
     cPlant->notify("dead");
 }   
