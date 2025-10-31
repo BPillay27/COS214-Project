@@ -1,5 +1,5 @@
-#ifndef NUSERY_H
-#define NUSERY_H
+#ifndef NURSERY_H
+#define NURSERY_H
 
 #include "Plant.h"
 #include "Aggregate.h"
@@ -22,7 +22,7 @@
 
 class Nursery {
     private:
-        PlantArea greenHouse;
+        PlantArea* greenHouse;
         std::vector<Plant*> salesArea;
         int capacity;
         int walk;

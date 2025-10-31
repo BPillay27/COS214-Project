@@ -11,7 +11,7 @@
  * @date October 2025
  */
 Nursery::Nursery(int capacity){
-    greenHouse = PlantArea(50);
+    greenHouse =new PlantArea(50);
     salesArea = std::vector<Plant*>();
     this->capacity = capacity;
     walk = 0;
@@ -22,12 +22,12 @@ Nursery::Nursery(int capacity){
  * @param plant A pointer to the Plant object to be added.
  * @return true if the plant was successfully added, false otherwise.
  */
-*/
+
 bool Nursery::addPlant(Plant* plant) {
     if(plant == nullptr) {
         return false;
     }
-    return greenHouse.addPlant(plant);
+    return greenHouse->addPlant(plant);
 }
 /**
 * @brief Removes a plant from the nursery.
@@ -39,7 +39,7 @@ bool Nursery::removePlant(Plant* plant) {
     if(plant == nullptr) {
         return false;
     }
-    greenHouse.removePlant(plant);
+    greenHouse->removePlant(plant);
 }
 
 /**
@@ -50,6 +50,7 @@ Nursery::~Nursery() {
     for (Plant* plant : salesArea) {
         delete plant;
     }
+    delete greenHouse;
 }
 
 /**
@@ -158,11 +159,10 @@ std::vector<string> Nursery::recommendations() {
 
 /**
 * @brief Checks if there is space in the GreenHoes area.
- * @return true if there is space, false otherwise.
- */
+* @return true if there is space, false otherwise.
 */
 bool Nursery::space() {
-    return (greenHouse.getCount() < greenHouse.getCapacity());
+    return (greenHouse->getCount() < greenHouse->getCapacity());
 }
 
 /**
@@ -172,10 +172,10 @@ bool Nursery::space() {
 */
 
 bool Nursery::moveToSales(std::string plantType) {
-    Plant* plant = greenHouse.givePlant(plantType);
+    Plant* plant = greenHouse->givePlant(plantType);
     if (plant != nullptr && salesArea.size() < capacity) {
         salesArea.push_back(plant);
-        greenHouse.removePlant(plant);
+        greenHouse->removePlant(plant);
         return true;
     }else if(plant != nullptr && salesArea.size() >= capacity){
         return false;        
@@ -190,7 +190,7 @@ bool Nursery::moveToSales(std::string plantType) {
 */
 
 void Nursery::grow() {
-    greenHouse.grow();
+    greenHouse->grow();
     for (Plant* plant : salesArea) {
         if (plant != nullptr) {
             plant->grow();
@@ -203,13 +203,13 @@ void Nursery::grow() {
 */
 
 void Nursery::examine() {
-    greenHouse.examine(true);
+    greenHouse->examine(true);
     for (Plant* plant : salesArea) {
         if (plant != nullptr) {
             plant->examine(true);
         }
     }
-    greenHouse.examine(false);
+    greenHouse->examine(false);
     for (Plant* plant : salesArea) {
         if (plant != nullptr) {
             plant->examine(false);
