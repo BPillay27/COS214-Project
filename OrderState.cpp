@@ -76,7 +76,7 @@ void DeclinePayment::handle()
 {
     std::cout << "Payment declined. Please try again.\n";
     // This method could set the state back to processing order, but since we agreed sequential programming this would cause a infinite loop of states?
-    OrderState* temp = new AcceptPayment(order);
+    OrderState* temp = new ProcessingPayment(order);
     order->setState(temp);
 }
 
