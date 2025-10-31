@@ -1,6 +1,12 @@
 #ifndef CONDITION_H
 #define CONDITION_H
 
+<<<<<<< HEAD
+class Condition {
+    // Intentionally empty for now
+};
+
+=======
 class Plant;
 
 /**
@@ -140,4 +146,5 @@ class OverGrown : public Condition {
 
 #include "Plant.h"
 
+>>>>>>> 97a76819fd95c2d82e754bed2ee80657500dc9d4
 #endif // CONDITION_H

@@ -1,4 +1,5 @@
 #include "Plant.h"
+#include "Inventory.h"
 
 /**
  * @file Plant.cpp
@@ -21,6 +22,10 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], i
         lifeIntervals[i] = lifeCycle[i];
     }
     lifeTime = 0;
+    this->gardener = nullptr;
+    this->condition = nullptr;
+    this->maturity = nullptr;
+    this->careStrategy = nullptr;
 }
 
 /**
@@ -176,16 +181,16 @@ void Plant::notify(string request) {
     */
    if(gardener!=nullptr){
         if(request=="prune"){
-            Request req=new Prune(this);
-            gardener->update(req);
+            Requests* req=new Prune(this);
+            //gardener->update(req);
             return;
         }else if(request=="water"){
-            Request req=new Water(this);
-            gardener->update(req);
+            Requests* req=new Water(this);
+            //gardener->update(req);
             return;
         }else if(request=="fertilise"){
-            Request req=new Fertilise(this);
-            gardener->update(req);
+            Requests* req=new Fertilise(this);
+            //gardener->update(req);
             return;
         }else if(request=="dead"){
             Inventory::getInstance()->removePlant(this);
@@ -333,19 +338,9 @@ Plant* Plant::getPlant() {
     return this;
 }
 
-Plant* Plant::isPlant() 
-{
-    return this;
-}
-
 int Plant::getPrice() 
 {
     return OrderComponent::getPrice();
-}
-
-Plant* Plant::getPlant() 
-{
-    return this;
 }
 
 void Plant::add(OrderComponent* toAdd){ }
@@ -353,6 +348,18 @@ void Plant::add(OrderComponent* toAdd){ }
 OrderComponent* Plant::remove(OrderComponent* toRemove) 
 {
     return nullptr; //tras my dis ok
+}
+
+int Plant::getWaterLevel() const {
+    return this->waterLevel[0];
+}
+
+int Plant::getGrowth() const {
+    return this->growth[0];
+}
+
+int Plant::getSoilNutrition() const {
+    return this->soilNutrition[0];
 }
 
 /**

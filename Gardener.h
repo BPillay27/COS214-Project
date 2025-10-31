@@ -12,6 +12,7 @@
 
 #include <string>
 #include "Employee.h"
+#include "Request.h"
 
 using namespace std;
 

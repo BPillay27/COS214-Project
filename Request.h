@@ -1,12 +1,11 @@
 #ifndef REQUEST_H
 #define REQUEST_H
 
-
 #include <iostream>
 class Gardener;
 class Salesman;
 class InventoryManager;
-class plant;
+class Plant;
 /**
  * @file Request.h
  * @ingroup Requests
