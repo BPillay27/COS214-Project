@@ -19,11 +19,10 @@ class Dead : public Maturity, public Condition {
     public:
         Dead(Plant* plant);
         ~Dead();
-        void grow() override;
-        void examine(bool shouldDegrade) override;
-        bool canSale() override;
-        std::string lifeCycle() override;
+        void grow();
+        void examine(bool shouldDegrade);
+        bool canSale();
+        std::string lifeCycle();
 };
-
-
+#include "Plant.h"
 #endif // DEAD_H

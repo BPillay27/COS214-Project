@@ -8,6 +8,7 @@
 
 #include "Maturity.h"
 
+
 /**
  * @brief Constructor for the Maturity base class.
  * @param plant Pointer to the plant object that this maturity state belongs to.
@@ -184,7 +185,8 @@ void Mature::grow() {
     // Check if plant has reached the end of its lifespan (4th interval)
     int* intervals = mPlant->getLifeIntervals();
     if (mPlant->getLifeTime() >= intervals[2]) {
-        mPlant->setLifeStage(new Dead(mPlant));
+        Maturity* dead = new Dead(mPlant);
+        mPlant->setLifeStage(dead);
     }
     // Otherwise, already at mature stage, no further growth
 }

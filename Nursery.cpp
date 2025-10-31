@@ -1,16 +1,39 @@
 #include "Nursery.h"
 #include <iostream>
 
-Nursery::Nursery(int capacity) : capacity(capacity), walk(0), walking(false) {
+/**
+* @file Nursery.cpp
+ * @brief Implementation of the Nursery class that manages a collection of plants.
+ * This class provides functionalities to add, remove, and manage plants within the nursery.
+ * It also includes helper functions to display plant information.
+ * 
+ * @author Keegan Lewis
+ * @date October 2025
+ */
+Nursery::Nursery(int capacity){
     greenHouse = PlantArea(50);
+    salesArea = std::vector<Plant*>();
+    this->capacity = capacity;
+    walk = 0;
+    walking = false;
 }
-
+/**
+* @brief Adds a plant to the green house.
+ * @param plant A pointer to the Plant object to be added.
+ * @return true if the plant was successfully added, false otherwise.
+ */
+*/
 bool Nursery::addPlant(Plant* plant) {
     if(plant == nullptr) {
         return false;
     }
     return greenHouse.addPlant(plant);
 }
+/**
+* @brief Removes a plant from the nursery.
+ * @param plant A pointer to the Plant object to be removed.
+ * @return true if the plant was successfully removed, false otherwise.
+ */
 
 bool Nursery::removePlant(Plant* plant) {
     if(plant == nullptr) {
@@ -19,16 +42,29 @@ bool Nursery::removePlant(Plant* plant) {
     greenHouse.removePlant(plant);
 }
 
+/**
+* @brief Destructor for the Nursery class.
+* Cleans up dynamically allocated Plant objects.
+*/
 Nursery::~Nursery() {
     for (Plant* plant : salesArea) {
         delete plant;
     }
 }
 
+/**
+* @brief Begins a walkthrough of the nursery, by setting the walk to 0 to show it is at salesArea[0].
+*/
+
 void Nursery::WalkThrough() {
     walk = 0;
     walking = true;
 }
+
+/**
+* @brief Prints the plants that are currently in line of sight during the walkthrough.
+* @return a string representation of the plants in line of sight.
+*/
 
 std::string Nursery::printPlants() {
     if (!walking) {
@@ -67,6 +103,10 @@ bool Nursery::nextRow() {
         return false;
     }
 }
+/**
+* @brief Moves to the previous row in the walkthrough.
+ * @return true if there are previous rows to walk back to, false if at the beginning.
+ */
 
 bool Nursery::prevRow() {
     if (!walking) {
@@ -79,6 +119,11 @@ bool Nursery::prevRow() {
         return false;
     }
 }
+/**
+* @brief Gets the plant at the specified index in the sales area.
+ * @param index The index of the plant to retrieve.
+ * @return A pointer to the Plant object at the specified index.
+*/
 
 Plant* Nursery::getPlant(int index) {
     if(index<0|| index>5){
@@ -91,6 +136,11 @@ Plant* Nursery::getPlant(int index) {
     }
 }
 
+
+/**
+* @brief Provides a list of recommended plants based on the current sales area.
+ * @return A vector of strings representing the recommended plant species.
+*/
 std::vector<string> Nursery::recommendations() {
     std::vector<string> recommendedPlants;
 
@@ -105,9 +155,21 @@ std::vector<string> Nursery::recommendations() {
     return recommendedPlants;
 }
 
+
+/**
+* @brief Checks if there is space in the GreenHoes area.
+ * @return true if there is space, false otherwise.
+ */
+*/
 bool Nursery::space() {
     return (greenHouse.getCount() < greenHouse.getCapacity());
 }
+
+/**
+* @brief Moves a plant to the sales area.
+* @param plant A pointer to the Plant object to be moved.
+* @return true if the plant was successfully moved, false otherwise.
+*/
 
 bool Nursery::moveToSales(std::string plantType) {
     Plant* plant = greenHouse.givePlant(plantType);
@@ -122,6 +184,11 @@ bool Nursery::moveToSales(std::string plantType) {
     }
 }
 
+/**
+* @brief Grows all plants in the nursery.
+ * @return void
+*/
+
 void Nursery::grow() {
     greenHouse.grow();
     for (Plant* plant : salesArea) {
@@ -130,6 +197,10 @@ void Nursery::grow() {
         }
     }
 }
+
+/**
+* @brief Examines all plants in the nursery and prints their details.
+*/
 
 void Nursery::examine() {
     greenHouse.examine(true);

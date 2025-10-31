@@ -203,7 +203,7 @@ void Plant::notify(string request) {
             //gardener->update(req);
             return;
         }else if(request=="dead"){
-            Inventory::getInstance()->removePlant(this);
+            Inventory::instance().removePlant(this);
             return;
         }
    }

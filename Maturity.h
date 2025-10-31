@@ -3,7 +3,7 @@
 
 class Plant;
 #include <string>
-
+#include "Dead.h"
 /**
  * @class Maturity
  * @brief An abstract base class representing the maturity state of a plant.
