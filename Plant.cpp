@@ -43,6 +43,16 @@ void Plant::grow()
 }
 
 /**
+*@brief runs examine from the condition
+*@param j the boolean for the condition param
+*/
+
+void Plant::examine(bool j){
+
+    this->condition->examine(j);
+}
+
+/**
  *@brief Sets the condition state for the plant.
  *@param condition Pointer to the new Condition state.
 */

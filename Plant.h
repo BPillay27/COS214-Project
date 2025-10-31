@@ -6,6 +6,10 @@
 #include "Maturity.h"
 #include "OrderComponent.h"
 #include "GreenHouseCare.h"
+#include "Topiary.h"
+#include "Kokedama.h"
+#include "Espalier.h"
+#include "Bonsai.h"
 #include "Request.h"
 #include <string>
 #include <iostream> 
@@ -86,6 +90,7 @@ class Plant : public OrderComponent {
         int getPrice();
         void add(OrderComponent* toAdd);
         OrderComponent* remove(OrderComponent* toRemove);
+        void examine(bool j);
 };
 
 /**
