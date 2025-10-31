@@ -1,7 +1,7 @@
 #include "Nursery.h"
 #include <iostream>
 
-Nursery::Nursery(int capacity) : capacity(capacity), walk(0), row(0), walking(false) {
+Nursery::Nursery(int capacity) : capacity(capacity), walk(0), walking(false) {
     greenHouse = PlantArea(50);
 }
 
@@ -27,7 +27,6 @@ Nursery::~Nursery() {
 
 void Nursery::WalkThrough() {
     walk = 0;
-    row = 0;
     walking = true;
 }
 
@@ -120,7 +119,7 @@ std::vector<string> Nursery::recommendations() {
 }
 
 bool Nursery::space() {
-    return (greenHouses.getCount() < greenHouses.getCapacity());
+    return (greenHouse.getCount() < greenHouse.getCapacity());
 }
 
 bool Nursery::moveToSales(std::string plantType) {
