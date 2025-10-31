@@ -10,7 +10,7 @@
  * @param nutrition The minimum soil nutrition level of the plant.
  * @param lifeCycle An array representing the life cycle intervals of the plant.
  */
-Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], int price):OrderComponent(price) {
+Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], int price):OrderComponent(price), Subject() {
     species = name;
     this->growth[0] =0;
     this->growth[1] = growth;
@@ -180,9 +180,18 @@ string Plant::getDetails() {
 }
 
 /**
- * @brief Notifies the plant's observer, the gardener of a request.
- * @param request The request message.
- * @todo Implement the observer pattern to notify the gardener. After the requests are finsihed.
+ * @brief Notifies the gardener about the request 
+ * @param request the request to handle
+ */
+
+void Plant::notify(Requests* request){
+    gardener->handle(request);
+    return;
+}
+
+/**
+ * @brief Makes the requests for the notify(Request* request)
+ * @param request Tells us what request to make
  */
 
 void Plant::notify(string request) {
@@ -192,15 +201,15 @@ void Plant::notify(string request) {
    if(gardener!=nullptr){
         if(request=="prune"){
             Requests* req=new Prune(this);
-            gardener->handle(req);
+            notify(req);
             return;
         }else if(request=="water"){
             Requests* req=new Water(this);
-            gardener->handle(req);
+            notify(req);
             return;
         }else if(request=="fertilise"){
             Requests* req=new Fertilise(this);
-            gardener->handle(req);
+            notify(req);
             return;
         }else if(request=="dead"){
             Inventory::instance().removeFromNursery(this);

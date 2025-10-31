@@ -4,6 +4,7 @@
 #include "Nursery.h"
 #include "Supplier.h"
 #include "Request.h"
+#include "Subject.h"
 #include <map>
 #include "InventoryManager.h"
 /**
@@ -13,7 +14,7 @@
  * It handles adding and removing plants from the nursery and storage,
  * as well as notifying the InventoryManager of requests.
  */
-class Inventory {
+class Inventory: public Subject {
     private: 
         Nursery * activePlants;
         // int balance;

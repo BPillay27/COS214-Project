@@ -12,7 +12,7 @@ Inventory & Inventory::instance() {
  * @brief Constructor for the Inventory class.
  */
 
-Inventory::Inventory() {
+Inventory::Inventory():Subject() {
     activePlants = new Nursery(50);
     storageRoom = vector<Plant*>();
     suppliers = map<string, Supplier*>();

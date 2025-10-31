@@ -11,6 +11,7 @@
 #include "Espalier.h"
 #include "Bonsai.h"
 #include "Request.h"
+#include "Subject.h"
 #include <string>
 #include <iostream> 
 using namespace std;
@@ -36,7 +37,7 @@ class GreenHouseCare;
  */
 
 
-class Plant : public OrderComponent {
+class Plant : public OrderComponent, public Subject {
     private:
         int lifeIntervals[4];  
         int lifeTime;  // How long the plant has been active
@@ -68,6 +69,7 @@ class Plant : public OrderComponent {
         bool canSale();
         string getSpecies();
         string getDetails();
+        void notify(Requests* request);
         void notify(string request);
         int pruneMax();
         int waterMax();
