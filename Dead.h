@@ -5,6 +5,8 @@ class Plant;
 #include <string>
 #include "Maturity.h"
 #include "Condition.h"
+// class Maturity;
+// class Condition;
 
 //Double inheritance from Maturity and Condition
 /**
@@ -24,5 +26,5 @@ class Dead : public Maturity, public Condition {
         bool canSale();
         std::string lifeCycle();
 };
-#include "Plant.h"
+//#include "Plant.h"
 #endif // DEAD_H

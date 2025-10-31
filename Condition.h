@@ -2,7 +2,7 @@
 #define CONDITION_H
 
 class Plant;
-
+class Dead;
 /**
  * @class Condition
  * @brief An abstract base class representing the health condition state of a plant.
@@ -138,6 +138,7 @@ class OverGrown : public Condition {
         void examine(bool shouldDegrade) override;
 };
 
-#include "Plant.h"
+//#include "Plant.h"
+//#include "Dead.h"
 
 #endif // CONDITION_H

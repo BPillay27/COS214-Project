@@ -7,7 +7,8 @@
  */
 
 #include "Maturity.h"
-
+#include "Plant.h"
+#include "Dead.h"
 
 /**
  * @brief Constructor for the Maturity base class.
