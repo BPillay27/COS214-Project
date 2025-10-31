@@ -6,6 +6,10 @@
 #include "Maturity.h"
 #include "OrderComponent.h"
 #include "GreenHouseCare.h"
+#include "Topiary.h"
+#include "Kokedama.h"
+#include "Espalier.h"
+#include "Bonsai.h"
 #include "Request.h"
 #include <string>
 #include <iostream> 
@@ -74,16 +78,19 @@ class Plant : public OrderComponent {
         bool toPrune();
         bool toWater();
         bool toFertilise();
-        bool isResourcesDepleted();
         void setGardener(Gardener* gardener);
-        int[3] getLifeIntervals();
+        int* getLifeIntervals();
+        Plant* getPlant();
+        int getWaterLevel() const;
+        int getGrowth() const;
+        int getSoilNutrition() const;
+        bool isResourcesDepleted();
         int getLifeTime();
         OrderComponent* getChild(int index);
-        //Plant* isPlant(); keegan's requested function <- cannot be called not in base class
-        Plant* getPlant(); //Override OrderComponent method here and below
         int getPrice();
         void add(OrderComponent* toAdd);
         OrderComponent* remove(OrderComponent* toRemove);
+        void examine(bool j);
 };
 
 /**
@@ -92,7 +99,7 @@ class Plant : public OrderComponent {
  * Inherits from the Plant base class.
  * @details This is the product of the Plant factory method.
  * 
-* @ingroup Plant decorator
+ * @ingroup Plant decorator
  * @ingroup Order Composite
  * @ingroup Maturity
  * @ingroup Condition
