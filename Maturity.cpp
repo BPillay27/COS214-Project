@@ -7,6 +7,8 @@
  */
 
 #include "Maturity.h"
+#include "Plant.h"
+#include "Dead.h"
 
 /**
  * @brief Constructor for the Maturity base class.
@@ -45,7 +47,7 @@ Seed::~Seed() {
  */
 void Seed::grow() {
 
-    int* intervals = mPlant->getLifeIntervals();
+    //int* intervals = mPlant->getLifeIntervals();
     
     // Seed needs water to germinate
     if (mPlant->getLifeTime() >= 0 && 
@@ -184,7 +186,8 @@ void Mature::grow() {
     // Check if plant has reached the end of its lifespan (4th interval)
     int* intervals = mPlant->getLifeIntervals();
     if (mPlant->getLifeTime() >= intervals[2]) {
-        mPlant->setLifeStage(new DeadPlant(mPlant));
+        Maturity* dead = new Dead(mPlant);
+        mPlant->setLifeStage(dead);
     }
     // Otherwise, already at mature stage, no further growth
 }

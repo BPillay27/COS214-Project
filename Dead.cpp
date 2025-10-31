@@ -1,4 +1,7 @@
 #include "Dead.h"
+#include "Plant.h"
+#include "Condition.h"
+#include "Maturity.h"
 
 Dead::Dead(Plant* plant) : Maturity(plant), Condition(plant) {}
 
@@ -33,5 +36,5 @@ std::string Dead::lifeCycle() {
  */
 void Dead::examine(bool shouldDegrade) {
     // it should notify the gardener that the plant is dead
-    cPlant->notify("dead");
+    mPlant->notify("dead");
 }   

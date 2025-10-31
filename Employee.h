@@ -19,8 +19,9 @@
 
 #include <string>
 #include <queue>
-#include "Request.h"
+//#include "Request.h"
 
+class Requests;
 using namespace std;
 
 struct EmployeePerson {

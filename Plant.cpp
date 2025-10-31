@@ -174,7 +174,7 @@ string Plant::getSpecies() {
 
 string Plant::getDetails() {
     string details = "Species: " + species + "\n";
-    details +="Average Life span: " + to_string(lifeIntervals[4]) + " days\n";
+    details +="Average Life span: " + to_string(lifeIntervals[3]) + " days\n";
     details +="Price: R" + to_string(price) + "\n";
     return details;
 }
@@ -192,18 +192,18 @@ void Plant::notify(string request) {
    if(gardener!=nullptr){
         if(request=="prune"){
             Requests* req=new Prune(this);
-            //gardener->update(req);
+            gardener->handle(req);
             return;
         }else if(request=="water"){
             Requests* req=new Water(this);
-            //gardener->update(req);
+            gardener->handle(req);
             return;
         }else if(request=="fertilise"){
             Requests* req=new Fertilise(this);
-            //gardener->update(req);
+            gardener->handle(req);
             return;
         }else if(request=="dead"){
-            Inventory::getInstance()->removePlant(this);
+            Inventory::instance().removeFromNursery(this);
             return;
         }
    }

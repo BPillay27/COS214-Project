@@ -1,7 +1,9 @@
 #include "Condition.h"
 #include <cstdlib>  // For rand()
 #include <ctime>    // For seeding
-std::srand(std::time(0)); // Seed for random number generation
+#include "Plant.h"
+#include "Dead.h"
+//std::srand(std::time(0));
 /**
  * @brief Constructor for the Condition base class.
  * @param plant Pointer to the plant object that this condition state belongs to.

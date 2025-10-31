@@ -1,8 +1,10 @@
 #ifndef MATURITY_H
 #define MATURITY_H
 
+class Dead;
 class Plant;
 #include <string>
+//#include "Dead.h"
 
 /**
  * @class Maturity
@@ -87,6 +89,6 @@ class Mature : public Maturity {
         std::string lifeCycle() override;
 };
 
-#include "Plant.h"
-
+// #include "Plant.h"
+// #include "Dead.h"
 #endif // MATURITY_H

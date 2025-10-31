@@ -2,7 +2,7 @@
 #define PLANT_H
 //Wait to see dependencies --- IGNORE ---
 #include "Gardener.h"
-#include "Condition.h"
+
 #include "Maturity.h"
 #include "OrderComponent.h"
 #include "GreenHouseCare.h"
@@ -166,5 +166,5 @@ class AppleTree: public Plant {
 };
 
 
-
+#include "Condition.h"
 #endif // PLANT_H
