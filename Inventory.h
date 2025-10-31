@@ -26,6 +26,8 @@ class Inventory {
         void addToStorage(Plant * plant);
         Nursery * getSalesArea();
         void supply(Plant * plant);
+        void notify(Requests * request);
+        void setManager(InventoryManager * manager);
 };
 
 #endif
