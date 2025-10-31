@@ -47,7 +47,7 @@ Seed::~Seed() {
  */
 void Seed::grow() {
 
-    int* intervals = mPlant->getLifeIntervals();
+    //int* intervals = mPlant->getLifeIntervals();
     
     // Seed needs water to germinate
     if (mPlant->getLifeTime() >= 0 && 

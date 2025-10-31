@@ -97,7 +97,7 @@ bool Nursery::nextRow() {
     if (!walking) {
         return false;
     }
-    if (walk + 5 < salesArea.size()) {
+    if (walk + 5 < (int)salesArea.size()) {
         walk += 5;
         return true;
     } else {
