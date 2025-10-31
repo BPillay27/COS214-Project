@@ -91,19 +91,6 @@ Plant* Nursery::getPlant(int index) {
     }
 }
 
-bool Nursery::moveToSales(std::string plantType) {
-    Plant* plant = greenHouse.givePlant(plantType);
-    if (plant != nullptr && salesArea.size() < capacity) {
-        salesArea.push_back(plant);
-        greenHouse.removePlant(plant);
-        return true;
-    }else if(plant != nullptr && salesArea.size() >= capacity){
-        return false;        
-    }else{
-        return false;
-    }
-}
-
 std::vector<string> Nursery::recommendations() {
     std::vector<string> recommendedPlants;
 
