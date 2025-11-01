@@ -10,6 +10,7 @@ The project uses CMake to manage the build process. The unit tests are built as 
 
 - A C++ compiler that supports C++17 (e.g., GCC, Clang, MSVC)
 - CMake (version 3.16 or higher)
+- NB use wsl for easy use 
 
 ### Build Steps
 
