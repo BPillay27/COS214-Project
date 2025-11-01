@@ -97,6 +97,8 @@ add_executable(${PROJECT_NAME}
     ${GUI_SOURCES}
     ${GUI_HEADERS}
     ${GUI_FORMS}
+    simulationview.h simulationview.cpp simulationview.ui
+    nursaryview.h nursaryview.cpp nursaryview.ui
 )
 
 # Link Qt6 libraries

@@ -24,3 +24,9 @@ void Dashboard::on_pushButton_clicked()
 
 }
 
+
+void Dashboard::on_btnPay_clicked()
+{
+
+}
+
