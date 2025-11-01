@@ -49,7 +49,15 @@ void AcceptPayment::handle()
 {
     std::cout << "Payment successfully received.\n";
     //Must remove the plants from the Nursey
-    this->order->items->success();
+    if(this->order == nullptr){
+        return;
+    }
+    if( this->order->items != nullptr){
+        this->order->items->success();
+    }else{
+        return;
+    }
+    delete this->order->items;
     this->order->setState(nullptr);
 }
 
