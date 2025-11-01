@@ -3,7 +3,7 @@
 int Arrangement::getPrice() 
 {
     int sum = 0;
-    for (int i = 0; i < arrangement.size(); i++) 
+    for (int i = 0; i <(int) arrangement.size(); i++) 
     {
         sum += arrangement[i]->getPrice();
     }
@@ -27,7 +27,7 @@ OrderComponent* Arrangement::remove(OrderComponent* toRemove)
         cout << "The component that is trying to be removed is null. (Arrangement.cpp line 20)";
         return nullptr;
     }
-    for (int i = 0; i < arrangement.size(); i++) 
+    for (int i = 0; i < (int)arrangement.size(); i++) 
     {
         if (arrangement[i] == toRemove) //idk if == is meant to be overloaded lel.
         {
@@ -41,7 +41,7 @@ OrderComponent* Arrangement::remove(OrderComponent* toRemove)
 
 OrderComponent* Arrangement::getChild(int index) 
 {
-    if (index < 0 || index >= arrangement.size()) 
+    if (index < 0 || index >= (int)arrangement.size()) 
     {
         cout << "What are you trying to reach fo? (Arrangement.cpp line 27)";
         return nullptr;

@@ -333,10 +333,11 @@ int* Plant::getLifeIntervals() {
 }
 
 /**
- * @brief Gets the current lifetime of the plant.
+ * @brief Increments the current lifetime of the plant and returns it to show aging.
  * @return The current lifetime in days/intervals.
  */
 int Plant::getLifeTime() {
+    ++(this->lifeTime);
     return lifeTime;
 }
 
@@ -357,28 +358,55 @@ Plant* Plant::getPlant() {
     return this;
 }
 
-int Plant::getPrice() 
-{
-    return OrderComponent::getPrice();
-}
+/**
+*@brief Deals with the adding of a OrderComponent
+*/
 
 void Plant::add(OrderComponent* toAdd){ }
 
+/**
+*@brief Deals with the remove of OrderComponent
+*@return Will always return nullptr because it cannot remove anything
+*/
 OrderComponent* Plant::remove(OrderComponent* toRemove) 
 {
     return nullptr; //tras my dis ok
 }
 
+/**
+*@brief Get the water level of the plant
+*@return int of the water level
+*/
 int Plant::getWaterLevel() const {
     return this->waterLevel[0];
 }
+
+/**
+*@brief Gives the growth of the plant
+*@return int of the plant's growth
+*/
 
 int Plant::getGrowth() const {
     return this->growth[0];
 }
 
+/**
+*@brief Get the soil nutrition of the plant
+*@return int of the soil nutrition of the plant
+*/
+
 int Plant::getSoilNutrition() const {
     return this->soilNutrition[0];
+}
+
+/**
+*@brief Removes the plant from the inventory of nursery because it got sold
+*@return void
+*/
+
+void Plant::success(){
+    Inventory::instance().removeFromNursery(this);
+    return;
 }
 
 /**

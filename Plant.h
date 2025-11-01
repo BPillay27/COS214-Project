@@ -89,10 +89,10 @@ class Plant : public OrderComponent, public Subject {
         bool isResourcesDepleted();
         int getLifeTime();
         OrderComponent* getChild(int index);
-        int getPrice();
         void add(OrderComponent* toAdd);
         OrderComponent* remove(OrderComponent* toRemove);
         void examine(bool j);
+        void success();
 };
 
 /**

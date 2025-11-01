@@ -32,10 +32,21 @@ OrderComponent::~OrderComponent()
 
 }
 
+void OrderComponent::cancelOrder()
+{
+    // Default implementation - override in derived classes if needed
+}
+
+void OrderComponent::success() 
+{
+    // Pure virtual function - must be implemented in derived classes
+}
+
 PlantDecorator::PlantDecorator(OrderComponent* component) : OrderComponent(0), component(component) 
 {
     
 }
+
 
 int PlantDecorator::getPrice() 
 {       
@@ -50,6 +61,22 @@ PlantDecorator::~PlantDecorator()
 {
     //don't delete component here as it might be used somewhere else
     delete component;
+}
+
+void PlantDecorator::cancelOrder() {
+    if (component->getPlant() != nullptr) {
+        component=nullptr;
+    }else{
+        component->cancelOrder();
+    }
+}
+
+void PlantDecorator::success(){
+    if(component==nullptr){
+        return;
+    }else{
+        component->success();
+    }
 }
 
 DecorPot::DecorPot(OrderComponent* component) : PlantDecorator(component), potPrice(25) 
@@ -74,10 +101,3 @@ int Wrapping::getPrice()
     return PlantDecorator::getPrice() + wrappingPrice;
 }
 
-void PlantDecorator::cancelOrder() {
-    if (component->getPlant() != nullptr) {
-        component=nullptr;
-    }else{
-        component->cancelOrder();
-    }
-}

@@ -50,8 +50,7 @@ void Seed::grow() {
     //int* intervals = mPlant->getLifeIntervals();
     
     // Seed needs water to germinate
-    if (mPlant->getLifeTime() >= 0 && 
-        !mPlant->toWater()) {  // Has sufficient water
+    if (mPlant->getLifeTime() >= 0 ) {
         mPlant->setLifeStage(new Sprout(mPlant));
     }
 }

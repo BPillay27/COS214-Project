@@ -40,6 +40,7 @@ bool Nursery::removePlant(Plant* plant) {
         return false;
     }
     greenHouse->removePlant(plant);
+    return true;
 }
 
 /**
@@ -71,7 +72,7 @@ std::string Nursery::printPlants() {
     if (!walking) {
         return "You have not entered the Nusery.";
     }
-    if(salesArea.empty() || walk >= salesArea.size()) {
+    if(salesArea.empty() || walk >= (int)salesArea.size()) {
         return "No plants available in the sales area.";
     }
     
@@ -130,7 +131,7 @@ Plant* Nursery::getPlant(int index) {
     if(index<0|| index>5){
         return nullptr;
     }
-    if((index+walk) >= salesArea.size()) {
+    if((index+walk) >=(int)salesArea.size()) {
         return nullptr;
     }else{
         return salesArea[(index+walk)];
@@ -173,11 +174,11 @@ bool Nursery::space() {
 
 bool Nursery::moveToSales(std::string plantType) {
     Plant* plant = greenHouse->givePlant(plantType);
-    if (plant != nullptr && salesArea.size() < capacity) {
+    if (plant != nullptr && (int)salesArea.size() < capacity) {
         salesArea.push_back(plant);
         greenHouse->removePlant(plant);
         return true;
-    }else if(plant != nullptr && salesArea.size() >= capacity){
+    }else if(plant != nullptr && (int)salesArea.size() >= capacity){
         return false;        
     }else{
         return false;

@@ -27,6 +27,15 @@ public:
             }
         }
     }
+    void success(){
+        for(auto component : arrangement){
+            if(component== nullptr){
+                continue;
+            }else{
+                component->cancelOrder();
+            }
+        }
+    }
 };
 
 #endif

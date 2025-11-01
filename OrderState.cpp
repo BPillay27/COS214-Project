@@ -1,5 +1,5 @@
 #include "OrderState.h"
-#include "Order.h"
+//#include "Order.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -48,7 +48,9 @@ AcceptPayment::~AcceptPayment()
 void AcceptPayment::handle()
 {
     std::cout << "Payment successfully received.\n";
-    order->setState(nullptr);
+    //Must remove the plants from the Nursey
+    this->order->items->success();
+    this->order->setState(nullptr);
 }
 
 /**

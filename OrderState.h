@@ -1,6 +1,7 @@
 #ifndef ORDERSTATE_H
 #define ORDERSTATE_H
-
+#include "Order.h"
+#include "OrderComponent.h"
 class Order;
 
 /**

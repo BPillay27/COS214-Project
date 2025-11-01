@@ -1,5 +1,6 @@
 #ifndef ORDER_H
 #define ORDER_H
+#include "OrderState.h"
 
 #include <string>
 
@@ -24,6 +25,7 @@
 
 class OrderState;
 class OrderComponent;
+class AcceptPayment;
 
 /**
  * @class Order
@@ -32,6 +34,7 @@ class OrderComponent;
  */
 class Order
 {
+    friend class AcceptPayment;
     public:
     Order(std::string id); ///< Constructor.
     ~Order(); ///< Destructor.
