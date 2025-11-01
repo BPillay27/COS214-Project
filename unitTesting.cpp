@@ -1158,6 +1158,259 @@ void testChainOfResponsibility()
 //     delete v;
 // };
 
+void testConditionStates() {
+    int testCorrect = 0;
+    int totalTests = 0;
+    
+    cout << "\n========================================" << endl;
+    cout << "CONDITION STATE PATTERN TESTS" << endl;
+    cout << "========================================\n" << endl;
+    
+    // ===== TEST 1: Healthy to Dehydrated =====
+    totalTests++;
+    Plant* rose1 = new Rose();
+    Condition* healthy1 = new Healthy(rose1);
+    rose1->setCondition(healthy1);
+    rose1->addWater(-50);
+    healthy1->examine(false);
+    if (rose1->toWater() == true) {
+        testCorrect++;
+        cout << "[PASS] Healthy → Dehydrated transition" << endl;
+    } else {
+        cout << "[FAIL] Healthy → Dehydrated transition" << endl;
+    }
+    delete rose1;
+    
+    // ===== TEST 2: Dehydrated to Healthy =====
+    totalTests++;
+    Plant* rose2 = new Rose();
+    rose2->addWater(-50);
+    Condition* dehydrated1 = new Dehydrated(rose2);
+    rose2->setCondition(dehydrated1);
+    rose2->addWater(100);
+    dehydrated1->examine(false);
+    if (rose2->toWater() == false) {
+        testCorrect++;
+        cout << "[PASS] Dehydrated → Healthy transition" << endl;
+    } else {
+        cout << "[FAIL] Dehydrated → Healthy transition" << endl;
+    }
+    delete rose2;
+    
+    // ===== TEST 3: Healthy to Malnourished =====
+    totalTests++;
+    Plant* rose3 = new Rose();
+    Condition* healthy2 = new Healthy(rose3);
+    rose3->setCondition(healthy2);
+    rose3->addNutrition(-50);
+    healthy2->examine(false);
+    if (rose3->toFertilise() == true) {
+        testCorrect++;
+        cout << "[PASS] Healthy → Malnourished transition" << endl;
+    } else {
+        cout << "[FAIL] Healthy → Malnourished transition" << endl;
+    }
+    delete rose3;
+    
+    // ===== TEST 4: Malnourished to Healthy =====
+    totalTests++;
+    Plant* rose4 = new Rose();
+    rose4->addNutrition(-50);
+    Condition* malnourished1 = new Malnurished(rose4);
+    rose4->setCondition(malnourished1);
+    rose4->addNutrition(100);
+    malnourished1->examine(false);
+    if (rose4->toFertilise() == false) {
+        testCorrect++;
+        cout << "[PASS] Malnourished → Healthy transition" << endl;
+    } else {
+        cout << "[FAIL] Malnourished → Healthy transition" << endl;
+    }
+    delete rose4;
+    
+    // ===== TEST 5: Healthy to OverGrown =====
+    totalTests++;
+    Plant* rose5 = new Rose();
+    Condition* healthy3 = new Healthy(rose5);
+    rose5->setCondition(healthy3);
+    rose5->addGrowth(50);
+    healthy3->examine(false);
+    if (rose5->toPrune() == true) {
+        testCorrect++;
+        cout << "[PASS] Healthy → OverGrown transition" << endl;
+    } else {
+        cout << "[FAIL] Healthy → OverGrown transition" << endl;
+    }
+    delete rose5;
+    
+    // ===== TEST 6: OverGrown to Healthy =====
+    totalTests++;
+    Plant* rose6 = new Rose();
+    rose6->addGrowth(50);
+    Condition* overgrown1 = new OverGrown(rose6);
+    rose6->setCondition(overgrown1);
+    rose6->addGrowth(-50);
+    overgrown1->examine(false);
+    if (rose6->toPrune() == false) {
+        testCorrect++;
+        cout << "[PASS] OverGrown → Healthy transition" << endl;
+    } else {
+        cout << "[FAIL] OverGrown → Healthy transition" << endl;
+    }
+    delete rose6;
+    
+    // ===== TEST 7: DehydratedMalnourished compound state =====
+    totalTests++;
+    Plant* rose7 = new Rose();
+    rose7->addWater(-50);
+    rose7->addNutrition(-50);
+    Condition* compound1 = new DehydratedMalnurished(rose7);
+    rose7->setCondition(compound1);
+    if (rose7->toWater() == true && rose7->toFertilise() == true) {
+        testCorrect++;
+        cout << "[PASS] DehydratedMalnourished has both issues" << endl;
+    } else {
+        cout << "[FAIL] DehydratedMalnourished has both issues" << endl;
+    }
+    delete rose7;
+    
+    // ===== TEST 8: DehydratedMalnourished partial recovery =====
+    totalTests++;
+    Plant* rose8 = new Rose();
+    rose8->addWater(-50);
+    rose8->addNutrition(-50);
+    Condition* compound2 = new DehydratedMalnurished(rose8);
+    rose8->setCondition(compound2);
+    rose8->addWater(100); // Fix only water
+    compound2->examine(false);
+    if (rose8->toWater() == false && rose8->toFertilise() == true) {
+        testCorrect++;
+        cout << "[PASS] DehydratedMalnourished → Malnourished (water fixed)" << endl;
+    } else {
+        cout << "[FAIL] DehydratedMalnourished → Malnourished (water fixed)" << endl;
+    }
+    delete rose8;
+    
+    // ===== TEST 9: DehydratedOverGrown compound state =====
+    totalTests++;
+    Plant* rose9 = new Rose();
+    rose9->addWater(-50);
+    rose9->addGrowth(50);
+    Condition* compound3 = new DehydratedOverGrown(rose9);
+    rose9->setCondition(compound3);
+    if (rose9->toWater() == true && rose9->toPrune() == true) {
+        testCorrect++;
+        cout << "[PASS] DehydratedOverGrown has both issues" << endl;
+    } else {
+        cout << "[FAIL] DehydratedOverGrown has both issues" << endl;
+    }
+    delete rose9;
+    
+    // ===== TEST 10: MalnourishedOverGrown compound state =====
+    totalTests++;
+    Plant* rose10 = new Rose();
+    rose10->addNutrition(-50);
+    rose10->addGrowth(50);
+    Condition* compound4 = new MalnurishedOverGrown(rose10);
+    rose10->setCondition(compound4);
+    if (rose10->toFertilise() == true && rose10->toPrune() == true) {
+        testCorrect++;
+        cout << "[PASS] MalnourishedOverGrown has both issues" << endl;
+    } else {
+        cout << "[FAIL] MalnourishedOverGrown has both issues" << endl;
+    }
+    delete rose10;
+    
+    // ===== TEST 11: Triple compound state =====
+    totalTests++;
+    Plant* rose11 = new Rose();
+    rose11->addWater(-50);
+    rose11->addNutrition(-50);
+    rose11->addGrowth(50);
+    Condition* triple1 = new DehydratedMalnurishedOverGrown(rose11);
+    rose11->setCondition(triple1);
+    if (rose11->toWater() == true && rose11->toFertilise() == true && rose11->toPrune() == true) {
+        testCorrect++;
+        cout << "[PASS] DehydratedMalnurishedOverGrown has all three issues" << endl;
+    } else {
+        cout << "[FAIL] DehydratedMalnurishedOverGrown has all three issues" << endl;
+    }
+    delete rose11;
+    
+    // ===== TEST 12: Triple to double compound =====
+    totalTests++;
+    Plant* rose12 = new Rose();
+    rose12->addWater(-50);
+    rose12->addNutrition(-50);
+    rose12->addGrowth(50);
+    Condition* triple2 = new DehydratedMalnurishedOverGrown(rose12);
+    rose12->setCondition(triple2);
+    rose12->addWater(100); // Fix water
+    triple2->examine(false);
+    if (rose12->toWater() == false && rose12->toFertilise() == true && rose12->toPrune() == true) {
+        testCorrect++;
+        cout << "[PASS] Triple → Double compound (water fixed)" << endl;
+    } else {
+        cout << "[FAIL] Triple → Double compound (water fixed)" << endl;
+    }
+    delete rose12;
+    
+    // ===== TEST 13: Death transition =====
+    totalTests++;
+    Plant* rose13 = new Rose();
+    rose13->addWater(-1000); // Complete depletion
+    Condition* dehydrated2 = new Dehydrated(rose13);
+    rose13->setCondition(dehydrated2);
+    if (rose13->isResourcesDepleted() == true) {
+        testCorrect++;
+        cout << "[PASS] Resources depleted (death condition)" << endl;
+    } else {
+        cout << "[FAIL] Resources depleted (death condition)" << endl;
+    }
+    delete rose13;
+    
+    // ===== TEST 14: Dehydrated state persistence =====
+    totalTests++;
+    Plant* rose14 = new Rose();
+    rose14->addWater(-50);
+    Condition* dehydrated3 = new Dehydrated(rose14);
+    rose14->setCondition(dehydrated3);
+    dehydrated3->examine(false); // No care provided
+    if (rose14->toWater() == true) {
+        testCorrect++;
+        cout << "[PASS] Dehydrated state persists without care" << endl;
+    } else {
+        cout << "[FAIL] Dehydrated state persists without care" << endl;
+    }
+    delete rose14;
+    
+    // ===== TEST 15: Degradation mechanics =====
+    totalTests++;
+    Plant* rose15 = new Rose();
+    Condition* healthy4 = new Healthy(rose15);
+    rose15->setCondition(healthy4);
+    bool degradationOccurred = false;
+    for (int i = 0; i < 20; i++) {
+        healthy4->examine(true); // Allow degradation
+        if (rose15->toWater() || rose15->toFertilise()) {
+            degradationOccurred = true;
+            break;
+        }
+    }
+    if (degradationOccurred == true) {
+        testCorrect++;
+        cout << "[PASS] Degradation occurs over time" << endl;
+    } else {
+        cout << "[FAIL] Degradation occurs over time" << endl;
+    }
+    delete rose15;
+    
+    // ===== FINAL RESULTS =====
+    cout << "\n========================================" << endl;
+    cout << "RESULTS: " << testCorrect << " out of " << totalTests << " tests passed." << endl;
+    cout << "========================================\n" << endl;
+}
+
 int main()
 {
     // testPaymentStates();
@@ -1173,6 +1426,8 @@ int main()
     testStrategyPattern();
     cout<<"\n\n==============================\n Beginning AggregatePatternTests"<<endl;
     testAggregate();
+    cout<<"\n\n==============================\n Beginning ConditionStatePatternTests"<<endl;
+    testConditionStates();
     
     return 0;
 }
