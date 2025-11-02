@@ -2,7 +2,7 @@
 #define NURSARYVIEW_H
 
 #include <QWidget>
-
+#include "Plant.h"
 namespace Ui {
 class NursaryView;
 }
@@ -18,6 +18,11 @@ public slots:
     void passTime();
 signals:
     void inventoryUpdated(const QString& message);
+
+private:
+    void setupNurseryTable();
+    void updateNurseryTable();
+    void addPlantToTable(int row, Plant* plant, bool canSellBefore, bool canSellAfter);
 
 private:
     Ui::NursaryView *ui;
