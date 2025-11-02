@@ -31,12 +31,6 @@ Yeah we still figuring this one out
 
 GUI build is still upcoming.
 
-Run the console build (no GUI):
-
-```bash
-./COS_214_Practicklers_console
-```
-
 ## Unit tests (GoogleTest)
 
 This repository includes `unitTesting.cpp` which uses GoogleTest (`gtest`).
