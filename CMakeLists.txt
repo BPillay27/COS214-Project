@@ -108,7 +108,7 @@ target_link_libraries(${PROJECT_NAME} Qt6::Core Qt6::Widgets)
 add_executable(${PROJECT_NAME}_console
     ${CORE_SOURCES}
     ${CORE_HEADERS}
-    testingMain.cpp
+    unitTesting.cpp
 )
 
 # Console version doesn't need Qt
