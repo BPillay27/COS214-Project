@@ -3,16 +3,16 @@
 #include <iostream>
 
 void Normal::water(Plant* plant) {
-    std::cout << "Watering Normal plant '" << plant->getSpecies() << "' when topsoil is dry." << std::endl;
-    plant->water();
+    plant->addWater(plant->waterMax()+30);
 }
 
 void Normal::prune(Plant* plant) {
-    std::cout << "Pruning Normal plant '" << plant->getSpecies() << "' to remove dead/diseased branches." << std::endl;
-    plant->prune();
+    int pruneAmount = plant->pruneMax()/9;
+    pruneAmount=pruneAmount>0?(-1*pruneAmount):pruneAmount;
+    plant->addGrowth(pruneAmount);
 }
 
 void Normal::fertilise(Plant* plant) {
-    std::cout << "Fertilising Normal plant '" << plant->getSpecies() << "' periodically." << std::endl;
-    plant->fertilise();
+    int fertiliseAmount = plant->fertiliseMax()+23;
+    plant->addNutrition(fertiliseAmount);
 }

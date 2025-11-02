@@ -39,7 +39,7 @@ class GreenHouseCare;
 
 class Plant : public OrderComponent, public Subject {
     private:
-        int lifeIntervals[4];  
+        int lifeIntervals[3];  
         int lifeTime;  // How long the plant has been active
         int growth[2];
         int waterLevel[2];
@@ -93,6 +93,7 @@ class Plant : public OrderComponent, public Subject {
         OrderComponent* remove(OrderComponent* toRemove);
         void examine(bool j);
         void success();
+        void setCare(GreenHouseCare* care);
 };
 
 /**
@@ -114,7 +115,7 @@ class Plant : public OrderComponent, public Subject {
 class Rose: public Plant {
     public:
         Rose();
-        ~Rose();
+        virtual ~Rose();
 };
 
 /**
@@ -141,7 +142,7 @@ class Dandelion: public Plant {
          * Initializes a Dandelion plant with specific attributes.
          */
         Dandelion();
-        ~Dandelion();
+        virtual ~Dandelion();
 };
 
 /**
@@ -164,7 +165,7 @@ class Dandelion: public Plant {
 class AppleTree: public Plant {
     public:
         AppleTree();
-        ~AppleTree();
+        virtual~AppleTree();
 };
 
 
