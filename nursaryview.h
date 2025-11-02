@@ -14,6 +14,10 @@ class NursaryView : public QWidget
 public:
     explicit NursaryView(QWidget *parent = nullptr);
     ~NursaryView();
+public slots:
+    void passTime();
+signals:
+    void inventoryUpdated(const QString& message);
 
 private:
     Ui::NursaryView *ui;

@@ -15,6 +15,14 @@ public:
     explicit SimulationView(QWidget *parent = nullptr);
     ~SimulationView();
 
+public slots:
+    // Slot to receive inventory updates from NursaryView
+    void updateInventoryDisplay(const QString& message);
+
+private slots:
+    void on_btnNextDay_clicked();
+signals:
+    void nextDay();
 private:
     Ui::SimulationView *ui;
 };

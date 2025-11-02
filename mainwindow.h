@@ -17,6 +17,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void inventoryMessage(const QString& message);
 private slots:
     void on_pushButton_clicked();
 

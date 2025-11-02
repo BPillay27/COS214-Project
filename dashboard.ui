@@ -13,28 +13,278 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTextBrowser" name="tempOutput">
+  <widget class="QLabel" name="lblTotal">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>100</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>430</y>
-     <width>191</width>
-     <height>41</height>
+     <x>20</x>
+     <y>70</y>
+     <width>71</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Testickle Button</string>
+    <string>Total: R0.00</string>
    </property>
+  </widget>
+  <widget class="QPushButton" name="btnPrevRow">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>370</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prev Row</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblOrderSize">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Number of Plantickles: 0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPay">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>430</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pay</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnNextRow">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>370</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Next Row</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>180</y>
+     <width>603</width>
+     <height>152</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
+    <property name="sizeConstraint">
+     <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+    </property>
+    <property name="leftMargin">
+     <number>5</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="horizontalSpacing">
+     <number>19</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>10</number>
+    </property>
+    <item row="1" column="4">
+     <widget class="QLabel" name="lblCol_5">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QSpinBox" name="spinBoxCol2">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="lblCol_4">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="btnDetailsCol_4">
+      <property name="text">
+       <string>Details</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="lblCol_2">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lblCol_1">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QSpinBox" name="spinBoxCol1">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QSpinBox" name="spinBoxCol3">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4">
+     <widget class="QPushButton" name="btnDetailsCol_5">
+      <property name="text">
+       <string>Details</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="btnDetailsCol_2">
+      <property name="text">
+       <string>Details</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="btnDetailsCol_1">
+      <property name="text">
+       <string>Details</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="lblCol_3">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="btnAddItemCol_4">
+      <property name="text">
+       <string>Add Item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="QSpinBox" name="spinBoxCol5">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="btnAddItemCol_3">
+      <property name="text">
+       <string>Add Item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="btnAddItemCol_1">
+      <property name="text">
+       <string>Add Item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QPushButton" name="btnDetailsCol_3">
+      <property name="text">
+       <string>Details</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QPushButton" name="btnAddItemCol_5">
+      <property name="text">
+       <string>Add Item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="btnAddItemCol_2">
+      <property name="text">
+       <string>Add Item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QSpinBox" name="spinBoxCol4">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QCheckBox" name="checkBoxCol1">
+      <property name="text">
+       <string>Add a Pot</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QCheckBox" name="checkBoxCol2">
+      <property name="text">
+       <string>Add a Pot</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QCheckBox" name="checkBoxCol3">
+      <property name="text">
+       <string>Add a Pot</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QCheckBox" name="checkBoxCol4">
+      <property name="text">
+       <string>Add a Pot</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4">
+     <widget class="QCheckBox" name="checkBoxCol5">
+      <property name="text">
+       <string>Add a Pot</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
