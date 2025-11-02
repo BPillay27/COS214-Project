@@ -1,30 +1,43 @@
-### Practickler's very very serious readme
+### Practicklers — Nursery Simulation
 
-Our planning docs link:
-https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing
+This Repository contains a small nursery simulation.
+It models plants, employees, customers, inventory and orders, and includes a Qt GUI to view and run the simulation.
 
-## Everywhere
-- Iterator (will iterate lol)
+(i dont know if we should still include this part :P)
+[our live planning google doc.](https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing)
 
-## 1.1 Greenhouse grow area or sumn.
-we are using a vector to keep track of the 'floor plan', to simplify the understanding and tracking of which plants we have.
+## Typical user flow:
 
-- Factory Method (order seeds (instantiating plants))
-- Observer (observer tell employee (verbatim keegan)) (Greenhouse manager walks through)
-- State
-- Composite
-- Strategy
+1. Start the app. The main window launches and you can open the dashboard, nursery view or simulation view.
+2. In the simulation view you can step thruogh the simulation. Plants age and may generate requests (water/prune/fertilise/moving).
+3. Requests are handled by employees (gardener, inventory manager, salesman) delegated by the chain of responsibility.
+4. Customers can create orders using the GUI; orders use commands and composite/decorator patterns to build complex items (Wrapping or Decorated Pots, special arrangements) and finally to check out.
 
-## 1.2 Staff
+## Design patterns used (what, where, and why)
 
-- Singleton  (for inventory)
-- Mediator (interactions and everything (verbatim arran)) (hey we need new stuff (verbatim keegan))
-  - Two staff vectors, for busy and not busy
-- Chain of Responisibility
-- Command
+(W.I.P.)
 
-## 1.3 Customer 
+## File map
 
-- Decorator (for customization of the plant)
-- Composite (to 'arrange' the plants)
-- State/Command
+- Plants & states, 
+	- `Plant.*`, `Maturity.*`, `Condition.*`, `GreenHouseCare.*`, `Supplier.*`
+- Inventory & suppliers
+	- `Inventory.*`, `Supplier.*`, `InventoryManager.*`
+- Orders & customers
+	- `Order.*`, `OrderComponent.*`, `Command.*`, `Customer.*`, `Namer.*`
+- Employees & requests
+	- `Employee.*`, `Request.*`, `Gardener.*`, `Salesman.*`, `InventoryManager.*`
+- Iterator / aggregates
+	- `Iterator.h`, `VectorIterator.h`, `Aggregate.h`
+- GUI
+	- `main.cpp`, `mainwindow.*`, `dashboard.*`, `simulationview.*`, `nursaryview.*` (yes we have .ui files in the repo)
+
+## Team members:
+
+- Byron Pillay, u21516261
+- Tshepiso Makelana, u23588579
+- Mulondi Makhado, u24739163
+- Arran Lamond, u23655675
+- Keegan Lewis, u24594522
+- Michael Neto, u24641342
+- Ndamulelo Vele, u23554607
