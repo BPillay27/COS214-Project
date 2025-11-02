@@ -18,6 +18,11 @@ void SimulationView::updateInventoryDisplay(const QString& message)
     ui->textBrowserInventorySystem->append(message);
 }
 
+void SimulationView::updateEmployeeDisplay(const QString& message)
+{
+    ui->textBrowserEmployeeSystem->append(message);
+}
+
 void SimulationView::on_btnNextDay_clicked()
 {
     emit nextDay();

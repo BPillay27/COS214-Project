@@ -32,8 +32,10 @@ void MainWindow::on_pushButton_clicked()
             simulationView, &SimulationView::updateInventoryDisplay);
     connect(simulationView, &SimulationView::nextDay, 
             nursaryView, &NursaryView::passTime);
-
+    connect(this, &MainWindow::employeeMessage,
+            simulationView, &SimulationView::updateEmployeeDisplay);
     Employee employee = Employee();
+    emit employeeMessage("Employee System Initialized");
     Inventory & inventory = Inventory::instance();
     emit inventoryMessage("Inventory Initialized");
     for (int i = 0; i < 3; ++i) {
