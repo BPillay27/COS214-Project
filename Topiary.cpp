@@ -3,16 +3,17 @@
 #include <iostream>
 
 void Topiary::water(Plant* plant) {
-    std::cout << "Watering Topiary plant '" << plant->getSpecies() << "' sparingly." << std::endl;
-    plant->water();
+    int moistureLevel = plant->waterMax()+30;
+    plant->addWater(moistureLevel);
 }
 
 void Topiary::prune(Plant* plant) {
-    std::cout << "Pruning Topiary plant '" << plant->getSpecies() << "' for specific shape." << std::endl;
-    plant->prune();
+    int pruneAmount = plant->pruneMax()/8;
+    pruneAmount=pruneAmount>0?(-1*pruneAmount):pruneAmount;
+    plant->addGrowth(pruneAmount);
 }
 
 void Topiary::fertilise(Plant* plant) {
-    std::cout << "Fertilising Topiary plant '" << plant->getSpecies() << "' with balanced feed." << std::endl;
-    plant->fertilise();
+    int fertiliseAmount = plant->fertiliseMax()+17;
+    plant->addNutrition(fertiliseAmount);
 }

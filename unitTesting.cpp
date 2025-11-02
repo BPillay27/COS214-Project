@@ -32,27 +32,58 @@ void testStrategyPattern() {
 
     // Create a plant to be cared for
     Plant* rose = new Rose();
+    GreenHouseCare* careStrategy = new Normal();
     cout << "\nCreated a " << rose->getSpecies() << " for testing." << endl;
 
     // Test Normal Strategy
     cout << "\n--- Testing Normal Care Strategy ---" << endl;
-    GreenHouseCare* careStrategy = new Normal();
-    careStrategy->water(rose);
-    careStrategy->prune(rose);
-    careStrategy->fertilise(rose);
-    cout << "✓ Normal strategy executed." << endl;
-    testsPassed++;
-    delete careStrategy;
+    int initialWater = rose->getWaterLevel();
+    int initialGrowth = rose->getGrowth();
+    int initialNutrition = rose->getSoilNutrition();
+    rose->setCare(careStrategy);
+    cout<<"the water level before:" <<initialWater<<endl;
+    cout<<"the growth before:" <<initialGrowth<<endl;
+    cout<<"the nutrition before:" <<initialNutrition<<endl;
+    rose->water();
+    rose->prune();
+    rose->fertilise();
+    int changedWater = rose->getWaterLevel();
+    int changedGrowth = rose->getGrowth();
+    int changedNutrition = rose->getSoilNutrition();
+    cout << " Normal strategy executed." << endl;
+    cout<<"the water level after:" <<changedWater<<endl;
+    cout<<"the growth after:" <<changedGrowth<<endl;
+    cout<<"the nutrition after:" <<changedNutrition<<endl;
+    if(changedGrowth!=initialGrowth && changedWater!=initialWater && changedNutrition!=initialNutrition){
+        testsPassed++;
+    }else{
+        cout<<"Normal strategy test failed."<<endl;
+    }
 
-    // Test Bonsai Strategy
     cout << "\n--- Testing Bonsai Care Strategy ---" << endl;
+    initialWater = rose->getWaterLevel();
+    initialGrowth = rose->getGrowth();
+    initialNutrition = rose->getSoilNutrition();
     careStrategy = new Bonsai();
-    careStrategy->water(rose);
-    careStrategy->prune(rose);
-    careStrategy->fertilise(rose);
-    cout << "✓ Bonsai strategy executed." << endl;
-    testsPassed++;
-    delete careStrategy;
+    rose->setCare(careStrategy);
+    cout<<"the water level before:" <<initialWater<<endl;
+    cout<<"the growth before:" <<initialGrowth<<endl;
+    cout<<"the nutrition before:" <<initialNutrition<<endl;
+    rose->water();
+    rose->prune();
+    rose->fertilise();
+    changedWater = rose->getWaterLevel();
+    changedGrowth = rose->getGrowth();
+    changedNutrition = rose->getSoilNutrition();
+    cout << " Bonsai strategy executed." << endl;
+    cout<<"the water level after:" <<changedWater<<endl;
+    cout<<"the growth after:" <<changedGrowth<<endl;
+    cout<<"the nutrition after:" <<changedNutrition<<endl;
+    if(changedGrowth!=initialGrowth && changedWater!=initialWater && changedNutrition!=initialNutrition){
+        testsPassed++;
+    }else{
+        cout<<"Bonsai strategy test failed."<<endl;
+    }
 
     // Test Topiary Strategy
     cout << "\n--- Testing Topiary Care Strategy ---" << endl;
@@ -60,7 +91,7 @@ void testStrategyPattern() {
     careStrategy->water(rose);
     careStrategy->prune(rose);
     careStrategy->fertilise(rose);
-    cout << "✓ Topiary strategy executed." << endl;
+    cout << "Topiary strategy executed." << endl;
     testsPassed++;
     delete careStrategy;
 
@@ -70,7 +101,7 @@ void testStrategyPattern() {
     careStrategy->water(rose);
     careStrategy->prune(rose);
     careStrategy->fertilise(rose);
-    cout << "✓ Espalier strategy executed." << endl;
+    cout << " Espalier strategy executed." << endl;
     testsPassed++;
     delete careStrategy;
 
@@ -80,7 +111,7 @@ void testStrategyPattern() {
     careStrategy->water(rose);
     careStrategy->prune(rose);
     careStrategy->fertilise(rose);
-    cout << "✓ Kokedama strategy executed." << endl;
+    cout << " Kokedama strategy executed." << endl;
     testsPassed++;
     delete careStrategy;
 
@@ -705,7 +736,7 @@ void testCustomerFactory()
         //now remove an item
         customer->removeItem(rose);
         customer->checkout();
-        
+        delete rose;
         cout << "Remove item command executed successfully" << endl;
         testsPassed++;
         
@@ -729,6 +760,8 @@ void testCustomerFactory()
         //cancel should clear buffer and cancel order
         customer->cancelTransaction();
         cout << "Transaction cancelled successfully" << endl;
+        delete rose;
+        delete dandelion;
         testsPassed++;
         
         delete customer;
@@ -755,7 +788,7 @@ void testCustomerFactory()
         
         //execute all commands
         customer->checkout();
-        
+        delete dandelion;
         cout << "Multiple buffered commands executed in order" << endl;
         testsPassed++;
         
@@ -1376,6 +1409,7 @@ void testConditionStates() {
     Condition* dehydrated3 = new Dehydrated(rose14);
     rose14->setCondition(dehydrated3);
     dehydrated3->examine(false); // No care provided
+    
     if (rose14->toWater() == true) {
         testCorrect++;
         cout << "[PASS] Dehydrated state persists without care" << endl;

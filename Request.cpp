@@ -6,6 +6,7 @@
  * @param plant The plant to be assigned a gardener
  */
 Place::Place(Plant* plant) : Requests("Place"){
+    param=nullptr;
     this->plant=plant;
 }
 

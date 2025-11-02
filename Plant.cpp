@@ -10,7 +10,7 @@
  * @param nutrition The minimum soil nutrition level of the plant.
  * @param lifeCycle An array representing the life cycle intervals of the plant.
  */
-Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], int price):OrderComponent(price), Subject() {
+Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[3], int price):OrderComponent(price), Subject() {
     species = name;
     this->growth[0] =0;
     this->growth[1] = growth;
@@ -18,7 +18,7 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], i
     this->waterLevel[1] = water;
     this->soilNutrition[0] = nutrition;
     this->soilNutrition[1] = nutrition;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
         lifeIntervals[i] = lifeCycle[i];
     }
     lifeTime = 0;
@@ -26,6 +26,7 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[4], i
     this->condition = nullptr;
     this->maturity = nullptr;
     this->careStrategy = nullptr;
+    delete[] lifeCycle;
 }
 
 /**
@@ -65,7 +66,7 @@ void Plant::setCondition(Condition* condition)
 
     if(this->condition!=nullptr)
     {
-        //incomplete type deletion issues, idk keegan save me
+        delete this->condition;
         this->condition=nullptr;
     }
     this->condition=condition;
@@ -84,7 +85,7 @@ void Plant::setLifeStage(Maturity* life)
 
     if(this->maturity!=nullptr)
     {
-        //incomplete type deletion issues, keegan save me pls
+        delete this->maturity;
         this->maturity=nullptr;
     }
     this->maturity=life;
@@ -96,16 +97,17 @@ void Plant::setLifeStage(Maturity* life)
 Plant::~Plant() {
     gardener = nullptr;
     if(careStrategy!=nullptr){
+        delete careStrategy;
         careStrategy=nullptr;
     }
     if(condition!=nullptr)
     {
-        //incomplete type deletion issues, keegan save me pls
+        delete condition;
         condition = nullptr;
     }
     if(maturity!=nullptr)
     {
-        //incomplete type deletion issues, keegan save me pls
+        delete maturity;
         maturity = nullptr;
     }
 }
@@ -253,8 +255,7 @@ void Plant::prune() {
     if(careStrategy==nullptr){
         return;
     }
-    //careStrategy not connected either, commented out for now
-    // careStrategy->prune(this)
+    careStrategy->prune(this);
 }
 
 /**
@@ -265,8 +266,7 @@ void Plant::water() {
     if(careStrategy==nullptr){
         return;
     }
-    //careStrategy not connected either, commented out for now
-    // careStrategy->water(this);
+    careStrategy->water(this);
 }
 
 /**
@@ -277,8 +277,8 @@ void Plant::fertilise() {
     if(careStrategy==nullptr){
         return;
     }
-    //careStrategy not connected either, commented out for now
-    // careStrategy->fertilise(this);
+    
+    careStrategy->fertilise(this);
 }
 
 /**
@@ -322,6 +322,21 @@ bool Plant::isResourcesDepleted() {
  */
 void Plant::setGardener(Gardener* gardener) {
     this->gardener = gardener;
+}
+
+void Plant::setCare(GreenHouseCare* strategy){
+    if(strategy==nullptr)
+    {
+        return;
+    }
+
+    if(this->careStrategy!=nullptr)
+    {
+        delete this->careStrategy;
+        this->careStrategy=nullptr;
+    }
+    this->careStrategy=strategy;
+    return;
 }
 
 /**
@@ -414,7 +429,7 @@ void Plant::success(){
  * Initializes a Rose plant with specific attributes.
  */
 
-Rose::Rose() : Plant("Rose", 20, 15, 20, new int[4]{5, 10, 20, 45}, 50) {
+Rose::Rose() : Plant("Rose", 20, 15, 20, new int[3]{5, 10, 20}, 50) {
 
 }
 
@@ -429,7 +444,7 @@ Rose::~Rose() {
  * @brief Constructor for the Dandelion class.
  * Initializes a Dandelion plant with specific attributes.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[4]{5, 15, 25, 35}, 20) {    
+Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[3]{5, 15, 25}, 20) {    
     
 }
 
@@ -445,7 +460,7 @@ Dandelion::~Dandelion() {
  * @brief Constructor for the AppleTree class.
  * Initializes an AppleTree plant with specific attributes.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[4]{15, 30, 45, 80},120) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[3]{15, 30, 45},120) {
     
 }
 

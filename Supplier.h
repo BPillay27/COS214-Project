@@ -2,6 +2,10 @@
 #define SUPPLIER_H
 
 #include "Plant.h"
+#include "GreenHouseCare.h"
+#include "Normal.h"
+#include "Espalier.h"
+#include "Kokedama.h"
 
 /**
  * @class Supplier
