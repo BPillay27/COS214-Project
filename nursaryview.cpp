@@ -89,6 +89,7 @@ void NursaryView::passTime()
                     std::string details = currentPlant->getDetails();
                     bool canSell = currentPlant->canSale();
     
+                    // Call Plant::grow() directly on each plant using iterator
                     currentPlant->grow();
                     
                     std::string detailsAfter = currentPlant->getDetails();
@@ -114,10 +115,12 @@ void NursaryView::passTime()
         currentRow = rowIterator->next();
     }
     
-    delete rowIterator;
-    
-    nursery->grow();
     nursery->examine();
+    delete rowIterator;
+
+    // nursery->grow();
+    nursery->WalkThrough();
+    nursery->printPlants();
     
     int totalPlantsInGreenhouse = greenhouse->getCount();
     int greenhouseCapacity = greenhouse->getCapacity();

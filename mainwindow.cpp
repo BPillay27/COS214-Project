@@ -34,9 +34,22 @@ void MainWindow::on_pushButton_clicked()
             nursaryView, &NursaryView::passTime);
     connect(this, &MainWindow::employeeMessage,
             simulationView, &SimulationView::updateEmployeeDisplay);
-    Employee employee = Employee();
+    InventoryManager* inventoryManager = new InventoryManager();
+    Gardener* gardener = new Gardener();
+    for (int i = 0; i < 100; i++)
+    {
+        gardener->HireGardener("Gardener " + std::to_string(i));
+        //inventoryManager->HireInventoryManager("InventoryManager " + std::to_string(i));
+    }
+    
+    //Salesman salesman = Salesman();
     emit employeeMessage("Employee System Initialized");
     Inventory & inventory = Inventory::instance();
+    // Wire up Inventory with its handlers BEFORE any requests are issued
+    inventory.setManager(inventoryManager);
+    inventory.setGardener(gardener); // Ensure Place requests can assign a gardener
+    emit inventoryMessage("Gardener assigned to Inventory for placement requests.");
+    inventory.setGardener(gardener);
     emit inventoryMessage("Inventory Initialized");
     for (int i = 0; i < 3; ++i) {
         Rose * rose1 = new Rose();
