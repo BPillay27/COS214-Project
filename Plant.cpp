@@ -35,11 +35,9 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[3], i
 void Plant::grow() 
 {
     lifeTime++;
-    if (maturity != nullptr) 
-    {
-        //i think this is going to work after states are done and connected
-        //commented out for now tho
-        // maturity->grow(); 
+    if (maturity != nullptr) {
+        //Micheal is a bad branch manager
+        maturity->grow(); 
     }
 }
 
