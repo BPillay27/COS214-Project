@@ -18,7 +18,7 @@ These instructions assume a Linux environment (Ubuntu/Debian). So adjust package
 
 Required software:
 
-- C++ with C++17 support
+- C++ with C++11 support
 - latest CMake
 - Qt Creator [Installation available here](https://www.qt.io/download-qt-installer-oss)
 - GoogleTest (for unit tests)
