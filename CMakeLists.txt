@@ -83,16 +83,22 @@ set(GUI_SOURCES
     main.cpp
     mainwindow.cpp
     dashboard.cpp
+    simulationview.cpp
+    nursaryview.cpp
 )
 
 set(GUI_HEADERS
     mainwindow.h
     dashboard.h
+    simulationview.h
+    nursaryview.h
 )
 
 set(GUI_FORMS
     mainwindow.ui
     dashboard.ui
+    simulationview.ui
+    nursaryview.ui
 )
 
 # Add a diagnostic message to confirm the source files are being loaded.
@@ -117,7 +123,6 @@ add_executable(${PROJECT_NAME}_console
     ${CORE_SOURCES}
     ${CORE_HEADERS}
     unitTesting.cpp
-    testingMain.cpp
 )
 target_compile_definitions(${PROJECT_NAME}_console PRIVATE NO_QT_GUI)
 

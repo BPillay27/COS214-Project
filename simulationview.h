@@ -18,6 +18,7 @@ public:
 public slots:
     // Slot to receive inventory updates from NursaryView
     void updateInventoryDisplay(const QString& message);
+    void updateEmployeeDisplay(const QString& message);
 
 private slots:
     void on_btnNextDay_clicked();

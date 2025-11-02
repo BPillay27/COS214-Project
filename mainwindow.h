@@ -19,6 +19,7 @@ public:
 
 signals:
     void inventoryMessage(const QString& message);
+    void employeeMessage(const QString& message);
 private slots:
     void on_pushButton_clicked();
 

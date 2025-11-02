@@ -25,11 +25,6 @@
    <property name="editTriggers">
     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
    </property>
-   <row>
-    <property name="text">
-     <string>Plant ID</string>
-    </property>
-   </row>
    <column>
     <property name="text">
      <string>Plant Name</string>

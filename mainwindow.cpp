@@ -5,6 +5,7 @@
 #include "simulationview.h"
 #include "Inventory.h"
 #include "Plant.h"
+#include "Employee.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -31,6 +32,8 @@ void MainWindow::on_pushButton_clicked()
             simulationView, &SimulationView::updateInventoryDisplay);
     connect(simulationView, &SimulationView::nextDay, 
             nursaryView, &NursaryView::passTime);
+
+    Employee employee = Employee();
     Inventory & inventory = Inventory::instance();
     emit inventoryMessage("Inventory Initialized");
     for (int i = 0; i < 3; ++i) {
@@ -54,7 +57,8 @@ void MainWindow::on_pushButton_clicked()
         inventory.supply(appleTree2);
     }
     emit inventoryMessage("Initial plant seeds supplied to inventory.");
-    emit inventoryMessage("Added 6 Roses, 6 Dandelions, and 6 Apple Trees to inventory.");
+    emit inventoryMessage(QString::fromStdString(std::to_string(inventory.getStorageCount()) + " plants in storage."));
+    inventory.getSalesArea()->examine();
     emit inventoryMessage("Now we wait for them to grow.");
 
 
