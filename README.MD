@@ -20,6 +20,7 @@ Required software:
 
 - C++ with C++11 support
 - latest CMake
+  - installed using `sudo apt install cmake'
 - Qt Creator [Installation available here](https://www.qt.io/download-qt-installer-oss)
 - GoogleTest (for unit tests)
 
