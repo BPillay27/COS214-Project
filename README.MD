@@ -8,7 +8,7 @@ It models plants, employees, customers, inventory and orders, and includes a Qt 
 ## Typical user flow:
 
 1. Start the app. The main window launches and you can open the dashboard, nursery view or simulation view.
-2. In the simulation view you can step thruogh the simulation. Plants age and may generate requests (water/prune/fertilise/moving).
+2. In the simulation view you can step through the simulation. Plants age and may generate requests (water/prune/fertilise/moving).
 3. Requests are handled by employees (gardener, inventory manager, salesman) delegated by the chain of responsibility.
 4. Customers can create orders using the GUI; orders use commands and composite/decorator patterns to build complex items (Wrapping or Decorated Pots, special arrangements) and finally to check out.
 
@@ -26,25 +26,27 @@ Required software:
 
 ## Build (recommended: CMake)
 
-Yeah we still figuring this one out
+- To build Google Test's unit_tests:
+```
+# from repo root
+cmake -S . -B build
+```
+
+- GUI build is still upcoming.
 
 ## Quick run
 
-GUI build is still upcoming.
+- Run the gtests' build:
 
-## Unit tests (GoogleTest)
-
-This repository includes `unitTesting.cpp` which uses GoogleTest (`gtest`).
-
-```bash
-# from repo root
-make unitTesting
-./unitTesting
+```
+cd build
+make
+./unit_tests
 ```
 
-I don't understand how to run the gtests yet
+- Like stated above, the GUI build is still upcoming.
 
-## File map (organized by Design Patterns from UML)
+## File map
 
 ### Chain of Responsibility Pattern
 - `Employee.h/.cpp` - Abstract handler base class
