@@ -1,0 +1,37 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="Condition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classCondition.html",tooltip="An abstract base class representing the health condition state of a plant. This class defines the int..."];
+  Node0 -> Node1 [id="edge5_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="Dead",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classDead.html",tooltip="Represents a dead plant with its decomposition stages."];
+  Node0 -> Node7 [id="edge6_Node000000_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Dehydrated",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classDehydrated.html",tooltip="Represents a dehydrated condition state of a plant."];
+  Node0 -> Node8 [id="edge7_Node000000_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="DehydratedMalnurished",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classDehydratedMalnurished.html",tooltip="Represents a dehydrated and malnourished condition state of a plant."];
+  Node0 -> Node9 [id="edge8_Node000000_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="DehydratedMalnurishedOver\lGrown",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classDehydratedMalnurishedOverGrown.html",tooltip="Represents a dehydrated, malnourished, and overgrown condition state of a plant."];
+  Node0 -> Node10 [id="edge9_Node000000_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="DehydratedOverGrown",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classDehydratedOverGrown.html",tooltip="Represents a dehydrated and overgrown condition state of a plant."];
+  Node0 -> Node11 [id="edge10_Node000000_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="Healthy",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classHealthy.html",tooltip="Represents a healthy condition state of a plant."];
+  Node0 -> Node12 [id="edge11_Node000000_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="Malnurished",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classMalnurished.html",tooltip="Represents a malnourished condition state of a plant."];
+  Node0 -> Node13 [id="edge12_Node000000_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="MalnurishedOverGrown",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classMalnurishedOverGrown.html",tooltip="Represents a malnourished and overgrown condition state of a plant."];
+  Node0 -> Node14 [id="edge13_Node000000_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="OverGrown",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOverGrown.html",tooltip="Represents an overgrown condition state of a plant."];
+  Node2 [id="Node000002",label="Maturity",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classMaturity.html",tooltip="An abstract base class representing the maturity state of a plant. This class defines the interface f..."];
+  Node2 -> Node1 [id="edge14_Node000002_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node3 [id="edge15_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Mature",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classMature.html",tooltip="Represents the mature stage of a plant's maturity."];
+  Node2 -> Node4 [id="edge16_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Seed",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classSeed.html",tooltip="Represents the seed stage of a plant's maturity."];
+  Node2 -> Node5 [id="edge17_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Seedling",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classSeedling.html",tooltip="Represents the seedling stage of a plant's maturity."];
+  Node2 -> Node6 [id="edge18_Node000002_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Sprout",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classSprout.html",tooltip="Represents the sprout stage of a plant's maturity."];
+}
