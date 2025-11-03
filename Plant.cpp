@@ -23,8 +23,8 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[3], i
     }
     lifeTime = 0;
     this->gardener = nullptr;
-    this->condition = nullptr;
-    this->maturity = nullptr;
+    this->condition = new Healthy(this);
+    this->maturity = new Seed(this);
     this->careStrategy = nullptr;
     delete[] lifeCycle;
 }
