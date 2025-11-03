@@ -34,7 +34,7 @@ void Gardener::handle(Requests* task)
                 current.isAvailable = false;
                 employees.pop();
                 employees.push(current);
-                
+                task->setParam(this);
                 task->execute();
                 
                 queue<EmployeePerson> tempQueue;
