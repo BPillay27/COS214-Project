@@ -20,6 +20,7 @@
 // Test fixture for Strategy Pattern
 TEST(StrategyPatternTest, AllStrategiesExecute) {
     Plant* rose = new Rose();
+    cout<<"\n\n\nRose:" << rose << "\n\n\n" << endl;
     ASSERT_TRUE(rose != nullptr);
 
     GreenHouseCare* careStrategy;
@@ -88,8 +89,10 @@ TEST(AggregateTest, PlantAreaFunctionality) {
     ASSERT_EQ(area->getCount(), 3);
 
     // Grow twice so AppleTree can mature too
-    area->grow();
-    area->grow();
+    for (int i = 0; i < 2; i++)
+    {
+        area->grow();
+    }
 
     ASSERT_TRUE(area->givePlant("Rose") != nullptr);
     ASSERT_TRUE(area->givePlant("Dandelion") != nullptr);
