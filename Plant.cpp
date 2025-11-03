@@ -174,7 +174,7 @@ string Plant::getSpecies() {
 
 string Plant::getDetails() {
     string details = "Species: " + species + "\n";
-    details +="Average Life span: " + to_string(lifeIntervals[3]) + " days\n";
+    details +="Average Life span: " + to_string(lifeIntervals[2]) + " days\n";
     details +="Price: R" + to_string(price) + "\n";
     return details;
 }
