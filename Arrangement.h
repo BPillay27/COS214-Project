@@ -36,6 +36,8 @@ public:
             }
         }
     }
+
+    string getDescription();
 };
 
 #endif

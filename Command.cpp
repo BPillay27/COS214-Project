@@ -10,7 +10,7 @@
 AddToOrder::AddToOrder(Order *order, OrderComponent *toAdd) : Command()
 {
     this->order = order;
-    this->toAdd = toAdd;
+    Item = toAdd;
 }
 
 /**
@@ -19,7 +19,7 @@ AddToOrder::AddToOrder(Order *order, OrderComponent *toAdd) : Command()
 
 void AddToOrder::execute()
 {
-    order->AddToOrder(toAdd);
+    order->AddToOrder(Item);
 }
 
 /**
@@ -31,7 +31,7 @@ void AddToOrder::execute()
 RemoveFromOrder::RemoveFromOrder(Order *order, OrderComponent *toRemove) : Command()
 {
     this->order = order;
-    this->toRemove = toRemove;
+    Item = toRemove;
 }
 
 /**
@@ -39,7 +39,7 @@ RemoveFromOrder::RemoveFromOrder(Order *order, OrderComponent *toRemove) : Comma
  */
 void RemoveFromOrder::execute()
 {
-    order->RemoveFromOrder(toRemove);
+    order->RemoveFromOrder(Item);
 }
 
 /**

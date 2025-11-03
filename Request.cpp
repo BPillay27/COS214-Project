@@ -43,6 +43,7 @@ Water::Water(Plant* plant) : Requests("Water"){
  */
 void Water::execute(){
     if(plant!=nullptr){
+        std::cout<<"watering the "<<plant->getSpecies()<<std::endl;
         plant->water();
     }else{
         cout<<"Water request execution failed: missing plant parameter."<<endl;
@@ -62,6 +63,7 @@ Fertilise::Fertilise(Plant* plant) : Requests("Fertilise"){
  */
 void Fertilise::execute(){
     if(plant!=nullptr){
+        std::cout<<"fertilising the "<<plant->getSpecies()<<std::endl;
         plant->fertilise();
     }else{
         cout<<"Fertilize request execution failed: missing plant parameter."<<endl;
@@ -81,6 +83,7 @@ Prune::Prune(Plant* plant) : Requests("Prune"){
  */
 void Prune::execute(){
     if(plant!=nullptr){
+        std::cout<<"pruning the "<<plant->getSpecies()<<std::endl;
         plant->prune();
     }else{
         cout<<"Prune request execution failed: missing plant parameter."<<endl;

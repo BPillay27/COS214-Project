@@ -44,6 +44,7 @@ class Order
     OrderState* getState(); ///< Get `state`.
     void processPayment(); ///< Starts payment process.
     OrderComponent* getItems(); ///< Get `items`.
+    std::string see();///<Get the getDescription of the order
     
     private:
     OrderComponent* items; ///< The items in the order.

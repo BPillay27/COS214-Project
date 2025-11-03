@@ -27,7 +27,7 @@ Inventory::Inventory():Subject() {
 
 void Inventory::initSuppliers(map<string, Supplier*> & suppliers) {
     suppliers["Rose"] = new RoseSupplier();
-    suppliers["AppleTree"] = new AppleSupplier();
+    suppliers["Apple tree"] = new AppleSupplier();
     suppliers["Dandelion"] = new DandelionSupplier();
 }
 /**
@@ -76,8 +76,32 @@ bool Inventory::moveToNursery(Plant * plant) {
  */
 
 void Inventory::removeFromNursery(Plant * plant) {
-    activePlants->removePlant(plant);
-    supply(plant);
+    std::string species = plant->getSpecies();
+    activePlants->removePlant(plant);  // This deletes the plant
+    std::cout<<"Resupplying a new "<<species<<" to the nursery."<<std::endl;
+    auto it = suppliers.find(species);
+    if (it != suppliers.end()) {
+        Plant* newPlant = it->second->resupply();
+        Requests* req=new Place(newPlant);
+        notify(req);
+        delete req;
+        if(storageRoom.size() > 0) {
+            Plant* storedPlant = storageRoom.front();
+            storageRoom.erase(storageRoom.begin());
+            if(moveToNursery(storedPlant)) {
+                storageRoom.push_back(newPlant);
+            }else {
+                storageRoom.push_back(storedPlant);
+                storageRoom.push_back(newPlant);
+            }
+            return;
+        }
+        if(!moveToNursery(newPlant)) {
+            storageRoom.push_back(newPlant);
+        }
+        // If storageRoom is empty, try to add newPlant to nursery, or store it
+        
+    }
 }
 /**
  * @brief Adds a plant to the storage room.

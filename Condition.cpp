@@ -46,13 +46,13 @@ Condition::~Condition() {
 /** Helper methods for natural resource degradation */
 void Condition::degradeWater() {
     // Random water consumption between 1-8 units
-    int waterLoss = (rand() % 3) + 0;
+    int waterLoss = (rand() % 5) + 0;
     cPlant->addWater(-waterLoss);  // Negative amount to reduce
 }
 
 void Condition::degradeNutrition() {
     // Random nutrition consumption between 1-4 units
-    int nutritionLoss = (rand() % 3) + 0;
+    int nutritionLoss = (rand() % 5) + 0;
     cPlant->addNutrition(-nutritionLoss);  // Negative amount to reduce
 }
 
@@ -93,14 +93,14 @@ void Healthy::examine(bool shouldDegrade) {
     // Most specific to least specific
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
     }
     else if (needsWater && needsFertiliser) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -111,7 +111,7 @@ void Healthy::examine(bool shouldDegrade) {
         return;
     }
     else if (needsFertiliser && needsPrune) {
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -122,7 +122,7 @@ void Healthy::examine(bool shouldDegrade) {
         return;
     }
     else if (needsFertiliser) {
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -179,7 +179,7 @@ void Dehydrated::examine(bool shouldDegrade) {
     // Triple compound (still dehydrated + 2 new problems)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -187,7 +187,7 @@ void Dehydrated::examine(bool shouldDegrade) {
     // Double compounds
     else if (needsWater && needsFertiliser) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -200,7 +200,7 @@ void Dehydrated::examine(bool shouldDegrade) {
     //!! Need double check
     else if (needsFertiliser && needsPrune) { 
         // Water was restored! But now has other issues
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -214,7 +214,7 @@ void Dehydrated::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) { //!! Need double check
         // Water restored, but now malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -274,7 +274,7 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
     // Triple compound (both primary issues still present + fertiliser needed)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -283,7 +283,7 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) { //!! Need double check
         // Pruning done! But still dehydrated and now malnourished
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -296,7 +296,7 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) { //!! Need double check
         // Water applied! But still overgrown and now malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -310,7 +310,7 @@ void DehydratedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) { //!! Need double check
         // Both primary issues resolved! But now malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -371,7 +371,7 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
     // Triple compound (both primary issues still present + pruning needed)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -380,7 +380,7 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) {
         // Both primary issues still present, no new issues
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         // Stay in DehydratedMalnurished - no state change
         return;
     }
@@ -393,7 +393,7 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) {
         // Water applied! But still malnourished and now overgrown
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -407,7 +407,7 @@ void DehydratedMalnurished::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) {
         // Water applied, but still malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -469,7 +469,7 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
     if (needsWater && needsFertiliser && needsPrune) {
         // All three issues still present - STAY
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         // Stay in DehydratedMalnurishedOverGrown - no state change
         return;
@@ -478,7 +478,7 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) {
         // Pruning done! Still dehydrated and malnourished
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -491,7 +491,7 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) {
         // Water applied! Still malnourished and overgrown
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -505,7 +505,7 @@ void DehydratedMalnurishedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) {
         // Water and pruning done, but still malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -565,7 +565,7 @@ void Malnurished::examine(bool shouldDegrade) {
     // Triple compound (still malnourished + 2 new problems)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -574,7 +574,7 @@ void Malnurished::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) {
         // Pruning done! Still dehydrated and malnourished
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -587,7 +587,7 @@ void Malnurished::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) {
         // Water applied! Still malnourished and overgrown
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -601,7 +601,7 @@ void Malnurished::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) {
         // Water and pruning done, but still malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -662,7 +662,7 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
     // Triple compound (both primary issues still present + water needed)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -671,7 +671,7 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) {
         // Pruning done! But still malnourished and now dehydrated
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -684,7 +684,7 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) {
         // Both primary issues still present, no new issues
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         // Stay in MalnurishedOverGrown - no state change
         return;
@@ -698,7 +698,7 @@ void MalnurishedOverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) {
         // Pruning done, but still malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }
@@ -753,7 +753,7 @@ void OverGrown::examine(bool shouldDegrade) {
     // Triple compound (still overgrown + 2 new problems)
     if (needsWater && needsFertiliser && needsPrune) {
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new DehydratedMalnurishedOverGrown(cPlant));
         return;
@@ -762,7 +762,7 @@ void OverGrown::examine(bool shouldDegrade) {
     else if (needsWater && needsFertiliser) { //!! Need double check
         // Pruning was done! But now has water and fertiliser issues
         cPlant->notify("water");
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new DehydratedMalnurished(cPlant));
         return;
     }
@@ -775,7 +775,7 @@ void OverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser && needsPrune) {
         // Still overgrown + now malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->notify("prune");
         cPlant->setCondition(new MalnurishedOverGrown(cPlant));
         return;
@@ -789,7 +789,7 @@ void OverGrown::examine(bool shouldDegrade) {
     }
     else if (needsFertiliser) { //!! Need double check
         // Pruning done, but now malnourished
-        cPlant->notify("fertiliser");
+        cPlant->notify("fertilise");
         cPlant->setCondition(new Malnurished(cPlant));
         return;
     }

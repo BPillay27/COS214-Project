@@ -39,6 +39,15 @@ string Customer::getName()
     return name;
 }
 
+void Customer::see()
+{
+    if(order != nullptr)
+    {
+        checkout();
+        std::cout << order->see() << std::endl;
+    }
+}
+
 /**
  * @details Processes payment for the order
  */
@@ -47,6 +56,7 @@ void Customer::pay()
     //payment logic
     checkout();
     order->processPayment();
+    
 }
 
 /**
@@ -58,6 +68,13 @@ void Customer::cancelTransaction()
     while(!buffer.empty())
     {
         Command* command = buffer.front();
+        command->Item->cancelOrder(); //cancel the addition
+        if(command->Item->getPlant() != nullptr){
+            //Do not delete bare plants;
+        }else{
+            delete command->Item;
+        }
+        
         buffer.pop();
         delete command;
     }
@@ -68,6 +85,8 @@ void Customer::cancelTransaction()
         //use cancelOrder instead of removing items
         currentItems->cancelOrder();
     }
+    delete order;
+    order = new Order(getName());
 }
 
 /**

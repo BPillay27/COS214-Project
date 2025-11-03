@@ -34,9 +34,7 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[3], i
  */
 void Plant::grow() 
 {
-    lifeTime++;
     if (maturity != nullptr) {
-        //Micheal is a bad branch manager
         maturity->grow(); 
     }
 }
@@ -153,7 +151,7 @@ bool Plant::canSale() {
     {
         return false;
     }
-    return (lifeTime >= lifeIntervals[2]);
+    return maturity->canSale();
 }
 
 /**
@@ -202,16 +200,20 @@ void Plant::notify(string request) {
         if(request=="prune"){
             Requests* req=new Prune(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="water"){
             Requests* req=new Water(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="fertilise"){
             Requests* req=new Fertilise(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="dead"){
+            std::cout<<"One "<<getSpecies()<<" has been removed from the nursery due to death."<<std::endl;
             Inventory::instance().removeFromNursery(this);
             return;
         }
@@ -420,6 +422,10 @@ int Plant::getSoilNutrition() const {
 void Plant::success(){
     Inventory::instance().removeFromNursery(this);
     return;
+}
+
+string Plant::getDescription() {
+    return getSpecies();
 }
 
 /**

@@ -88,7 +88,11 @@ class Nursery {
          * @return A vector of strings containing recommended plant types.
          */
 
-        std::vector<string> recommendations();
+        /**
+         * @return A vector of strings containing recommended plant types.
+         */
+
+        std::vector<std::string> recommendations();
 
         /**
          * @brief Constructor for the Nursery class.
@@ -113,6 +117,8 @@ class Nursery {
          * @return void
          */
         void examine();
+
+        // void pS();
 };
 
 #endif // NUSERY_H

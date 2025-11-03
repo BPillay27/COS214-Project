@@ -60,7 +60,9 @@ int PlantDecorator::getPrice()
 PlantDecorator::~PlantDecorator() 
 {
     //don't delete component here as it might be used somewhere else
-    delete component;
+    if(component!=nullptr){
+        delete component;
+    }   
 }
 
 void PlantDecorator::cancelOrder() {
@@ -88,7 +90,11 @@ DecorPot::DecorPot(OrderComponent* component) : PlantDecorator(component), potPr
 
 int DecorPot::getPrice() 
 {
-    return PlantDecorator::getPrice() + potPrice;
+    if(component == nullptr) {
+        return 0;
+    } else {
+        return component->getPrice() + potPrice;
+    }
 }
 
 Wrapping::Wrapping(OrderComponent* component) : PlantDecorator(component), wrappingPrice(15) 
@@ -97,7 +103,24 @@ Wrapping::Wrapping(OrderComponent* component) : PlantDecorator(component), wrapp
 }
 
 int Wrapping::getPrice() 
-{
-    return PlantDecorator::getPrice() + wrappingPrice;
+{   
+    if(component == nullptr) {
+        return 0;
+    } else {
+        return component->getPrice() + wrappingPrice;
+    }
 }
 
+string DecorPot::getDescription() {
+    if(component == nullptr) {
+        return "";
+    }
+    return component->getDescription() + " with Decorative Pot";
+}
+
+string Wrapping::getDescription() {
+    if(component == nullptr) {
+        return "";
+    }
+    return "a wrapped " + component->getDescription();
+}

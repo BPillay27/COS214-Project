@@ -58,6 +58,7 @@ void AcceptPayment::handle()
         return;
     }
     delete this->order->items;
+    this->order->items = nullptr;
     this->order->setState(nullptr);
 }
 
@@ -152,7 +153,7 @@ VerifyOrder::~VerifyOrder()
 void VerifyOrder::handle()
 {
     std::cout << "Verifying order...\n";
-    if (order->getItems() == nullptr)
+    if (order->getItems()->getPrice() == 0)
     {
         std::cout << "The order is empty.\n";
         order->setState(nullptr);
