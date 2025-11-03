@@ -21,11 +21,11 @@
 #include "Kokedama.h"
 #include "Normal.h"
 
-using namespace std;
-
-void testStrategyPattern() {
-    cout << "\n=== STRATEGY PATTERN TESTING ===" << endl;
-    cout << "Testing different GreenHouseCare strategies on a Plant" << endl;
+// Test fixture for Strategy Pattern
+TEST(StrategyPatternTest, AllStrategiesExecute) {
+    Plant* rose = new Rose();
+    cout<<"\n\n\nRose:" << rose << "\n\n\n" << endl;
+    ASSERT_TRUE(rose != nullptr);
 
     int testsPassed = 0;
     int totalTests = 5;
@@ -148,8 +148,10 @@ bool testAggregate()
         ok = false;
 
     // Grow twice so AppleTree can mature too
-    area->grow();
-    area->grow();
+    for (int i = 0; i < 2; i++)
+    {
+        area->grow();
+    }
 
     if (area->givePlant("Rose") == nullptr)
         ok = false;
