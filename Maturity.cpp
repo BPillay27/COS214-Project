@@ -9,6 +9,7 @@
 #include "Maturity.h"
 #include "Plant.h"
 #include "Dead.h"
+#include "Inventory.h"
 
 /**
  * @brief Constructor for the Maturity base class.
@@ -95,6 +96,7 @@ Sprout::~Sprout() {
 void Sprout::grow() {
     // Transition to Seedling stage when time is right and plant size is above it's measure at this state
     int* intervals = mPlant->getLifeIntervals();
+    Inventory::instance().getSalesArea()->moveToSales(mPlant->getSpecies());
     if (mPlant->getLifeTime() >= intervals[0] && mPlant->toPrune()) {
         mPlant->setLifeStage(new Seedling(mPlant));
     }

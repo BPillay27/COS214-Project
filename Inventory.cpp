@@ -64,8 +64,8 @@ bool Inventory::moveToNursery(Plant * plant) {
             auto it = std::find(storageRoom.begin(), storageRoom.end(), plant);
             if (it != storageRoom.end()) {
                 storageRoom.erase(it);
-                return true;
             }
+            return true;
         }
     }
     return false;
@@ -77,6 +77,7 @@ bool Inventory::moveToNursery(Plant * plant) {
 
 void Inventory::removeFromNursery(Plant * plant) {
     activePlants->removePlant(plant);
+    supply(plant);
 }
 /**
  * @brief Adds a plant to the storage room.
@@ -105,6 +106,7 @@ void Inventory::supply(Plant * plant) {
         Plant* newPlant = it->second->resupply();
         Requests* req=new Place(newPlant);
         notify(req);
+        delete req;
         if(moveToNursery(newPlant)) {
             return;
         }

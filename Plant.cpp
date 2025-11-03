@@ -427,7 +427,7 @@ void Plant::success(){
  * Initializes a Rose plant with specific attributes.
  */
 
-Rose::Rose() : Plant("Rose", 20, 15, 20, new int[3]{2, 3, 20}, 50) {
+Rose::Rose() : Plant("Rose", 30, 25, 35, new int[3]{2, 3, 20}, 50) {
 
 }
 
@@ -442,7 +442,7 @@ Rose::~Rose() {
  * @brief Constructor for the Dandelion class.
  * Initializes a Dandelion plant with specific attributes.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[3]{3, 4, 25}, 20) {    
+Dandelion::Dandelion() : Plant("Dandelion", 30, 50, 60, new int[3]{3, 4, 25}, 20) {    
     
 }
 
@@ -458,7 +458,7 @@ Dandelion::~Dandelion() {
  * @brief Constructor for the AppleTree class.
  * Initializes an AppleTree plant with specific attributes.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[3]{4, 5, 30},120) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 70, new int[3]{4, 5, 30},120) {
     
 }
 

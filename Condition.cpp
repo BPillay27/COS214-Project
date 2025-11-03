@@ -46,13 +46,13 @@ Condition::~Condition() {
 /** Helper methods for natural resource degradation */
 void Condition::degradeWater() {
     // Random water consumption between 1-8 units
-    int waterLoss = (rand() % 7) + 1;
+    int waterLoss = (rand() % 3) + 0;
     cPlant->addWater(-waterLoss);  // Negative amount to reduce
 }
 
 void Condition::degradeNutrition() {
     // Random nutrition consumption between 1-4 units
-    int nutritionLoss = (rand() % 3) + 1;
+    int nutritionLoss = (rand() % 3) + 0;
     cPlant->addNutrition(-nutritionLoss);  // Negative amount to reduce
 }
 
