@@ -14,6 +14,7 @@ The Functional requirements:
 13) There needs to be an easy way to travel through areas of plants or storage containers of plants.
 14) The plants need to show that they can die from age because they are an old plant and that they can die if their condition becomes really bad and the dying from both should behave the same way this can be done using an adapter.
 15)The needs to be some way to store the plants that are in an order as groups this can be done using the composite desing pattern.
+16) Internal requests are passed using command in the system for easy referencing.
 
 Non-functional requirements:
 1) The singleton helps with reliability because it is a single instance therefore there are no inconsistencies between the instances of inventories.
