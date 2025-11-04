@@ -13,7 +13,7 @@ The Functional requirements:
 12) The system needs some way to show a payment being declined and allowing the customer to go their order again this can be done using a state.
 13) There needs to be an easy way to travel through areas of plants or storage containers of plants.
 14) The plants need to show that they can die from age because they are an old plant and that they can die if their condition becomes really bad and the dying from both should behave the same way this can be done using an adapter.
-15)The needs to be some way to store the plants that are in an order as groups this can be done using the composite desing pattern.
+15)There needs to be some way to store the plants that are in an order as groups this can be done using the composite design pattern.
 
 
 Non-functional requirements:
