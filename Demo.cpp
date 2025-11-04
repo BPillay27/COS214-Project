@@ -157,7 +157,7 @@ void GameOn(){
     std::string choice;
     //Inventory::instance().getSalesArea()->pS();
     std::cout<<"How can we assist you today?"<<std::endl;
-    std::cout<<"You can browse the nursery with 'browse', and we can recommend if you type 'recommend',\nor 'exit' to leave the our nursery."<<std::endl;
+    std::cout<<"You can browse the nursery with 'browse', and we can recommend if you type 'recommend',\nor 'exit' to leave the our nursery. You can also let time pass with 'pass'"<<std::endl;
     while(true){
         std::cout<<"So what is your choice?"<<std::endl;
         std::getline(std::cin, choice);
@@ -265,7 +265,10 @@ void GameOn(){
                 std::cout << *it << std::endl;
             }
             std::cout<<"You can continue browsing, ask for more recommendations, or exit."<<std::endl;
-        } else {
+        } else if(choice=="pass"){
+            std::cout<<"A day has passed happy!:\n\n\t";
+            day();
+        }else {
             std::cout<<"That is not a valid option, please try again."<<std::endl;
         }
     }
