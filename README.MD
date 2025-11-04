@@ -1,30 +1,120 @@
-### Practickler's very very serious readme
+# Practicklers — Nursery Simulation
 
-Our planning docs link:
-https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing
+This Project contains a small nursery simulation.
+It models plants, employees, customers, inventory and orders, and includes a Qt GUI to view and run the simulation.
 
-## Everywhere
-- Iterator (will iterate lol)
+[our live planning google doc.](https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing)
 
-## 1.1 Greenhouse grow area or sumn.
-we are using a vector to keep track of the 'floor plan', to simplify the understanding and tracking of which plants we have.
+## Typical user flow:
 
-- Factory Method (order seeds (instantiating plants))
-- Observer (observer tell employee (verbatim keegan)) (Greenhouse manager walks through)
-- State
-- Composite
-- Strategy
+1. Start the app. The main window launches and you can open the dashboard, nursery view or simulation view.
+2. In the simulation view you can step through the simulation. Plants age and may generate requests (water/prune/fertilise/moving).
+3. Requests are handled by employees (gardener, inventory manager, salesman) delegated by the chain of responsibility.
+4. Customers can create orders using the GUI; orders use commands and composite/decorator patterns to build complex items (Wrapping or Decorated Pots, special arrangements) and finally to check out.
 
-## 1.2 Staff
+## Installation & dependencies
 
-- Singleton  (for inventory)
-- Mediator (interactions and everything (verbatim arran)) (hey we need new stuff (verbatim keegan))
-  - Two staff vectors, for busy and not busy
-- Chain of Responisibility
-- Command
+These instructions assume a Linux environment (Ubuntu/Debian). So adjust package names for other distributions.
 
-## 1.3 Customer 
+Required software:
 
-- Decorator (for customization of the plant)
-- Composite (to 'arrange' the plants)
-- State/Command
+- C++ with C++11 support
+- latest CMake
+  - installed using `sudo apt install cmake`
+- Qt Creator [Installation available here](https://www.qt.io/download-qt-installer-oss)
+- GoogleTest (for unit tests)
+
+## Build (recommended: CMake)
+
+- To build Google Test's unit_tests:
+```
+# from repo root
+cmake -S . -B build
+```
+
+- GUI build is still upcoming.
+
+## Quick run
+
+- Run the gtests' build:
+
+```
+cd build
+make
+./unit_tests
+```
+
+- Like stated above, the GUI build is still upcoming.
+
+## File map
+
+### Chain of Responsibility Pattern
+- `Employee.h/.cpp` - Abstract handler base class
+- `Gardener.h/.cpp` - Handles plant care requests (water, prune, fertilise)
+- `Salesman.h/.cpp` - Handles sales and customer interactions
+- `InventoryManager.h/.cpp` - Handles inventory and restocking requests
+- `Request.h/.cpp` - Request objects (Place, Water, Fertilise, Prune)
+
+### State Pattern
+- **Order States:** `OrderState.h/.cpp` - payment states
+  - `AcceptPayment`, `DeclinePayment`, `ProcessingPayment`, `VerifyOrder`
+- **Plant Maturity States:** `Maturity.h/.cpp` - plant lifecycle
+  - `Seed`, `Sprout`, `Seedling`, `Mature`, `Dead`
+- **Plant Condition States:** `Condition.h/.cpp` - plant health
+  - `Healthy`, `Dehydrated`, `Malnurished`, `OverGrown`, combinations
+
+### Command Pattern
+- `Command.h/.cpp` - Abstract command interface
+- `AddToOrder`, `RemoveFromOrder` - Concrete commands for order management
+- `Customer.h/.cpp` - Invoker that buffers and executes commands
+
+### Composite & Decorator Patterns
+- `OrderComponent.h/.cpp` - Component interface for orders
+- `Plant.h/.cpp` - Leaf component (Rose, Dandelion, AppleTree)
+- `Arrangement.h/.cpp` - Composite for plant arrangements
+- `PlantDecorator` - Base decorator class
+- `DecorPot`, `Wrapping` - Concrete decorators
+
+### Strategy Pattern
+- `GreenHouseCare.h` - Strategy interface for plant care
+- `Normal.h/.cpp`, `Bonsai.h/.cpp`, `Topiary.h/.cpp`, `Espalier.h/.cpp`, `Kokedama.h/.cpp` - Concrete care strategies
+
+### Iterator Pattern
+- `Iterator.h` - Abstract iterator interface
+- `VectorIterator.h` - Concrete iterator implementation
+- `Aggregate.h/.cpp` - Abstract aggregate with `PlantArea`, `PlantRow`
+
+### Observer Pattern
+- `Subject.h` - Observer interface for notifications
+- Used by `Plant` and `Inventory` for request notifications
+
+### Factory Method Pattern
+- `Namer.h/.cpp` - Creator hierarchy for customer types
+- `CivillianNamer`, `CommercialNamer` - Concrete creators
+- Creates `Civillian`, `Commercial` customer products
+
+### Singleton Pattern
+- `Inventory.h/.cpp` - Singleton for global inventory management
+- `Supplier.h/.cpp` - Plant suppliers (RoseSupplier, AppleSupplier, DandelionSupplier)
+
+### Core Domain & Utilities
+- `Nursery.h/.cpp` - Main nursery management and plant organization
+- `Order.h/.cpp` - Order management and context for states
+- `unitTesting.cpp` - GoogleTest unit tests covering all patterns
+
+### GUI (Qt6 Application)
+- `main.cpp`
+- `mainwindow.h/.cpp/.ui`
+- `dashboard.h/.cpp/.ui`
+- `simulationview.h/.cpp/.ui`
+- `nurseryview.h/.cpp/.ui`
+
+## Team members
+
+- Byron Pillay, u21516261
+- Tshepiso Makelana, u23588579
+- Mulondi Makhado, u24739163
+- Arran Lamond, u23655675
+- Keegan Lewis, u24594522
+- Michael Neto, u24641342
+- Ndamulelo Vele, u23554607
