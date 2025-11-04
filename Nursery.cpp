@@ -1,5 +1,6 @@
 #include "Nursery.h"
 #include <iostream>
+#include <algorithm>
 
 /**
 * @file Nursery.cpp
@@ -82,13 +83,13 @@ std::string Nursery::printPlants() {
     for (int plantsInSight = 0; plantsInSight < 5; plantsInSight++) {
         size_t i = walk + plantsInSight;
         if(i >= salesArea.size()) {
-            result += plantsInSight+". |--|--|--|--|--|\n";
+            result += std::to_string(plantsInSight) + ". |--|--|--|--|--|\n";
             continue;
         }else if(salesArea[i] == nullptr) {
-            result += plantsInSight+". |--|--|--|--|--|\n";
+            result += std::to_string(plantsInSight) + ". |--|--|--|--|--|\n";
             continue;
         }else{
-            result += plantsInSight+". "+salesArea[i]->getSpecies()+"\n";
+            result += std::to_string(plantsInSight) + ". " + salesArea[i]->getSpecies() + "\n";
         }
     }
     return result;
@@ -143,14 +144,16 @@ Plant* Nursery::getPlant(int index) {
 * @brief Provides a list of recommended plants based on the current sales area.
  * @return A vector of strings representing the recommended plant species.
 */
-std::vector<string> Nursery::recommendations() {
-    std::vector<string> recommendedPlants;
+std::vector<std::string> Nursery::recommendations() {
+    std::vector<std::string> recommendedPlants;
 
     for (Plant* plant : salesArea) {
         if (plant == nullptr) {
             continue;
-        }else if(plant!=nullptr && std::find(recommendedPlants.begin(), recommendedPlants.end(), plant->getSpecies()) == recommendedPlants.end()) {
-            recommendedPlants.push_back(plant->getSpecies());
+        }
+        std::string species = plant->getSpecies();
+        if (std::find(recommendedPlants.begin(), recommendedPlants.end(), species) == recommendedPlants.end()) {
+            recommendedPlants.push_back(species);
         }    
     }
 
@@ -176,9 +179,11 @@ bool Nursery::moveToSales(std::string plantType) {
     Plant* plant = greenHouse->givePlant(plantType);
     if (plant != nullptr && (int)salesArea.size() < capacity) {
         salesArea.push_back(plant);
-        greenHouse->removePlant(plant);
+        // givePlant() now removes the plant from greenhouse without deleting it
         return true;
     }else if(plant != nullptr && (int)salesArea.size() >= capacity){
+        // Sales area is full, put the plant back in greenhouse or handle it
+        greenHouse->addPlant(plant);  // Put it back
         return false;        
     }else{
         return false;
@@ -191,7 +196,10 @@ bool Nursery::moveToSales(std::string plantType) {
 */
 
 void Nursery::grow() {
+    std::cout<<"All activated plants are growing now..."<<std::endl;    
     greenHouse->grow();
+    //std::cout<<"Are there any plants in the sales area to grow?"<<std::endl;
+    //std::cout<<greenHouse->getCount()<<" plants are in the greenhouse."<<std::endl;
     for (Plant* plant : salesArea) {
         if (plant != nullptr) {
             plant->grow();
@@ -217,3 +225,12 @@ void Nursery::examine() {
         }
     }
 }
+
+// void Nursery::pS(){
+//     std::cout<<"Plants in sales area:"<<std::endl;
+//     for (Plant* plant : salesArea) {
+//         if (plant != nullptr) {
+//             std::cout<<plant->getSpecies()<<std::endl;
+//         }
+//     }
+// }

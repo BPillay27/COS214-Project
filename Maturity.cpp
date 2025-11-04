@@ -9,6 +9,7 @@
 #include "Maturity.h"
 #include "Plant.h"
 #include "Dead.h"
+#include "Inventory.h"
 
 /**
  * @brief Constructor for the Maturity base class.
@@ -48,7 +49,7 @@ Seed::~Seed() {
 void Seed::grow() {
 
     //int* intervals = mPlant->getLifeIntervals();
-    
+    std::cout<<"One "<<mPlant->getSpecies()<<" has grown while being a seed"<<std::endl;
     // Seed needs water to germinate
     if (mPlant->getLifeTime() >= 0 ) {
         mPlant->setLifeStage(new Sprout(mPlant));
@@ -95,7 +96,8 @@ Sprout::~Sprout() {
 void Sprout::grow() {
     // Transition to Seedling stage when time is right and plant size is above it's measure at this state
     int* intervals = mPlant->getLifeIntervals();
-    if (mPlant->getLifeTime() >= intervals[0] && mPlant->toPrune()) {
+    std::cout<<"One "<<mPlant->getSpecies()<<" has grown while being a sprout"<<std::endl;
+    if (mPlant->getLifeTime() >= intervals[0]) {
         mPlant->setLifeStage(new Seedling(mPlant));
     }
 }
@@ -140,8 +142,14 @@ Seedling::~Seedling() {
 void Seedling::grow() {
     // Transition to Mature stage when time is right and plant is healthy (not needing pruning)
     int* intervals = mPlant->getLifeIntervals();
-    if (mPlant->getLifeTime() >= intervals[1] && mPlant->toPrune()) {
-        mPlant->setLifeStage(new Mature(mPlant));
+    std::cout<<"One "<<mPlant->getSpecies()<<" has grown while being a seedling"<<std::endl;
+    if (mPlant->getLifeTime() >= intervals[1]) {
+        // Save plant pointer and species before setLifeStage deletes this object
+        Plant* plant = mPlant;
+        std::string species = mPlant->getSpecies();
+        plant->setLifeStage(new Mature(plant));
+        // Move to sales AFTER the plant has transitioned to Mature
+        //Inventory::instance().getSalesArea()->moveToSales(species);
     }
 }
 
@@ -167,7 +175,7 @@ std::string Seedling::lifeCycle() {
  * @param plant Pointer to the plant object that this mature state belongs to.
  */
 Mature::Mature(Plant* plant) : Maturity(plant) {
-
+    
 }
 
 /**
@@ -184,9 +192,11 @@ Mature::~Mature() {
 void Mature::grow() {
     // Check if plant has reached the end of its lifespan (4th interval)
     int* intervals = mPlant->getLifeIntervals();
+    Inventory::instance().getSalesArea()->moveToSales(mPlant->getSpecies());
+    std::cout<<"One "<<mPlant->getSpecies()<<" has grown while mature"<<std::endl;
     if (mPlant->getLifeTime() >= intervals[2]) {
-        Maturity* dead = new Dead(mPlant);
-        mPlant->setLifeStage(dead);
+        mPlant->setCondition(new Dead(mPlant));
+        mPlant->setLifeStage(new Dead(mPlant));
     }
     // Otherwise, already at mature stage, no further growth
 }

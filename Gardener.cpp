@@ -6,9 +6,10 @@
  */
 Gardener::Gardener() : Employee()
 {
-    for(int i = 1; i <= 5; i++)
+    std::string names[5] = {"Jeff", "Mulondi", "Vele", "Keegan", "Byron"};
+    for(int i = 0; i < 5; i++)
     {
-        employees.push(EmployeePerson("gardener" + to_string(i)));
+        employees.push(EmployeePerson(names[i]));
     }
 }
 
@@ -34,7 +35,13 @@ void Gardener::handle(Requests* task)
                 current.isAvailable = false;
                 employees.pop();
                 employees.push(current);
+                
                 task->setParam(this);
+                if(taskType != "Place")
+                {
+                    //task->setParam(nullptr); // Place requests do not need a gardener
+                    std::cout << current.name << " is ";
+                }
                 task->execute();
                 
                 queue<EmployeePerson> tempQueue;

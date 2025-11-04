@@ -18,6 +18,7 @@ public:
     virtual ~OrderComponent();
     virtual void cancelOrder();
     virtual void success();
+    virtual string getDescription()=0;
 protected:
     int price;
 };
@@ -28,10 +29,11 @@ protected:
     OrderComponent* component;
 public:
     PlantDecorator(OrderComponent* component);
-    int getPrice() override;
+    virtual int getPrice();
     virtual ~PlantDecorator();
     virtual void cancelOrder();
     virtual void success();
+    virtual string getDescription()=0;
 };
 
 class DecorPot : public PlantDecorator 
@@ -41,6 +43,7 @@ private:
 public:
     DecorPot(OrderComponent* component);
     int getPrice();
+    string getDescription();
 };
 
 class Wrapping : public PlantDecorator
@@ -49,6 +52,7 @@ private:
     int wrappingPrice;
 public:
     Wrapping(OrderComponent* component);
-    int getPrice() override;
+    int getPrice();
+    string getDescription();
 };
 #endif

@@ -13,6 +13,7 @@ Order::Order(std::string id)
     this->id = id;
     state = new VerifyOrder(this);
     items = new Arrangement(0);
+    
 }
 
 /**
@@ -87,8 +88,10 @@ OrderState *Order::getState()
 
 void Order::processPayment()
 {
-    OrderState *temp = new VerifyOrder(this);
-    setState(temp);
+    if(state == nullptr){
+        std::cout << "Order was already accepted leave" << std::endl;
+        return;
+    }
     state->handle();
 }
 
@@ -99,4 +102,15 @@ void Order::processPayment()
 OrderComponent *Order::getItems()
 {
     return items;
+}
+
+/**
+*@brief Get the description of the order
+*@return string of the order details
+*/
+std::string Order::see(){
+    std::string details="Order ID: "+id+"\nItems in Order:\n";
+    details+=items->getDescription();
+    details+="\nTotal Price: $"+std::to_string(items->getPrice())+"\n";
+    return details;
 }

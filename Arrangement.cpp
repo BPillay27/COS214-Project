@@ -14,7 +14,7 @@ void Arrangement::add(OrderComponent* toAdd)
 {
     if (!toAdd)
     {
-        cout << "The component that is trying to be added is null. (Arrangement.cpp line 12)";
+        cout << "The component that is trying to be added is null.";
         return;
     }
     arrangement.push_back(toAdd);
@@ -55,4 +55,19 @@ Arrangement::~Arrangement()
     {
         delete component;
     }
+}
+
+string Arrangement::getDescription() {
+    string description = "Arrangement of: \n {";
+    for (size_t i = 0; i < arrangement.size(); ++i) {
+        if (arrangement[i] == nullptr) {
+            continue;
+        }
+        if (i < arrangement.size() - 1) {
+            description += arrangement[i]->getDescription() + "\n";
+        } else {
+            description += arrangement[i]->getDescription()+ "}";
+        }
+    }
+    return description;
 }

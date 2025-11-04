@@ -94,6 +94,7 @@ class Plant : public OrderComponent, public Subject {
         void examine(bool j);
         void success();
         void setCare(GreenHouseCare* care);
+        string getDescription();
 };
 
 /**

@@ -36,5 +36,6 @@ std::string Dead::lifeCycle() {
  */
 void Dead::examine(bool shouldDegrade) {
     // it should notify the gardener that the plant is dead
+    std::cout<<"Oops a "<<mPlant->getSpecies()<<" has died."<<std::endl;
     mPlant->notify("dead");
 }   

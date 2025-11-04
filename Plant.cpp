@@ -34,9 +34,7 @@ Plant::Plant(string name,int growth,int water,int nutrition, int lifeCycle[3], i
  */
 void Plant::grow() 
 {
-    lifeTime++;
     if (maturity != nullptr) {
-        //Micheal is a bad branch manager
         maturity->grow(); 
     }
 }
@@ -153,7 +151,7 @@ bool Plant::canSale() {
     {
         return false;
     }
-    return (lifeTime >= lifeIntervals[2]);
+    return maturity->canSale();
 }
 
 /**
@@ -202,16 +200,20 @@ void Plant::notify(string request) {
         if(request=="prune"){
             Requests* req=new Prune(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="water"){
             Requests* req=new Water(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="fertilise"){
             Requests* req=new Fertilise(this);
             notify(req);
+            delete req;
             return;
         }else if(request=="dead"){
+            std::cout<<"One "<<getSpecies()<<" has been removed from the nursery due to death."<<std::endl;
             Inventory::instance().removeFromNursery(this);
             return;
         }
@@ -422,12 +424,16 @@ void Plant::success(){
     return;
 }
 
+string Plant::getDescription() {
+    return getSpecies();
+}
+
 /**
  * @brief Constructor for the Rose class.
  * Initializes a Rose plant with specific attributes.
  */
 
-Rose::Rose() : Plant("Rose", 20, 15, 20, new int[3]{2, 3, 20}, 50) {
+Rose::Rose() : Plant("Rose", 30, 25, 35, new int[3]{2, 3, 20}, 50) {
 
 }
 
@@ -442,7 +448,7 @@ Rose::~Rose() {
  * @brief Constructor for the Dandelion class.
  * Initializes a Dandelion plant with specific attributes.
  */
-Dandelion::Dandelion() : Plant("Dandelion", 15, 25, 30, new int[3]{3, 4, 25}, 20) {    
+Dandelion::Dandelion() : Plant("Dandelion", 30, 50, 60, new int[3]{3, 4, 25}, 20) {    
     
 }
 
@@ -458,7 +464,7 @@ Dandelion::~Dandelion() {
  * @brief Constructor for the AppleTree class.
  * Initializes an AppleTree plant with specific attributes.
  */
-AppleTree::AppleTree() : Plant("Apple tree", 60, 20, 35, new int[3]{4, 5, 30},120) {
+AppleTree::AppleTree() : Plant("Apple tree", 60, 40, 70, new int[3]{4, 5, 30},120) {
     
 }
 

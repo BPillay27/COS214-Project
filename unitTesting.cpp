@@ -8,10 +8,8 @@
 #include "Iterator.h"
 #include "Aggregate.h"
 #include "VectorIterator.h"
-
 #include <iostream>
 #include <vector>
-
 #include "Customer.h" //inserted this to prevent some errors
 #include "Salesman.h"
 #include "InventoryManager.h"

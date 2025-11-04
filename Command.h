@@ -36,6 +36,7 @@ public:
     Command() = default; ///< Default constructor.
     virtual ~Command() = default; ///< Default destructor.
     virtual void execute() = 0; ///< Executes command.
+    OrderComponent* Item; ///< Item this command affects.
 };
 
 /**
@@ -48,12 +49,12 @@ class AddToOrder : public Command
 {
 public:
     AddToOrder(Order *order, OrderComponent* toAdd); ///< Constructor.
-    ~AddToOrder(); ///< Destructor.
+    ~AddToOrder() override; ///< Destructor.
     void execute(); ///< Execute add to order.
 
 private:
     Order *order; ///< Order this command affects.
-    OrderComponent* toAdd; ///< Item this command adds.
+    
 };
 
 /**
@@ -66,12 +67,11 @@ class RemoveFromOrder : public Command
 {
 public:
     RemoveFromOrder(Order *order, OrderComponent* toRemove); ///< Constructor.
-    ~RemoveFromOrder(); ///< Destructor.
+    ~RemoveFromOrder() override; ///< Destructor.
     void execute(); ///< Executes remove from order.
-
 private:
     Order *order; ///< `Order` this command affects.
-    OrderComponent* toRemove; ///< Item this command removes.
+    
 };
 
 #endif

@@ -76,6 +76,15 @@ class Customer {
      * @return The name of the customer
      */
     string getName();
+
+    /**
+    *@brief Get the description of the customer's order but printing it
+    */
+    void see();
+
+    Order* getOrder() const{
+        return order;
+    }
 };
 
 /**

@@ -101,10 +101,14 @@ std::string PlantRow::typePlant()
 
 Plant *PlantRow::givePlant()
 {
-    for (Plant *p : plants)
+    for (size_t i = 0; i < plants.size(); i++)
     {
-        if (p->canSale())
+        if (plants[i]->canSale())
+        {
+            Plant* p = plants[i];
+            plants.erase(plants.begin() + i);  // Remove from container without deleting
             return p;
+        }
     }
 
     return nullptr;
@@ -139,9 +143,19 @@ void PlantRow::examine(bool con)
 
 void PlantRow::grow()
 {
-    for (Plant *p : plants)
+    // Use index-based loop to handle plants being removed during iteration
+    for (size_t i = 0; i < plants.size(); )
     {
+        Plant* p = plants[i];
+        size_t sizeBefore = plants.size();
         p->grow();
+        // If plant was removed (e.g., died), don't increment i
+        if (plants.size() < sizeBefore) {
+            // Plant was removed, i now points to next plant
+            continue;
+        }
+        // Plant still exists, move to next
+        i++;
     }
 }
 
@@ -249,7 +263,11 @@ Plant *PlantArea::givePlant(std::string plantType)
     {
         if (pr->typePlant() == plantType)
         {
-            return pr->givePlant();
+            Plant* plant = pr->givePlant();
+            if (plant != nullptr) {
+                --count;  // Decrement count when giving away a plant
+            }
+            return plant;
         }
     }
 
@@ -314,8 +332,9 @@ void PlantArea::examine(bool con)
 
 void PlantArea::grow()
 {
-    for (PlantRow *pr : plantRows)
+    // Use index-based loop to handle vector reallocation during iteration
+    for (size_t i = 0; i < plantRows.size(); i++)
     {
-        pr->grow();
+        plantRows[i]->grow();
     }
 }
