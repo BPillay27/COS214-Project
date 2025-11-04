@@ -3,7 +3,7 @@
 This Project contains a small nursery simulation.
 It models plants, employees, customers, inventory and orders, and includes a Qt GUI to view and run the simulation.
 
-[our live planning google doc.](https://docs.google.com/document/d/1fn1Ovq9XsSEPPt1roBBJOnbE4E4_Todo_keBedztCA0/edit?usp=sharing)
+[our report google doc.](https://docs.google.com/document/d/1Es4KYpU8dHcwUozYmNFJVKEh1hC1uzcddUiseezZkss/edit?usp=sharing)
 
 ## Typical user flow:
 
@@ -44,7 +44,23 @@ make
 ./unit_tests
 ```
 
-- Like stated above, the GUI build is still upcoming.
+- Like stated above, the GUI build is work in progess.
+
+To build the demo and run it
+```
+make Demos
+```
+
+To just run the Demo after creation
+```
+make demo
+```
+
+To run with valgrind
+```
+make vDemo
+```
+
 
 ## File map
 
