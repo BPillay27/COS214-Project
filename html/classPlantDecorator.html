@@ -73,7 +73,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPlantDecorator-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PlantDecorator Class Reference</div></div>
+  <div class="headertitle"><div class="title">PlantDecorator Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -92,12 +92,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aefe8a1c4630391d1cf83f4e7fc711c7d" id="r_aefe8a1c4630391d1cf83f4e7fc711c7d"><td class="memItemLeft" align="right" valign="top"><a id="aefe8a1c4630391d1cf83f4e7fc711c7d" name="aefe8a1c4630391d1cf83f4e7fc711c7d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PlantDecorator</b> (<a class="el" href="classOrderComponent.html">OrderComponent</a> *component)</td></tr>
 <tr class="separator:aefe8a1c4630391d1cf83f4e7fc711c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a873ddcc046d06cf7b67dfad724c2cea4" id="r_a873ddcc046d06cf7b67dfad724c2cea4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlantDecorator.html#a873ddcc046d06cf7b67dfad724c2cea4">getPrice</a> () override</td></tr>
-<tr class="separator:a873ddcc046d06cf7b67dfad724c2cea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a1eab27117962748fbb928ea8fa9d8d" id="r_a7a1eab27117962748fbb928ea8fa9d8d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlantDecorator.html#a7a1eab27117962748fbb928ea8fa9d8d">getPrice</a> ()</td></tr>
+<tr class="separator:a7a1eab27117962748fbb928ea8fa9d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a649b1522fc4cfbb86875a635d160df0e" id="r_a649b1522fc4cfbb86875a635d160df0e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlantDecorator.html#a649b1522fc4cfbb86875a635d160df0e">cancelOrder</a> ()</td></tr>
 <tr class="separator:a649b1522fc4cfbb86875a635d160df0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a369ca8e600b931b28f648f90e0398c" id="r_a2a369ca8e600b931b28f648f90e0398c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlantDecorator.html#a2a369ca8e600b931b28f648f90e0398c">success</a> ()</td></tr>
 <tr class="separator:a2a369ca8e600b931b28f648f90e0398c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab994d94893303f999f2f06503f547794" id="r_ab994d94893303f999f2f06503f547794"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlantDecorator.html#ab994d94893303f999f2f06503f547794">getDescription</a> ()=0</td></tr>
+<tr class="separator:ab994d94893303f999f2f06503f547794"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOrderComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOrderComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOrderComponent.html">OrderComponent</a></td></tr>
 <tr class="memitem:a8fa6d4444de047ced2c6e0035882a3af inherit pub_methods_classOrderComponent" id="r_a8fa6d4444de047ced2c6e0035882a3af"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>OrderComponent</b> (int price)</td></tr>
@@ -149,8 +151,35 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>price</b></td></tr>
 
 </div>
 </div>
-<a id="a873ddcc046d06cf7b67dfad724c2cea4" name="a873ddcc046d06cf7b67dfad724c2cea4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a873ddcc046d06cf7b67dfad724c2cea4">&#9670;&#160;</a></span>getPrice()</h2>
+<a id="ab994d94893303f999f2f06503f547794" name="ab994d94893303f999f2f06503f547794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab994d94893303f999f2f06503f547794">&#9670;&#160;</a></span>getDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string PlantDecorator::getDescription </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classOrderComponent.html">OrderComponent</a>.</p>
+
+</div>
+</div>
+<a id="a7a1eab27117962748fbb928ea8fa9d8d" name="a7a1eab27117962748fbb928ea8fa9d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a1eab27117962748fbb928ea8fa9d8d">&#9670;&#160;</a></span>getPrice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +196,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>price</b></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

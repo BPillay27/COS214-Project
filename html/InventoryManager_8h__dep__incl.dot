@@ -8,5 +8,7 @@ digraph "InventoryManager.h"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="Inventory.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Inventory_8h.html",tooltip=" "];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="Plant.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Plant_8cpp.html",tooltip="Constructor for the Plant class."];
+  Node3 [id="Node000003",label="Maturity.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Maturity_8cpp.html",tooltip="Implementation of the Maturity state pattern classes."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Plant.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Plant_8cpp.html",tooltip="Constructor for the Plant class."];
 }

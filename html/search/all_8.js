@@ -7,6 +7,7 @@ var searchData=
   ['inventorymanager_2eh_4',['InventoryManager.h',['../InventoryManager_8h.html',1,'']]],
   ['isavailable_5',['isAvailable',['../structEmployeePerson.html#a9c4b0226526d0f74f49d7c9ac045807a',1,'EmployeePerson']]],
   ['isdone_6',['isdone',['../classIterator.html#a8e7b414c641f4f0838ff8bd6ba954b7a',1,'Iterator::isDone()'],['../classVectorIterator.html#ac0e935b2327740493cd0e05930dfee65',1,'VectorIterator::isDone()']]],
-  ['iterator_7',['iterator',['../classIterator.html',1,'Iterator&lt; T &gt;'],['../classIterator.html#abac5ed7d445dd6c652b76cb231df418b',1,'Iterator::Iterator()'],['../group__Iterator.html',1,'Iterator']]],
-  ['iteratorpattern_8',['IteratorPattern',['../group__IteratorPattern.html',1,'']]]
+  ['item_7',['Item',['../classCommand.html#a5ec0837347ff1afb908590ddbff7276f',1,'Command']]],
+  ['iterator_8',['iterator',['../classIterator.html',1,'Iterator&lt; T &gt;'],['../classIterator.html#abac5ed7d445dd6c652b76cb231df418b',1,'Iterator::Iterator()'],['../group__Iterator.html',1,'Iterator']]],
+  ['iteratorpattern_9',['IteratorPattern',['../group__IteratorPattern.html',1,'']]]
 ];

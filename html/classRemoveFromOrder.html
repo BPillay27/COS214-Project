@@ -96,9 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aed1f3510029de6f809fdb498d29e1fba" id="r_aed1f3510029de6f809fdb498d29e1fba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRemoveFromOrder.html#aed1f3510029de6f809fdb498d29e1fba">RemoveFromOrder</a> (<a class="el" href="classOrder.html">Order</a> *order, <a class="el" href="classOrderComponent.html">OrderComponent</a> *toRemove)</td></tr>
 <tr class="memdesc:aed1f3510029de6f809fdb498d29e1fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:aed1f3510029de6f809fdb498d29e1fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9ebef80b8f05f5956a105ab7aefe543" id="r_ae9ebef80b8f05f5956a105ab7aefe543"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRemoveFromOrder.html#ae9ebef80b8f05f5956a105ab7aefe543">~RemoveFromOrder</a> ()</td></tr>
-<tr class="memdesc:ae9ebef80b8f05f5956a105ab7aefe543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:ae9ebef80b8f05f5956a105ab7aefe543"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d8d9a49624fb1d8030d59c725389a5" id="r_a29d8d9a49624fb1d8030d59c725389a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRemoveFromOrder.html#a29d8d9a49624fb1d8030d59c725389a5">~RemoveFromOrder</a> () override</td></tr>
+<tr class="memdesc:a29d8d9a49624fb1d8030d59c725389a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:a29d8d9a49624fb1d8030d59c725389a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa51935c2f106a14f7d60b62d3e86d83d" id="r_aa51935c2f106a14f7d60b62d3e86d83d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRemoveFromOrder.html#aa51935c2f106a14f7d60b62d3e86d83d">execute</a> ()</td></tr>
 <tr class="memdesc:aa51935c2f106a14f7d60b62d3e86d83d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes remove from order.  <br /></td></tr>
 <tr class="separator:aa51935c2f106a14f7d60b62d3e86d83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,6 +111,14 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Command</b> ()=default</td></tr>
 <tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. <br /></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classCommand')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classCommand.html">Command</a></td></tr>
+<tr class="memitem:a5ec0837347ff1afb908590ddbff7276f inherit pub_attribs_classCommand" id="r_a5ec0837347ff1afb908590ddbff7276f"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classOrderComponent.html">OrderComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b></td></tr>
+<tr class="memdesc:a5ec0837347ff1afb908590ddbff7276f inherit pub_attribs_classCommand"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item this command affects. <br /></td></tr>
+<tr class="separator:a5ec0837347ff1afb908590ddbff7276f inherit pub_attribs_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ConctreteCommand to remove an item from <code><a class="el" href="classOrder.html">Order</a></code>. </p>
@@ -152,11 +160,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Command</b> ()=de
 
 </div>
 </div>
-<a id="ae9ebef80b8f05f5956a105ab7aefe543" name="ae9ebef80b8f05f5956a105ab7aefe543"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9ebef80b8f05f5956a105ab7aefe543">&#9670;&#160;</a></span>~RemoveFromOrder()</h2>
+<a id="a29d8d9a49624fb1d8030d59c725389a5" name="a29d8d9a49624fb1d8030d59c725389a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d8d9a49624fb1d8030d59c725389a5">&#9670;&#160;</a></span>~RemoveFromOrder()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">RemoveFromOrder::~RemoveFromOrder </td>
@@ -165,6 +176,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Command</b> ()=de
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Destructor. </p>

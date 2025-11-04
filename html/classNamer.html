@@ -73,9 +73,14 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classNamer-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Namer Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">Namer Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__CustomerFactory.html">CustomerFactory</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract Creator class in the Factory Method pattern for creating <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects.  
+ <a href="classNamer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Namer_8h_source.html">Namer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Namer:</div>
 <div class="dyncontent">
@@ -84,16 +89,147 @@ Inheritance diagram for Namer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a05e0dcef55760042dc0b48132931f55a" id="r_a05e0dcef55760042dc0b48132931f55a"><td class="memItemLeft" align="right" valign="top"><a id="a05e0dcef55760042dc0b48132931f55a" name="a05e0dcef55760042dc0b48132931f55a"></a>
-<a class="el" href="classCustomer.html">Customer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>createCustomer</b> (string name)</td></tr>
+<tr class="memitem:a6f86301dd776f1f9d9e747ccbdc17251" id="r_a6f86301dd776f1f9d9e747ccbdc17251"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNamer.html#a6f86301dd776f1f9d9e747ccbdc17251">Namer</a> ()</td></tr>
+<tr class="memdesc:a6f86301dd776f1f9d9e747ccbdc17251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a>.  <br /></td></tr>
+<tr class="separator:a6f86301dd776f1f9d9e747ccbdc17251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43705a2f027e9b47b5f712d0f8648b9e" id="r_a43705a2f027e9b47b5f712d0f8648b9e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNamer.html#a43705a2f027e9b47b5f712d0f8648b9e">~Namer</a> ()</td></tr>
+<tr class="memdesc:a43705a2f027e9b47b5f712d0f8648b9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a>.  <br /></td></tr>
+<tr class="separator:a43705a2f027e9b47b5f712d0f8648b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e0dcef55760042dc0b48132931f55a" id="r_a05e0dcef55760042dc0b48132931f55a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCustomer.html">Customer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNamer.html#a05e0dcef55760042dc0b48132931f55a">createCustomer</a> (string name)</td></tr>
+<tr class="memdesc:a05e0dcef55760042dc0b48132931f55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public interface for creating a <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a>.  <br /></td></tr>
 <tr class="separator:a05e0dcef55760042dc0b48132931f55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a7a419b84149427ecadb9423e58ea84c5" id="r_a7a419b84149427ecadb9423e58ea84c5"><td class="memItemLeft" align="right" valign="top"><a id="a7a419b84149427ecadb9423e58ea84c5" name="a7a419b84149427ecadb9423e58ea84c5"></a>
-virtual <a class="el" href="classCustomer.html">Customer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>CustomerNamer</b> (string name)=0</td></tr>
+<tr class="memitem:a7a419b84149427ecadb9423e58ea84c5" id="r_a7a419b84149427ecadb9423e58ea84c5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCustomer.html">Customer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNamer.html#a7a419b84149427ecadb9423e58ea84c5">CustomerNamer</a> (string name)=0</td></tr>
+<tr class="memdesc:a7a419b84149427ecadb9423e58ea84c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method to be implemented by concrete creators.  <br /></td></tr>
 <tr class="separator:a7a419b84149427ecadb9423e58ea84c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract Creator class in the Factory Method pattern for creating <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects. </p>
+<p>This class defines the factory method interface for creating <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects The actual instantiation is delegated to concrete subclasses (<a class="el" href="classCivillianNamer.html" title="Concrete Creator that creates Civillian Customer objects.">CivillianNamer</a>, <a class="el" href="classCommercialNamer.html" title="Concrete Creator that creates Commercial Customer objects.">CommercialNamer</a>) </p><dl class="section author"><dt>Author</dt><dd>Arran Lamond </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>October 2025 </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6f86301dd776f1f9d9e747ccbdc17251" name="a6f86301dd776f1f9d9e747ccbdc17251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f86301dd776f1f9d9e747ccbdc17251">&#9670;&#160;</a></span>Namer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Namer::Namer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor for <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a>. </p>
+<p>Constructor for the <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a> class </p>
+
+</div>
+</div>
+<a id="a43705a2f027e9b47b5f712d0f8648b9e" name="a43705a2f027e9b47b5f712d0f8648b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43705a2f027e9b47b5f712d0f8648b9e">&#9670;&#160;</a></span>~Namer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Namer::~Namer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Virtual destructor for <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a>. </p>
+<p>Destructor for the <a class="el" href="classNamer.html" title="Abstract Creator class in the Factory Method pattern for creating Customer objects.">Namer</a> class </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a05e0dcef55760042dc0b48132931f55a" name="a05e0dcef55760042dc0b48132931f55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05e0dcef55760042dc0b48132931f55a">&#9670;&#160;</a></span>createCustomer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCustomer.html">Customer</a> * Namer::createCustomer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public interface for creating a <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a>. </p>
+<p>Calls the factory method <a class="el" href="classNamer.html#a7a419b84149427ecadb9423e58ea84c5" title="Factory method to be implemented by concrete creators.">CustomerNamer()</a> to create the appropriate <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> type </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to assign to the created <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> object</dd></dl>
+<p>Creates a customer by calling the factory method <a class="el" href="classNamer.html#a7a419b84149427ecadb9423e58ea84c5" title="Factory method to be implemented by concrete creators.">CustomerNamer()</a> This method delegates the actual creation to the concrete subclass implementation. The caller is responsible for managing the lifetime of the returned <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> object </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to assign to the created customer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> object </dd></dl>
+
+</div>
+</div>
+<a id="a7a419b84149427ecadb9423e58ea84c5" name="a7a419b84149427ecadb9423e58ea84c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a419b84149427ecadb9423e58ea84c5">&#9670;&#160;</a></span>CustomerNamer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classCustomer.html">Customer</a> * Namer::CustomerNamer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Factory method to be implemented by concrete creators. </p>
+<p>Pure virtual function that concrete subclasses override to create specific <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> types </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to assign to the created <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> object </dd></dl>
+
+<p>Implemented in <a class="el" href="classCivillianNamer.html#a008207606c4d219badfb3ee84afd16fa">CivillianNamer</a>, and <a class="el" href="classCommercialNamer.html#a3017c01e849b48322a8a8fd643d567d7">CommercialNamer</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Namer_8h_source.html">Namer.h</a></li>
 <li><b>Namer.cpp</b></li>

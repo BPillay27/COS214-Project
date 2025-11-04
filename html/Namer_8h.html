@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Practicklers Nursery Project: Customer.h File Reference</title>
+<title>Practicklers Nursery Project: Namer.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,36 +71,43 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">Customer.h File Reference</div></div>
+  <div class="headertitle"><div class="title">Namer.h File Reference<div class="ingroups"><a class="el" href="group__CustomerFactory.html">CustomerFactory</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Factory Method pattern Creator classes for <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> creation.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
-<code>#include &lt;queue&gt;</code><br />
-<code>#include &quot;<a class="el" href="Command_8h_source.html">Command.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Order_8h_source.html">Order.h</a>&quot;</code><br />
-<code>#include &quot;OrderComponent.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="Namer_8h_source.html">Namer.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for Customer.h:</div>
+Include dependency graph for Namer.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="Customer_8h__incl.png" border="0" usemap="#aCustomer_8h" alt=""/></div>
+<div class="center"><img src="Namer_8h__incl.png" border="0" usemap="#aNamer_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="Namer_8h__dep__incl.png" border="0" usemap="#aNamer_8hdep" alt=""/></div>
 </div>
 </div>
-<p><a href="Customer_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="Namer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomer.html">Customer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class representing a customer in the system.  <a href="classCustomer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNamer.html">Namer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract Creator class in the Factory Method pattern for creating <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects.  <a href="classNamer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCivillian.html">Civillian</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ConcreteProduct representing a civilian customer.  <a href="classCivillian.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCivillianNamer.html">CivillianNamer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concrete Creator that creates <a class="el" href="classCivillian.html" title="ConcreteProduct representing a civilian customer.">Civillian</a> <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects.  <a href="classCivillianNamer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommercial.html">Commercial</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ConcreteProduct representing a commercial customer.  <a href="classCommercial.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommercialNamer.html">CommercialNamer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concrete Creator that creates <a class="el" href="classCommercial.html" title="ConcreteProduct representing a commercial customer.">Commercial</a> <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> objects.  <a href="classCommercialNamer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Factory Method pattern Creator classes for <a class="el" href="classCustomer.html" title="Abstract base class representing a customer in the system.">Customer</a> creation. </p>
+<dl class="section author"><dt>Author</dt><dd>Arran Lamond </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>October 2025 </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
